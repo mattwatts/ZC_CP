@@ -1,0 +1,18 @@
+exception in makedestinationlookuparray
+  (this is happening with the importing of targets)
+
+rtnvalue access beyond scope -1
+  (ParseFieldsToImport when importing feature target)
+
+1292.
+IsLocalSQLReserveWord
+
+Delimited2DBF
+ConvertMtxFile
+
+AreDbfFieldNamesValid
+
+Exception in MakeDestinationLookupArray
+
+- set working directory
+DONE

@@ -1,0 +1,35 @@
+Jobs for the Interactive System
+
+Monday 3rd June 1996 (post IAP negotiations)
+
+- key/label naming conflicts, change all to label (with key as well if room)
+- patch in new arrayt to fix memory leak
+- document data structures used in IAP (see Glenn, give him a copy)
+- fix various known bugs that were previously put on the backburner
+
+- get system running natively under NT (WinERMS also)
+
+- bug fixes to WinERMS
+	- some mouse clicks (OWL 1.0?)
+	- make Alt-I do nothing (used by Conservation Tool)
+	  check what it is meant to do, hot key confusion in WinERMS interface
+	- test new panning and zooming functions
+
+- allow single/multiple features for DEFERRED sites as well as AVAILABLE
+	- lookup box similar to that for available sites, but slightly different columns
+
+- think about extended functionality
+	- popup menu on right mouse button click,
+	  possible paths to follow/conservation expert
+	- see features (or whatever) based on current action without accepting it
+	  ('Try' button)
+	- 'Edit' main menu
+		- Undo/Redo, maybe with	10 levels of memory
+		- Copy/Paste, new clipboard type, T_CLIPBOARD_SITELIST
+
+- map WAVIRR/SUMIRR as well as SUBSEMR (option of which index to map)
+  	- also initial or current (I_WAVIRR, I_SUMIRR, INITEMR are initial ones)
+	- generic display layer (eg. ordinal timber values in top layer)
+
+- flagged and partial deferrals visible option for ControlForm
+	- same as Available,Negotiated,Mandatory,Excluded

@@ -1,0 +1,676 @@
+<html>
+<head>
+<title>Java Fractal Generator and Introduction to Fractal Mathematics</title>
+<meta name="Description" content="Java Fractal Generator and Introduction to Fractal Mathematics">
+<meta name="Keywords" content="
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+">
+<meta content="Nick Lilavois (nick@lilavois.com)" name=author>
+<meta content="nick@lilavois.com <Nick Lilavois" name=reply-to>
+<link href="mailto:nick@lilavois.com (Nick Lilavois)" rel=owner title=e-mail>
+<style>
+body, p, td, h1, h2, h3, ul, ol, li, blockquote
+{
+font-family:Tahoma, Verdana, Arial, Helvetica;
+}
+h1, h2
+{
+border: 1px solid #FFFF00;
+width: 100%;
+font-weight: bold;
+color: #660033;
+background-attachment: fixed;
+background-image: url(background2.gif);
+background-repeat: repeat;
+background-position: center center;
+}
+h1
+{
+font-size: 20pt;
+}
+h2
+{
+font-size: 15pt;
+}
+</style>
+<script language="JavaScript">
+<!--
+var n=0;
+function launchwindow(width,height,params)
+{
+  var appletwindow;
+
+  var properties="toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=no,resizeable=no";
+  properties=properties + ",width=" + width + ",height=" + height + ",top=0,left=0";
+
+  appletwindow=open("", "javamanwindow" + (n++), properties);
+  appletwindow.document.clear();
+  appletwindow.document.open("text/html");
+  appletwindow.document.write("<html><head><title>JavaMan Fractal Generator by Nick Lilavois</title></head>");
+  appletwindow.document.write("<BODY bgcolor=black text=white leftMargin=0 topMargin=0 marginheight=0 marginwidth=0 >");
+  appletwindow.document.write("<APPLET code='fractal' width='" + width + "' height='" + height + "'><param name=args value='"+params+"'></APPLET>");
+  appletwindow.document.writeln("</BODY></html>");
+  appletwindow.document.close();
+}
+//-->
+</script>
+</head>
+<body bgcolor=white text=black leftmargin=0 topmargin=0 marginheight=0 marginwidth=0 background="background.gif">
+<center>
+<a href="http://shop.magentastudios.com/frames.html?design=magentastudi" target="_blank"><img src="http://shop.magentastudios.com/gui/banner.gif" border=0></a>
+</center>
+<br clear="all">
+<img src="bwmandel.gif" width="190" height="160" align="left">
+<br><br>
+<font size="7"><b>JavaMan</b></font> <font size="2"><b><br>
+&nbsp;&nbsp;Mandelbrot Fractal Generator<br>
+&nbsp;&nbsp;&nbsp;Java Applet by <a href="mailto:nick@lilavois.com">Nick Lilavois</a></b></font>
+<br clear="all">
+<center>
+<table border=2 cellspacing=0 cellpadding=0><tr><td><applet code='fractal' width='670' height='470'>
+<nolayer><comment>
+Your web browser does not support Java applets, or Java is disabled in your web browser. Get Netscape Communicator.
+<h1>fractal t-shirts</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal tshirts</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal shirts</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal t-shirt</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal tshirt</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal shirt</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal mugs</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal mug</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal mousepad</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>fractal mousepads</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot t-shirts</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot tshirts</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot shirts</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot t-shirt</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot tshirt</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot shirt</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot mugs</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot mug</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot mousepad</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+<h1>mandelbrot mousepads</h1>
+fractal t-shirts, fractal tshirts, fractal shirts, fractal t-shirt, fractal tshirt, fractal shirt,
+fractal mugs, fractal mug, fractal mousepad, fractal mousepads,
+mandelbrot t-shirts, mandelbrot tshirts, mandelbrot shirts, mandelbrot t-shirt, mandelbrot tshirt, mandelbrot shirt,
+mandelbrot mugs, mandelbrot mug, mandelbrot mousepad, mandelbrot mousepads
+</comment></nolayer>
+</applet></td></tr></table></center>
+<blockquote><blockquote>
+
+<hr noshade>
+
+</blockquote></blockquote><h2>What is this thing?</h2><blockquote><blockquote>
+
+<img src="myjava.gif" align=left>
+<p>This is a Fractal generator written in the <a href="http://java.sun.com/" title="Sun's Java page" target="_blank">Java 
+  programming language</a>. It generates the most widely recognized fractal (the 
+  Mandelbrot set), and a few other fractal equations. If your Web browser supports 
+  Java, you will see the Mandelbrot set at the top of this page. Both Netscape 
+  Navigator and Microsoft Internet Explorer support Java applets. It looks it's 
+  best if your computer is set to the HiColor mode (thousands of colors) or the 
+  TrueColor mode (millions of colors). </p>
+<br clear=all>
+</blockquote></blockquote><h2>How to use the Applet</h2><blockquote><blockquote>
+
+<p>You can zoom into the fractal image by either clicking on it or drawing a square 
+  around an area. The best places to zoom in are right on the edge of the black 
+  shape, near the colored bands. You can also set the fractal's parameters in 
+  each of the selectors and fields to the left of the fractal image.</p>
+    <p>The first selector is the formula selector. With this box you can choose 
+      which fractal formula will be rendered. The first option on the list is 
+      the Mandelbrot set. This applet has a highly optimized Mandelbrot equation, 
+      and that formula will render much faster than any of the other formulas.</p>
+<p>The second selector is the plane selector- what the plane options are is explained 
+  below in the <b>Introduction to Fractal Mathematics</b> section.</p>
+<p>Next you will see the rendering mode selector, which determines what values 
+  will be used to assign colors to the image.</p>
+<p>Each of the formulas in the formula selector have exponent values, many of 
+  which can be changed with the A1, A2, and A3 fields.</p>
+    <p>The next four fields are the four coordinate values used to determine the center 
+      of the image you see. Two of those four coordinates are used as the X,Y 
+      values to draw the image, the other two coordinates determine which &quot;slice&quot; 
+      of this plane you are looking at. Which ones are used for which is determined 
+      by which plane you selected. When you zoom into the fractal, you will notice 
+      that two of the four coordinates change, indicating that the point you clicked 
+      or area you selected is now the center of the image. The coordinate values 
+      should be between -2.00000 and 2.00000, because the entire fractal exists 
+      inside a 4D sphere with a radius of 2, centered on the origin.</p>
+    <p>Zoom is a percentage- a smaller number is a smaller fractal (zoomed out) a 
+  larger number is a larger fractal (zoomed in). The zoom field has two small buttons next to it- the plus button will zoom in, the minus button will zoom out.</p>
+<p>Magnitude defaults to 4. A higher number will space out the bands, and a smaller 
+  number will tighten the bands.</p>
+<p>Depth specifies the maximum render depth to calculate. Depth needs to be an 
+  integer above 1. The higher the number, the more accurate the fractal approximation, 
+  and the longer it will take to render. As you zoom in, increase the depth value 
+  to see more detail. Color indicates the total number of hues to use to define 
+  the bands in the image. To see the most detail, keep this value about the same 
+  as the depth value.</p>
+    <p><i>Note: If you are in 256 color mode, set the color value to 30- that will 
+      give you a hue range that falls within the web safe palette. If you set 
+      a higher color number, adjacent bands could be drawn with the same colors, 
+      making the bands indistinguishable.</i></p>
+    <p>Each of the coordinate fields, and each or the other fields, have two buttons 
+      on their right edge. The top one has a plus on it, the bottom one has a 
+      minus on it. Clicking one of those buttons will increment or decrement the 
+      value and begin a render.</p>
+    <p>Near the bottom of the control panel is the thumbnail view. It will only 
+      show up if you are using the mandelbrot object. The crosshairs show you 
+      where the point you are exploring is located on the Mandelbrot set, or how 
+      a Julia set or other plane relates to the Mandelbrot set.</p>
+<p> Under the thumbnail are two buttons- to Reset the fractal to default 
+  values, or render the fractal based on the values you have selected.</p>
+
+</blockquote></blockquote><h2>Launch Applet Window</h2><blockquote><blockquote>
+
+<p>You can launch the applet in it's own window to see larger images of the fractals. 
+  You can launch it with full parameter controls like the one on the top of this 
+  page, or as just a Mandelbrot explorer.
+
+<h3>Full parameter controls:</h3>
+
+<p>Choose one of these larger sizes if your monitor is set to 1024x768 or higher 
+  resolution: <a href="JavaScript:launchwindow(900,700);">700 pixels square</a> 
+  or <a href="JavaScript:launchwindow(800,600);">600 pixels square</a>. <br>
+  Choose this medium size if your monitor is set to 800x600 or higher resolution: 
+  <a href="JavaScript:launchwindow(700,500);">500 pixels square</a>. <br>
+  Choose one of these smaller sizes if your monitor is set to any resolution: 
+  <a href="JavaScript:launchwindow(600,400);">400 pixels square</a> or <a href="JavaScript:launchwindow(500,300);">300 
+  pixels square</a>.</p>
+<a href="JavaScript:launchwindow(1600,1200);">1600 x 1200 pixels square</a>
+<a href="JavaScript:launchwindow('100%','100%');">100% square</a>
+
+<h3>Just the Mandelbrot explorer:</h3>
+
+<p>Choose one of these larger sizes if your monitor is set to 1024x768 or higher 
+  resolution: <a href="JavaScript:launchwindow(700,720);">700 pixels square</a> 
+  or <a href="JavaScript:launchwindow(600,620);">600 pixels square</a>. <br>
+  Choose this medium size if your monitor is set to 800x600 or higher resolution: 
+  <a href="JavaScript:launchwindow(500,520);">500 pixels square</a>. <br>
+  Choose one of these smaller sizes if your monitor is set to any resolution: 
+  <a href="JavaScript:launchwindow(400,420);">400 pixels square</a> or <a href="JavaScript:launchwindow(300,320);">300 
+  pixels square</a> or <a href="JavaScript:launchwindow(200,220);">200 pixels 
+  square</a>.</p>
+<br clear=all>
+
+</blockquote></blockquote><h2>Saving Fractal Images</h2><blockquote><blockquote>
+
+<p>There is currently no way to save the images directly to your hard disk. If 
+  you want to keep one and you are using Microsoft Windows 95, 98, or NT, you can copy the screen 
+  to the clipboard by pressing the &quot;Print Screen&quot; button. You can then 
+  paste the image into any application that supports bitmapped graphics, such 
+  as Adobe Photoshop or the Windows Paint accessory. If you are on a Macintosh, 
+  press &quot;Apple-shift-3&quot; to save the contents of your screen to a PICT 
+  file called &quot;Picture 1&quot; in the root window of your primary hard disk.</p>
+
+</blockquote></blockquote><h2>Fractal Gallery</h2><blockquote><blockquote>
+
+<p>Each of these links will open a Java applet window showing some specific fractal images.
+
+<br><b>These are based on the <a href="JavaScript:launchwindow(670,470,'F:A;P:C;S:D;1:2;2:1;3:1;X:0.0;Y:0.0;R:0.0;I:0.0;Z:100.0;M:4.0;D:100;C:100;');">The Mandelbrot Set</a> formula, which is <b><code>Z=Z<sup>2</sup>+C</code></b></b>.
+<br>
+<br><a href="JavaScript:launchwindow(670,470,'F:A;P:C;S:F;1:2;2:1;3:1;X:-0.5;Y:0.0;R:0.0;I:0.0;Z:200.0;M:4.0;D:16;C:500;');">The Mandelbrot Gemstone</a>.
+<br><a href="JavaScript:launchwindow(670,470,'F:A;P:Z;S:F;1:2;2:1;3:1;X:-1.749;Y:0.0;R:0.0;I:0.0;Z:1500.0;M:4.0;D:46;C:100;');">Your Brain on Drugs</a>.
+<br><a href="JavaScript:launchwindow(670,470,'F:A;P:Z;S:F;1:2;2:1;3:1;X:-1.4746;Y:0.0;R:0.0;I:0.0;Z:3000.0;M:4.0;D:150;C:200;');">Your Other Brain on Drugs</a>.
+<br><a href="JavaScript:launchwindow(670,470,'F:A;P:Z;S:D;1:2;2:1;3:1;X:0.25478082576663375;Y:5.228190750106133E-4;R:0.5014973560771698;I:-0.03156217793745124;Z:1412.0506375941159;M:4.0;D:10000;C:2000;');">Curl</a>.
+
+
+<br><a href="JavaScript:launchwindow(670,470,'F:A;P:I;S:D;1:2;2:1;3:1;X:0.4;Y:0.0;R:0.4;I:0.0;Z:175.0;M:4.0;D:200;C:200;');">Cave Paintings at Lascaux</a>.
+<br><a href="JavaScript:launchwindow(670,470,'F:A;P:C;S:D;1:2;2:1;3:1;X:-1.786440253105167;Y:-8.090508106517075E-11;R:0.0;I:0.0;Z:7.654753122103511E10;M:4.0;D:2000;C:500;');">Infinity</a>. Just keep pressing the "Zoom Out" button.
+<br>
+<br><b>These are based on the <a href="JavaScript:launchwindow(670,470,'f:G;p:C;s:D;x:1;y:0;r:0.5;i:0;1:1;2:1;3:1;d:20;c:50;m:4;z:50');">The Dragon Set</a> formula, which is <b><code>Z=C*Z*(1-Z)</code></b></b>.
+<br>
+<br><a href="JavaScript:launchwindow(670,470,'F:G;P:C;S:D;1:1;2:1;3:1;X:1.0;Y:0.0;R:1.000000000000001;I:0.0;Z:50.0;M:4.0;D:200;C:50;');">The Genesis Bomb</a>.
+<br><a href="JavaScript:launchwindow(670,470,'F:G;P:C;S:F;1:1;2:1;3:1;X:2.0;Y:0.0;R:1.000000000000001;I:0.0;Z:190.0;M:4.0;D:100;C:500;');">Peacock Tail</a>.
+<br>
+<br><b>These are based on the other formulas</b>.
+<br>
+<br><a href="JavaScript:launchwindow(670,470,'F:C;P:C;S:F;1:3;2:1;3:3;X:0.0;Y:0.0;R:0.0;I:0.0;Z:160.0;M:100.0;D:4;C:1000;');">The Star of David</a>.
+
+</p>
+<hr noshade>
+
+
+</blockquote></blockquote><h1>Introduction to Fractal Mathematics</h1><blockquote><blockquote>
+
+</blockquote></blockquote><h2>Fractal Theory</h2><blockquote><blockquote>
+<p>Fractals are unusual geometric shapes that break the rules of traditional geometry.
+<br>
+<br>Most geometric shapes, like circles, triangles, rectangles, and other polygons, have a specific measurable perimeter, and a specific measurable area. As you zoom in to the perimeter of most geometric shapes, all you see is a smooth line or curve.
+<br>
+<br>Fractals are different- their areas and perimeters are infinite.
+<br>The farther you zoom in to the perimeter of a fractal, the more bumps, curves, folds, spikes, and curls you see. With all that detail, the exact distance around the fractal is impossible to measure.
+<br>
+<br>Because they are infinite, there is no way to draw the complete shape of a fractal. All we can do is approximate it's shape. The approximation used in a particular fractal image is referred to as the <b>depth</b> of the fractal. The greater the depth, the closer the image approximates the actual shape.
+</p>
+
+</blockquote></blockquote><h2>Kinds of Fractals</h2><blockquote><blockquote>
+<p>Fractals can be classified into two distinct groups: <b>self-similar</b> and <b>self-repeating</b>.
+<br>
+<br>A self-repeating fractal contains an infinite number of exact replicas of itself throughout its graph, so as you zoom in you see the exact same thing you saw zoomed out. These are generally known as L-systems, Graftals, IFS theory fractals, etc. These use simple recursive formulas, and are simple repetitious images. Two examples are the Von Koch curve and the Sierpinski triangle.
+</p>
+
+</blockquote></blockquote><center>
+<b><font face="Courier New, Courier"><pre><form><textarea cols=70 rows=12>
+
+
+
+
+
+
+
+
+    ______________________________________________________
+                    Von Koch curve Step 1.
+
+                              /\
+                             /  \
+                            /    \
+                           /      \
+                          /        \
+                         /          \
+                        /            \
+                       /              \
+    __________________/                \__________________
+                    Von Koch curve Step 2.
+
+                              /\
+                             /  \
+                      ______/    \______
+                      \                /
+                       \              /
+                        \            /
+            /\          /            \          /\
+           /  \        /              \        /  \
+    ______/    \______/                \______/    \______
+                    Von Koch curve Step 3.
+
+                            __/\__
+                            \    /
+                      __/\__/    \__/\__
+                      \                /
+                      /_              _\
+                        \            /
+          __/\__      __/            \__      __/\__
+          \    /      \                /      \    /
+    __/\__/    \__/\__/                \__/\__/    \__/\__
+                    Von Koch curve Step 4.
+
+
+1.     /\               2.     /\               3.     /\
+      /  \                    /  \                    /__\
+     /    \                  /    \                  /\  /\
+    /      \                /______\                /__\/__\
+   /        \              /\      /\              /\      /\
+  /          \            /  \    /  \            /__\    /__\
+ /            \          /    \  /    \          /\  /\  /\  /\
+/______________\        /______\/______\        /__\/__\/__\/__\
+             Three Steps of a Sierpinski triangle.
+
+</textarea></form></pre></font></b>
+</center><blockquote><blockquote>
+<p>
+<br>
+  If you are interested in seeing some nicer pictures of self-repeating fractals, 
+  try <a href="http://www.wmin.ac.uk/~storyh/fractal/frac.html" target="_blank"><br>
+  http://www.wmin.ac.uk/~storyh/fractal/frac.html</a> 
+which has a good Java applet that generates them.
+<br>
+<br>Far more interesting than the self-repeating fractals are the self-similar fractals, which have a repeating resemblance on high magnifications, but are never exactly the same. The rest of this page only deals with the most popular self-similar fractal, the Mandelbrot set.
+</p>
+
+</blockquote></blockquote><h2>Fractal Mathematics</h2><blockquote><blockquote>
+
+<p>Self-similar fractals are generated by recursively iterating formulas, which 
+  are complex polynomials of the form z=f(z), and plotting their graphs. The Mandelbrot 
+  Set is the most commonly recognized fractal object, named after the father of 
+  fractal mathematics, <a href="http://www.math.yale.edu/newsite/people/mandelbrot.htm" target="_blank">Benoit 
+  B. Mandelbrot</a>. It is the graph of the equation <code>Z=Z<sup>2</sup>+C</code>. 
+  <br>
+<br>In the equation <code>Z=Z<sup>2</sup>+C</code>, '<b>Z</b>' and '<b>C</b>' are <b>complex numbers</b>. The complex number 'C' remains a constant value, while the complex number 'Z' varies each time the function is calculated, since the formula is set equal to Z.
+<br>
+<br>Complex numbers are numbers that contain the square root of -1,
+<br>which is called the <b>imaginary number</b>.
+<br>The imaginary number is written as the italics letter <i>i</i> in mathematical formulas.
+<br>
+<br>A complex number like <b>Z</b> or <b>C</b> isn't actually a single number value, it represents a formula <code><b>i</b>*<i>i</i>+<b>r</b></code>. That means any complex number contains two actual number values:
+</p>
+<ul>
+<li><b>i</b>, the coefficient of <i>i</i>, which is the &quot;imaginary&quot; component, and
+<br>
+<li><b>r</b>, the constant or &quot;real&quot; number that is added to the result.
+</ul>
+
+</blockquote></blockquote><h2>Fractal Graphics Programming</h2><blockquote><blockquote>
+
+<p>For the Mandelbrot formula, you have the two complex numbers <b>Z</b> and <b>C</b>, and each of these has two components <b>i</b> and <b>r</b>, resulting in four distinct variables, <b>Zi</b>, <b>Zr</b>, <b>Ci</b>, and <b>Cr</b>.
+<br>
+<br>Because of the nature of complex numbers, <code>Z=Z<sup>2</sup>+C</code> isn't the actual calculated formula, but an abbreviation for two more &quot;useable&quot; formulas:
+</p>
+
+<ul>
+<li><code>Zi=(2*Zr*Zi)+Ci;</code>
+<br>and
+<li><code>Zr=(Zr*Zr)-(Zi*Zi)+Cr;</code>
+</ul>
+
+<p>In order to render any mathematical formula as an image, we assign variables to coordinates, like X, Y and Z. Since the Mandelbrot set has four variables, These four variables can be thought of as four separate coordinates. With four coordinates, each complex polynomial containing two complex numbers defines a single fourth dimensional object!
+<br>
+<br>If we could show the entire fourth dimensional object for each function, we would see all of the possible solutions to that function. But, there is no way to accurately depict a 4D object in 3D space, much less on a 2D computer screen, so fractal generators render the second dimensional cross-sections or &quot;slices&quot; of those fourth dimensional objects.
+<br>
+<br>You can think of a fractal generator as working a lot like a MRI scan; as the medical scanner crosses over a patient's body, the doctor sees a computer graphic representation of a 2D cross-section of a 3D object, in that case, a patient. The images from a fractal generator do not represent the appearance of the entire 4D fractal object any more than a single MRI scan image represents an entire human being, or a single slice of bread represents the entire loaf.
+</p>
+
+<center>
+  <a href="http://www.nlm.nih.gov/research/visible/visible_human.html" target="_blank"><img src="head_mri.jpg"> 
+  <br>
+  <i>A cross-section of a human head from the Visible Human Project.</i></a></center>
+
+<p>
+<br>
+  In the third dimension there are three coordinates (x,y,z) creating three 2D 
+  planes (XY,XZ,YZ), thus there are three possible ways to slice a 3D object. 
+  (True, you can use oddly skewed planes, but we won't deal with those possibilities.) 
+  <br>
+<br>There are six 2D planes in fourth dimensional space. We will call these planes C, Z, R, I, A and B. Planes are determined by which two of the four coordinate values (Zr,Zi,Cr,Ci) are used for our 2D image, and which two become constants. Two of the four values will be assigned to the 2D coordinates (X,Y) of the fractal image's center point, and the other two will become the constants R and I.
+<br>
+<br>For example, The `C' plane uses the two values of C: (Cr,Ci), as (X,Y), while Zr becomes the constant R, and Zi becomes the constant I.
+</p>
+
+<center>Here is a table showing how the six planes map to a computer screen:
+<table bgcolor=#ffffff border=1 cellspacing=0 cellpadding=2>
+  <tr>
+    <td rowspan=2>Plane</td>
+    <td colspan=4>the four coordinates</td>
+    <td rowspan=1>Fractal Name</td></tr>
+
+  <tr bgcolor=#ffcc00>
+    <th>X</th>
+    <th>Y</th>
+    <th>R</th>
+    <th>I</th>
+    <th>&nbsp;</th></tr>
+
+  <tr>
+    <th bgcolor=#ffcc00>C</th>
+    <td>Cr</td>
+    <td>Ci</td>
+    <td>Zr</td>
+    <td>Zi</td>
+    <td>The MANDELBROT set is on this plane.</td></tr>
+
+  <tr>
+    <th bgcolor=#ffcc00>Z</th>
+    <td>Zr</td>
+    <td>Zi</td>
+    <td>Cr</td>
+    <td>Ci</td>
+    <td>The JULIA sets are on this plane.</td></tr>
+
+  <tr>
+    <th bgcolor=#ffcc00>R</th>
+    <td>Cr</td>
+    <td>Zr</td>
+    <td>Zi</td>
+    <td>Ci</td>
+    <td>The REAL plane.</td></tr>
+
+  <tr>
+    <th bgcolor=#ffcc00>I</th>
+    <td>Zi</td>
+    <td>Ci</td>
+    <td>Cr</td>
+    <td>Zr</td>
+    <td>The IMAGINARY plane.</td></tr>
+
+  <tr>
+    <th bgcolor=#ffcc00>A</th>
+    <td>Zr</td>
+    <td>Ci</td>
+    <td>Cr</td>
+    <td>Zi</td>
+    <td>Some plane we'll call A.</td></tr>
+
+  <tr>
+    <th bgcolor=#ffcc00>B</th>
+    <td>Cr</td>
+    <td>Zi</td>
+    <td>Zr</td>
+    <td>Ci</td>
+    <td>Some other plane we'll call B.</td></tr>
+  
+</table>
+<br></center>
+
+<p>To draw the most common slice of the Mandelbrot set, we input the 2D coordinates (X,Y) for each pixel into the complex number C as (Cr,Ci). Ci is assigned to the Y or vertical axis, and Cr is assigned to the X or horizontal axis. We use 0 for both of the constants Zr and Zi.
+<br>
+<br>
+  With our four coordinates for a single point defined, we calculate the formula 
+  to get a color for each pixel. The number of times the formula is iterated before 
+  it reaches a defined <b>magnitude</b> value determines what color index to use. 
+  The magnitude is usually set to 4, and in programming terms that's when <code>((Zr*Zr)+(Zi*Zi)) 
+  &gt; 4</code>. There are areas of the fractal where the magnitude will never 
+  be reached, so that is why we limit it by a certain depth value- if it doesn't 
+  reach <i>magnitude</i> after <i>depth</i> iterations, it is considered to have 
+  a depth of <img src="infinity.gif" vspace=1> and the pixel is black.<br>
+<br>When you render it, you can see that the entire Mandelbrot set falls inside a circle with a radius of 2 centered at the origin. With a depth (approximation level) of 2, all you would see is a circle. As we increase the depth, more and more folds are visible.
+</p>
+
+</blockquote></blockquote><h2>Fractal Philosophy</h2><blockquote><blockquote>
+<p>Fractal mathematics broke barriers imposed by standard &quot;Euclidean&quot; geometry. Fractal mathematics showed that shapes and patterns previously believed to be random and organic, could conceivably be created by mathematical principles. This could impact the biological sciences such as botany, genetics, and medicine, and other fields such as physics, astronomy, and religion.
+<br>
+<br>Just as there is a genetic code within each of us, could there be a fractal equation for the universe?
+</p>
+
+</blockquote></blockquote><h2>Fractal Links</h2><blockquote><blockquote>
+<h3>Major Fractal sites:</h3>
+<ul>
+  <li><a href="http://spanky.triumf.ca/" target="_blank">The Spanky Fractal Database</a> 
+  <li><a href="http://www.industrialstreet.com/chaos/metalink.htm" target="_blank">The Chaos MetaLink</a> 
+  <li><a href="http://www.looksmart.com/eus1/eus53706/eus156176/eus56603/" target="_blank">LookSmart Fractal Index</a>
+  <li><a href="http://archives.math.utk.edu/~stepp/fractals.html" target="_blank">Mathematics Archives - Fractals</a>
+</ul>
+<h3>Applied Fractals:</h3>
+<ul>
+  <li><a href="http://www.sigma-research.com/bookshelf/default.htm" target="_blank">Artificial Intelligence, Neural Networks, Chaos Theory & Derivatives in Stock & Commodity Market Investing Books and Free Software</a> 
+  <li><a href="http://www.rad.washington.edu/OtherMaterials/BoneFractal/" target="_blank">Fractal Analysis of Trabecular Bone</a> 
+</ul>
+
+
+<br>
+<br>
+</blockquote></blockquote>
+<h2>Books on Fractals</h2>
+<center>
+<p>Click on a book cover for more information.</p>
+<br>
+<table width=90% cellspacing=10 cellpadding=10>
+<tr>
+
+<td>
+<center><a target="_blank" href="http://www.vstore.com/cgi-bin/pagegen/vstorestuff/magentastudios/page.html?mode=itempage&file=/page/itempagev4/itempage.spl&prodID=653833&catID=26307">
+<img src="mandelbrot.jpg" width="170" height="200" alt="" border="0">
+<br><big>The Fractal Geometry of Nature</big>
+<br><small>by Benoit B. Mandelbrot</small>
+</a></center>
+<p>
+Clouds are not spheres, mountains are not cones, and lightning does not travel in a straight line.
+The complexity of nature's shapes differs in kind, not merely degree, from that of the shapes of ordinary geometry.
+To describe such shapes, this author conceived and developed a new geometry, the geometry of fractal shapes.
+This book is based on his highly acclaimed earlier work, but has much broader and deeper coverage and more extensive illustrations.
+</p>
+<br>
+<br>
+<center><a target="_blank" href="http://www.vstore.com/cgi-bin/pagegen/vstorestuff/magentastudios/page.html?mode=itempage&file=/page/itempagev4/itempage.spl&prodID=1449411&catID=26307">
+<img src="http://www.vstore.com/products/m411/p1449411/fullsize.jpg"  alt="" border="0">
+<br><big>Fractals Everywhere</big>
+<br><small>Michael F. Barnsley</small>
+</a></center>
+<p>
+A revised and updated textbook focusing on how fractal geometry can be used to model real objects in the physical world.
+This edition (first was 1988) features a new chapter on recurrent iterated function systems, including vector recurrent iterated function systems;
+problems and tools emphasizing fractal applications; and a new answer key to problems in the text, with solutions and hints.
+</p>
+<br>
+<br>
+<center><a target="_blank" href="http://www.vstore.com/cgi-bin/pagegen/vstorestuff/magentastudios/page.html?mode=itempage&file=/page/itempagev4/itempage.spl&prodID=635058&catID=26307">
+<img src="http://www.vstore.com/products/m58/p635058/fullsize.jpg" alt="" border="0">
+<br><big>Fractals</big>
+<br><small>John Briggs</small>
+</a></center>
+<p>
+Scientists have discovered that systems in transitional states between order and chaos possess certain patterns with unique, predictable qualities.
+These patterns are called "fractals". In essence, they are visual images or pictures of chaos at work.
+Now comes a breathtaking visual tour of this exciting new scientific frontier. 207 photographs, 178 in full color; 49 line drawings.
+</p>
+<br>
+<br>
+</td>
+
+<td>
+<center><a target="_blank" href="http://www.vstore.com/cgi-bin/pagegen/vstorestuff/magentastudios/page.html?mode=itempage&file=/page/itempagev4/itempage.spl&prodID=1532970&catID=26307">
+<img src="http://www.vstore.com/products/m970/p1532970/fullsize.jpg" alt="" border="0">
+<br><big>The Patterns of Life</big>
+<br><small>Peter E. Connor</small>
+</a></center>
+<p>
+The Patterns of Life reveals never before documented data supporting the theory of a master fractal pattern.
+This pattern is found in all creation that reflects the earth's patterns and mirrors a Higher Power.
+</p>
+<br>
+<br>
+<center><a target="_blank" href="http://www.vstore.com/cgi-bin/pagegen/vstorestuff/magentastudios/page.html?mode=itempage&file=/page/itempagev4/itempage.spl&prodID=641835&catID=26307">
+<img src="http://www.vstore.com/products/m835/p641835/fullsize.jpg" alt="" border="0">
+<br><big>The Loom of God:Mathematical Tapestries at the Edge of Time</big>
+<br><small>by Clifford A. Pickover</small>
+</a></center>
+<p>
+From the mysterious cult of Pythagoras, to the awesome mechanics of Stonehenge, to the fearsome "gargoyles" and glorious fractals created on the computer screens of today,
+Pickover evokes the power of numbers and their connection with the search for the ultimate meaning of the universe.
+We learn that individuals through the ages have conjured numbers to predict the end of the world, to raise the dead, to find love, and to sway the outcome of wars.
+Even today, Pickover shows, serious mathematicians sometimes resort to mystical or religious reasoning when trying to convey the power of mathematics.
+</p>
+<p>
+Together we uncover mathematics in the most exquisite forms of nature - from the delicate shape of a spider web, to the curling spiral of a shell.
+We discover fractals in the branching patterns of blood vessels, plants, and mountain roots.
+And we grasp the power of a few simple concepts - including the gravitational constant and the speed of light - that control the destiny of the universe.
+Prepare yourself for a strange and often amusing journey.
+</p>
+<p>
+Let The Loom of God unlock the doors of your imagination through thought-provoking mysteries, puzzles, and problems on topics ranging from ancient Greek astronomy to Armageddon.
+A playground for computer hobbyists, an inspiring tome for science fiction aficionados,
+and an adventurous education for the curious in theology, astronomy, mathematics, and history, this book delivers a world of paradox and mystery.
+The Loom of God promises a creative, enticing, and unforgettable excursion along the vast tapestry, woven through history, of mathematics and the divine.
+</p>
+</td>
+</tr>
+</table>
+<br>
+<br>
+<!-- BEGIN HITOMETER TAG VERSION 2 -->
+<a href="http://hitometer.netscape.com">
+<script language="JavaScript1.1"><!--
+d=document;c='<img WIDTH=120 HEIGHT=38 border=0 '+
+'src="http://i58.netscape.com/c.cgi?A5856558$310795$';
+if(parseFloat(navigator.appVersion)>=4){x='x';s=screen;
+c+=s.width+x+s.height+x+s.pixelDepth+x+s.colorDepth;}
+d.writeln(c+'$'+d.referrer+'"></A>'); // -->
+</script><noscript><img width=120 height=38 border=0
+src="http://i58.netscape.com/c.cgi?B5856558$310795"
+alt="Hitometer"></a></noscript>
+<!-- END HITOMETER TAG ( WWW.HITOMETER.COM ) -->
+<br>
+<br>
+<hr align="center" width="32" size="32" noshade>
+<br>
+<br>
+</center>
+</body>
+</html>

@@ -1,0 +1,377 @@
+/3.1
+(Extension.1
+	Name:	"C-Plan"
+	FirstRootClassName:	"Butn"
+	Roots:	2
+	Roots:	4
+	Roots:	6
+	Roots:	8
+	Roots:	9
+	Roots:	10
+	Roots:	11
+	Roots:	12
+	Roots:	13
+	Roots:	14
+	Roots:	15
+	Roots:	16
+	Roots:	17
+	Roots:	18
+	Roots:	19
+	Roots:	20
+	Roots:	21
+	Roots:	22
+	Roots:	23
+	Roots:	24
+	Roots:	25
+	Roots:	26
+	Roots:	27
+	Roots:	28
+	Version:	31
+	About:	"C-Plan is a Conservation Planning Extension for use with C-Plan 32"
+	InstallScript:	29
+	UninstallScript:	30
+	ExtVersion:	1
+)
+
+(Butn.2
+	InternalName:	"StartCPlan"
+	Help:	"Start C-Plan//Start C-Plan Application and link to ArcView"
+	Icon:	3
+	Click:	"CPlan.StartCPlan"
+)
+
+(AVIcon.3
+	Name:	"avcp5.bmp"
+	Data:	4e442049 6d616765 00010019 00190000 
+	Data:	01908888 88888888 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00008888 00000000 88888888 88888000 
+	Data:	00008800 00000000 08888888 88888000 
+	Data:	00008000 00000000 00888888 88888000 
+	Data:	00000000 00000000 00088888 88888000 
+	Data:	00000000 00888800 00008888 88888000 
+	Data:	00000000 08888888 80008888 88888000 
+	Data:	00000000 88888888 88888888 88888000 
+	Data:	00000000 80888880 88000808 80888000 
+	Data:	00000000 80888880 80880808 80888000 
+	Data:	00000000 80888880 88000808 80888000 
+	Data:	00000000 80000880 88880808 80888000 
+	Data:	00000000 80888080 88008800 08888000 
+	Data:	00000000 80888080 88888888 88888000 
+	Data:	00000000 80000880 88888888 88888000 
+	Data:	00000000 88888888 88888888 88888000 
+	Data:	00000000 08888888 80008888 88888000 
+	Data:	00000000 00888800 00008888 88888000 
+	Data:	00000000 00000000 00088888 88888000 
+	Data:	00008000 00000000 00888888 88888000 
+	Data:	00008800 00000000 08888888 88888000 
+	Data:	00008888 00000000 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00000000 00400000 00000000 80000080 
+	Data:	00000080 80008000 00008000 80008080 
+	Data:	00008080 8000c0c0 c0000000 ff0000ff 
+	Data:	000000ff ff00ff00 0000ff00 ff00ffff 
+	Data:	0000ffff ff000002 00040007 00200001 
+	Data:	00020000 00000000 0000
+)
+
+(Butn.4
+	InternalName:	"DDESelect"
+	Help:	"Post Selections//Post Selected Sites to C-Plan"
+	Icon:	5
+	Click:	"CPlan.DDESelect"
+)
+
+(AVIcon.5
+	Name:	"post4.bmp"
+	Data:	4e442049 6d616765 00010014 00110000 
+	Data:	03fcc0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c00000 00c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c00000 00c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c000 ffffc0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c000 
+	Data:	00000000 00000000 000000c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	00ffff00 ffff00ff ffc0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 000000c0 c0c00000 
+	Data:	00c0c0c0 c0c0c000 0000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c000ffff 00ffff00 
+	Data:	000000ff ffc0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0000000 c0c0c0c0 c0c00000 00c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c000ff ff00ffff 00000000 000000ff 
+	Data:	ffc0c0c0 c0c0c0c0 c0c0c0c0 c0000000 
+	Data:	c0c0c0c0 c0c00000 00000000 00000000 
+	Data:	0000c0c0 c0c0c0c0 c0c0c000 ffff00ff 
+	Data:	ff000000 00000000 000000ff ff00ffff 
+	Data:	00ffffc0 c0c0c0c0 c0000000 c0c0c0c0 
+	Data:	c0c00000 00c0c0c0 c0c0c0c0 c0c00000 
+	Data:	00c0c0c0 00ffff00 ffff0000 00000000 
+	Data:	00000000 00000000 00000000 00000000 
+	Data:	ffffc0c0 c0000000 c0c0c0c0 c0c00000 
+	Data:	00c0c0c0 c0c0c0c0 c0c00000 00c0c0c0 
+	Data:	00ffff00 00000000 00000000 00000000 
+	Data:	00000000 00000000 00000000 ffffc0c0 
+	Data:	c0000000 c0c0c0c0 c0c00000 00c0c0c0 
+	Data:	c0c0c0c0 c0c00000 00c0c0c0 00ffff00 
+	Data:	ffff0000 00000000 00000000 00000000 
+	Data:	00000000 00000000 ffffc0c0 c0000000 
+	Data:	c0c0c0c0 c0c00000 00000000 00000000 
+	Data:	0000c0c0 c0c0c0c0 c0c0c000 ffff00ff 
+	Data:	ff000000 00000000 000000ff ff00ffff 
+	Data:	00ffffc0 c0c0c0c0 c0000000 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c000ff ff00ffff 
+	Data:	00000000 000000ff ffc0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0000000 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c000ffff 00ffff00 
+	Data:	000000ff ffc0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 000000c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c000 0000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 00ffff00 ffff00ff 
+	Data:	ffc0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c000 00000000 00000000 000000c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c000 ffffc0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c00000 
+	Data:	00000001 00180007 00200001 00020000 
+	Data:	00000000 0000
+)
+
+(Butn.6
+	InternalName:	"AddFeatureCode"
+	Icon:	7
+	Click:	"CPlan.AddFeatureCode"
+)
+
+(AVIcon.7
+	Name:	"add_feature_code4.bmp"
+	Data:	4e442049 6d616765 00010019 00190000 
+	Data:	01908888 88888888 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00008888 00000000 88888888 88888000 
+	Data:	00008800 00000000 08888888 88888000 
+	Data:	00008000 00000000 00888888 88888000 
+	Data:	00000000 00000000 00088888 88888000 
+	Data:	00000000 00888800 00008888 08888000 
+	Data:	00000000 08888888 80008888 80888000 
+	Data:	00000000 88888888 88888888 88088000 
+	Data:	00000000 80888088 80800088 88088000 
+	Data:	00000000 80888088 08088888 80808000 
+	Data:	00000000 80888080 88000008 80808000 
+	Data:	00000000 80008008 88088808 08880000 
+	Data:	00000000 80888080 88800088 08880000 
+	Data:	00000000 80888088 08888888 88888000 
+	Data:	00000000 80008088 80888888 88888000 
+	Data:	00000000 88888888 88888888 88888000 
+	Data:	00000000 08888888 80008888 88888000 
+	Data:	00000000 00888800 00008888 88888000 
+	Data:	00000000 00000000 00088888 88888000 
+	Data:	00008000 00000000 00888888 88888000 
+	Data:	00008800 00000000 08888888 88888000 
+	Data:	00008888 00000000 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00000000 00400000 00000000 80000080 
+	Data:	00000080 80008000 00008000 80008080 
+	Data:	00008080 8000c0c0 c0000000 ff0000ff 
+	Data:	000000ff ff00ff00 0000ff00 ff00ffff 
+	Data:	0000ffff ff000002 00040007 00200001 
+	Data:	00020000 00000000 0000
+)
+
+(Script.8
+	Name:	"CPlan.StartCPlan"
+	SourceCode:	"'Script : CPlan.StartCPlan\n'Author : Matthew Watts\n'Date : May 26th 1997\n'Purpose : start C-Plan application if it is not already started\n'\n\n'Hard Wired Settings for C-Plan 32 DDE selection server: \naServerName = \"cplan\"\naTopicName = \"SelectDDE\"\naDDE = DDEClient.Make(aServerName,aTopicName)\nif (aDDE.HasError) then\n  '\nend\n\n'Hard Wired path to EXE for testing only.\n'This will be set when the C-Plan extension starts\n'load _CPLAN_PATH from the global INI file\n_CPLAN_PATH = av.Run(\"CPlan.FindCPlanPath\",{})\n\n\n'M
+sgBox.Info(_CPLAN_PATH,aDDE.GetErrorMsg)\nif (aDDE.HasError) then\n  'C-Plan selection server not responding, C-Plan is not started\n  'we need to Start C-Plan\n  'find database path to pass into C-Plan\n  aView = av.GetActiveDoc\n  if (aView <> nil) then\n    if (aView.GetClass.GetClassName = \"View\") then  \n      aPath = aView.GetActiveThemes.Get(0).GetSrcName.GetFileName.GetFullName\n \n      'trim \\file.ext from aPath\n      'find position of last \\ in aPath\n      iPos = -1\n      for each i in 0..(aPath.Count - 1)
+\n        'MsgBox.Info(aPath.Middle(i,1),\"extract\")\n        if (aPath.Middle(i,1) = \"\\\") then\n          iPos = i\n        end\n      end   \n      'trim aPath\n      if (iPos >= 0) then\n        aPath = aPath.Left(iPos)\n      end\n\n      'start C-Plan now\n      if (av.run(\"CPlan.FileExists\",{_CPLAN_PATH + \"\\\" + aServerName + \".exe\"})) then\n        System.Execute(_CPLAN_PATH + \"\\\" + aServerName + \".exe\" ++ aPath.Quote ++ \"-a\")\n      else\n        ' user needs to re-install C-Plan\n        MsgBox.Info(\"C-Plan is not i
+nstalled correctly.  You need to re-install the\" + NL +\n                    \"C-Plan installation set.\",\n                    \"Re-install C-Plan\")\n      end\n    end\n  end  \nend\n"
+)
+
+(Script.9
+	Name:	"CPlan.DDESelect"
+	SourceCode:	"'Script : CPlan.DDESelect\n'Author : Matthew Watts\n'Date : May 13th 1997\n'Purpose : post selected sites in a view to C-Plan\n'\n\n'Hard Wired Settings for DDE Server to post selections to: \naServerName = \"cplan\"\naTopicName = \"SelectDDE\"\n\n'attempt to establish DDE connection to the selection server\naDDE = DDEClient.Make(aServerName,aTopicName)\n\nif (aDDE.HasError) then\n  MsgBox.Error(aDDE.GetErrorMsg, \"\")\n  return nil\nend\n\n'We must read the key field, theme and view from the ini file.\naTheme = av.GetActiveDoc.Get
+ActiveThemes.Get(0)\naPath = aTheme.GetSrcName.GetFileName.GetFullName\niPos = -1            \nfor each i in 0..(aPath.Count - 1)\n  if (aPath.Middle(i,1) = \"\\\") then\n     iPos = i\n  end\nend   \nif (iPos >= 0) then\n  aPath = aPath.Left(iPos) 'trim \\file.ext from aPath\nend\naSettings = av.run(\"CPlan.GetIniSettings\",{aPath})\n'Call CPlan.GetUserSettings if [ArcView] section does not exist.\nif (aSettings.Get(0) = nil) then\n  aSettings = av.run(\"CPlan.GetUserSettings\",{})\n  'Try to read the key field, theme and view f
+rom the ini file again.\n  aSettings = av.run(\"CPlan.GetIniSettings\",{aPath})\nend\n\nif (aSettings.Get(0) = nil) then\n  'the ini settings are invalid\n\nelse\n  aKeyName = aSettings.Get(3)\n\n  'send CPlan the start select message\n  aDDE.Execute(\"start select\")\n\n  'write the key of each selected site \n  '(equivalent to SiteKey in C-Plan)\n  'to the DDE Server\n  aThemeFTab = aTheme.GetFTab\n  aField = aThemeFTab.FindField(aKeyName)\n  for each rec in aThemeFTab.GetSelection\n    aDDE.Execute(aThemeFTab.ReturnValue(aFiel
+d,rec).AsString)\n  end\n\n  'send CPlan the end select message\n  aDDE.Execute(\"end select\")\nend"
+)
+
+(Script.10
+	Name:	"CPlan.AddFeatureCode"
+	SourceCode:	"''\n''Name: CPlan.AddFeatureCode\n''\n''Purpose: This script adds a string code to each record (in a field called 'GIS_KEY')\n''         that consists of \"FXXX\" where XXX is a unique number - this can be used\n''         to create a unique feature code for use in generating the C-Plan matrix.\n''\n\n' modifications :\n'   030401 Matt; Debug flow of control with regard to user dialog boxes\n'   040401 Matt; Now works with table gui instead of view gui\n'                Field name abstracted so it can be easily changed 
+(sFieldToAdd)\n'                Changed F to upper case (interaction with dBase field names requires upper case)\n\n' this is the name of the field to add. it must be a valid dbase field name\nsFieldToAdd = \"GIS_KEY\"\n\ntheTable = av.GetActiveDoc\naVTab = theTable.GetVTab\nsStartingNumber = MsgBox.Input (\"Enter a starting index\",\"Add \" + sFieldToAdd,\"1\")\nif (sStartingNumber <> nil) then\n  ' user has not pressed cancel\n  iStartingNumber = sStartingNumber.AsNumber\n\n  addGIS_KEY = TRUE\n  hasGIS_KEY = FALSE\n  updateatt
+r = TRUE\n  \n  for each attr in aVTab.GetFields\n    if (attr.AsString.UCase = sFieldToAdd) then\n      hasGIS_KEY = TRUE\n      if (MsgBox.YesNo(theTable.AsString+\" contains \" + sFieldToAdd + \" attribute.\"+nl+\n           \"Do you want to update it?\",\"Update \" + sFieldToAdd,FALSE)) then\n        'updateattr = TRUE\n        break\n      else\n        updateattr = FALSE\n        break\n      end\n    end\n  end\n  numRecs = aVTab.GetNumRecords\n  if (hasGIS_KEY.Not) then\n    aVTab.SetEditable(TRUE)\n    recAttr = Field.Make(
+sFieldToAdd,#FIELD_CHAR,8,0)\n    av.ShowMsg(\"Adding \" + sFieldToAdd + \" Attribute to \"+theTable.AsString+\"...\")\n    aVTab.AddFields({recAttr})\n    av.ClearMsg\n  end\n  if (updateattr) then  \n    aVTab.SetEditable(TRUE)\n    GIS_KEYField = aVTab.FindField(sFieldToAdd)\n    for each recNum in aVTab\n      GIS_KEY = ( recNum + iStartingNumber ).SetFormat(\"d\").AsString\n      GIS_KEY = \"F\"+GIS_KEY\n      aVTab.SetValue( GIS_KEYField, recNum , GIS_KEY )\n      av.ShowMsg(\"Populating GIS_KEY Attribute of \"+theTable.AsSt
+ring+\"...\")\n      proceed = av.SetStatus((recNum / numRecs) * 100)\n\n      if ( proceed.Not ) then\n        av.ClearStatus\n        av.ShowMsg( \"Stopped\" )\n        return nil\n      end\n    end\n    aVTab.SetEditable(FALSE)\n    av.SetStatus(100)\n    av.ClearMsg\n    av.ClearStatus\n  end\nend\n"
+)
+
+(Script.11
+	Name:	"CPlan.FindCPlanPath"
+	SourceCode:	"'Script : CPlan.FindCPlanPath\n'Author : Matthew Watts\n'Date : July 3rd 1997\n'Purpose : load the path to C-Plan from the\n'          win dir\\cplandb.ini file\n'          (this section is added by the setup program)\n'\n\n' set a default value for CPlanPath\nCPlanPath = \"\"\n\n\naWinDir = System.GetEnvVar(\"windir\")\n\naFN = (aWinDir + \"\\cplandb.ini\").AsFileName\n\n'MsgBox.Info(\"here is the ini path\",aWinDir + \"\\cplandb.ini\")\n\naIniFile = LineFile.Make(aFN,#FILE_PERM_READ)\n \n\n'we are looking for something like this\n'[Paths]\n
+'32bit=E:\\Program Files\\CPlan32\n\naLength = aIniFile.GetSize\n\nif (aLength > 0) then\n  for each i in 1..aLength\n    aLine = aIniFile.ReadElt\n    if (aLine = \"[Paths]\") then\n      'we have found the Paths section\n      aFirstLine = aIniFile.ReadElt\n      if (aFirstLine.Left(6) = \"32bit=\") then\n        'use this line\n        CPlanPath = aFirstLine.Right(aFirstLine.Count-6)\n        \n      else\n        aSecondLine = aIniFile.ReadElt\n        if ((aFirstLine.Left(6) = \"16bit=\")\n        and (aSecondLine.Left(6) = \"3
+2bit=\")) then\n          'use this line\n          CPlanPath = aSecondLine.Right(aSecondLine.Count-6)\n        end\n      end\n    end\n  end\n  \nend\n\n\n'MsgBox.Info(\"here is the returned path\",CPlanPath)\n\nif (CPlanPath = \"\") then\n  MsgBox.Info(\"Please re-install C-Plan 32\",\n              \"C-Plan 32 path not found\")\n \nend\n\n\nreturn CPlanPath"
+)
+
+(Script.12
+	Name:	"CPlan.ThemeRedraw"
+	SourceCode:	"'Script : CPlan.ThemeRedraw\n'Author : Matthew Watts\n'Date : May 13th 1997\n'Purpose : redraw Irreplaceability view with parameters\n'          posted from C-Plan\n'\n\n\n'read View, Theme and AVLFile as calling parameters\nif (self.Is(List).Not) then\n  MsgBox.Info(\"list is empty\",\"cannot Redraw Theme\")\n  return nil\nelseif (self.count <> 3) then\n  MsgBox.Info(\"parameter list is not 3 elements\",\"cannot Redraw Theme\")\n  return nil\nend\n\nasView = SELF.Get(0)\nasTheme = SELF.Get(1)\naAVLFile = SELF.Get(2)\n\n'asView =  \"Vie
+w1\"\n'asTheme = \"Canada1.shp\"\n'aAVLFile = \"d:\\cplan32\\arcview\\initial.avl\"\n\n'check that AVL file exists\nif (File.Exists(aAVLFile.AsFileName).Not) then\n  'cannot find AVL file\n  MsgBox.Error(\"cannot find Legend file\" ++ aAVLFile,\n               \"Error in C-Plan Configuration\")\n  exit\nend\n\n'get the view\naView = av.GetProject.FindDoc(asView)\n'test whether view is valid\nif (aView = nil) then\n  'cannot find this view\n  \n  'get user to select view and theme\n  'save these settings to ini file\n  'get and test view a
+gain\n  aNewSettings = av.run(\"CPlan.GetUserSettings\",{})\n  asView = aNewSettings.Get(0)\n  asTheme = aNewSettings.Get(1)\n  aView = av.GetProject.FindDoc(asView)\n  if (aView = nil) then\n    MsgBox.Error(\"cannot find view\" ++ asView,\"Error in C-Plan Configuration\")\n    exit\n  end\nend\n\n'MsgBox.Info(\"after getting view\",\"debug\")\n\n'get the theme\naTheme = aView.FindTheme(asTheme)\n'test whether theme is valid\nif (aTheme = nil) then\n  'cannot find this theme\n  \n  'get user to select view and theme\n  'save these sett
+ings to ini file\n  'get and test view again\n  aNewSettings = av.run(\"CPlan.GetUserSettings\",{})\n  asView = aNewSettings.Get(0)\n  asTheme = aNewSettings.Get(1)\n  \n  aTheme = aView.FindTheme(asTheme)\n  if (aTheme = nil) then\n    MsgBox.Error(\"cannot find theme\" ++ asTheme,\"Error in C-Plan Configuration\")\n    exit\n  end  \nend\n\n'test if DISPLAY/TENURE fields exist in SHP table\naVTabName = aTheme.GetSrcName.GetFileName.GetFullName\nif (aVTabName.Count > 3) then\n  aVTabName = aVTabName.Left(aVTabName.Count - 3) + 
+\"dbf\"\nend\naUpdateVTab = VTab.Make(aVTabName.AsFilename,True,False)\naDisplayFld = aUpdateVTab.FindField(\"DISPLAY\")\nif (aDisplayFld = nil) then\n\n  sCPlanPath = av.run(\"CPlan.FindCPlanPath\",{})\n  sSourceName = sCPlanPath + \"\\arcview\\display.dbf\"\n\n  aSourceVTab = VTab.Make(sSourceName.AsFilename,False,False)\n\n  fDFld = aSourceVTab.FindField(\"DISPLAY\")\n\n  FldList = List.Make\n  FldList.Add(fDFld)\n  aUpdateVTab.AddFields(FldList)\n  aUpdateVTab.Flush\n  aUpdateVTab.DeActivate\n  \n  'now trigger the UpdateTenure from 
+C-Plan\n  'call ControlForm.UpdateDatabase via DDE in C-Plan\n  aServerName = \"cplan\"\n  aTopicName = \"CommandConv\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\n  if (aDDE.HasError) then\n    MsgBox.Error(aDDE.GetErrorMsg, \"\")\n    return nil\n  end\n  aDDE.Execute(\"UpdateTenure\")\nelse\n\n\n  'MsgBox.Info(\"after getting theme\",\"debug\")\n\n  aLegend = aTheme.GetLegend\n\n  'load the default legend from file\n  aLegend.Load(aAVLFile.AsFileName,\n             #LEGEND_LOADTYPE_ALL)\n             \n  'MsgBox.Info(\"after loadin
+g legend\",\"debug\")             \n\n  'clear selections and invalidate the theme and legend so they will be redrawn\n  aTheme.ClearSelection\n  aTheme.InvalidateLegend\n  aTheme.Invalidate(TRUE)\n\n  'MsgBox.Info(\"end of CPlan.ThemeRedraw\",\"debug\")\nend"
+)
+
+(Script.13
+	Name:	"CPlan.FindMaximumFeatures"
+	SourceCode:	"'Script : CPlan.FindMaximumFeatures\n'Author : Matthew Watts\n'Date : Feb 18th 1998\n'Purpose : returns the maximum number of features that occur in a given\n'          database path (ie. Database1 to DatabaseN)\n'\n\nsPathToCheck = SELF.Get(0)\niMaximum = 0\n\nif (File.Exists((sPathToCheck + \"\\emrtool.ini\").AsFilename)) then\n  sIni = sPathToCheck + \"\\emrtool.ini\"\nelse\n  sIni = sPathToCheck + \"\\cplan.ini\"\nend\n\n'check that the file exists\n'if file doesn't exist, result of this macro will be 0\nif (File.Exists(sIni.AsFi
+lename)) then\n\n  tf = LineFile.Make(sIni.AsFileName, #FILE_PERM_READ )\n  \n  while (tf.IsAtEnd.Not)\n    sLine = tf.ReadElt\n    if (sLine.Contains(\"MatrixSize=\")) then\n      sValue = sLine.Right(sLine.Count-11)\n      'MsgBox.Info(sValue,\"value\")\n      iValue = sValue.AsNumber\n      if (iValue > iMaximum) then\n        iMaximum = iValue\n      end\n    end \n  end\n \n  tf.Close\n  \nend\n\nreturn iMaximum"
+)
+
+(Script.14
+	Name:	"CPlan.FileExists"
+	SourceCode:	"'Script : CPlan.FileExists\n'Author : Matthew Watts\n'Date : Feb 19th 1998\n'Purpose : checks for the existance of a file\n'\n\naFilename = SELF.Get(0)\nopenfile = TextFile.Make(aFilename.AsFilename,#FILE_PERM_READ)\nif (openfile = nil) then\n  'file does not exist\n  return False\nelse\n  'file does exist\n  openfile.Close\n  return True\nend"
+)
+
+(Script.15
+	Name:	"CPlan.ZoomToValues"
+	SourceCode:	"'Script : CPlan.ZoomToValues\n'Author : Matthew Watts\n'Date : 29 June 1998\n'Purpose : view & theme & field & value passed by the user,\n'            - locate appropriate view and theme\n'            - select polygons where field = value\n'            - zoom to selected polygons in theme\n'\n\n'MsgBox.Info(\"CPlan.ZoomToValues\",\"Start\")\n\nsView = SELF.Get(0)\nsTheme = SELF.Get(1)\nsField = SELF.Get(2)\nsValue = SELF.Get(3)\nsZoom = SELF.Get(4)\n\naView = av.GetProject.FindDoc(sView)\n\nfSuccess = FALSE\n\nif (aView <> nil) the
+n\n  aTheme = aView.FindTheme(sTheme)\n  if (aTheme <> nil) then\n    'we have the correct view and theme\n    fSuccess = TRUE\n    'MsgBox.Info(\"CPlan.ZoomToValues\",\"Success\")\n    \n  end\nend\n\nif (fSuccess) then\n  'parameters were successful\n  'execute query to select sites\n  aVTab = aTheme.GetFTab\n  BMap = Bitmap.Make(aVTab.GetNumRecords)\n  sQuery = \"([\" + sField + \"] = \" + sValue.Quote + \")\"\n  aVTab.Query(sQuery,\n              BMap,\n              #VTAB_SELTYPE_NEW \n             )\n  aVTab.SetSelection(BMap)\n  '
+MsgBox.Info(sQuery,\"Query\")\n  'zoom to selected sites\n  if (sZoom = \"True\") then\n    'user has selected they want to zoom to the selected sites\n    \n    r = Rect.MakeEmpty\n    if (aTheme.CanSelect) then\n      r = r.UnionWith(aTheme.GetSelectedExtent)\n    end\n    if (r.IsEmpty) then\n      return nil\n    elseif ( r.ReturnSize = (0@0) ) then\n      aView.GetDisplay.PanTo(r.ReturnOrigin)\n    else\n      aView.GetDisplay.SetExtent(r.Scale(1.1))\n    end\n    'MsgBox.Info(\"after zoom\",\"\")\n  end\nelse\n  'parameters wer
+e unsuccessful\n  MsgBox.Info(\"CPlan.ZoomToValues\",\"parameters were unsuccessful\")\nend\n\n"
+)
+
+(Script.16
+	Name:	"CPlan.ThemeRedrawAbs"
+	SourceCode:	"'Script : CPlan.ThemeRedrawAbs\n'Author : Matthew Watts\n'Date : Jan 10th 2000\n'Purpose : redraw Irreplaceability view with parameters\n'          posted from C-Plan with extra maximum value parameter\n'\n\n\n'read View, Theme and AVLFile as calling parameters\nif (self.Is(List).Not) then\n  MsgBox.Info(\"C-Plan list is empty\",\"Error in C-Plan Configuration\")\n  return nil\nelseif (self.count <> 5) then\n  MsgBox.Info(\"C-Plan parameter list is not 5 elements\",\"Error in C-Plan Configuration\")\n  return nil\nend\n\nasView = S
+ELF.Get(0)\nasTheme = SELF.Get(1)\naAVLFile = SELF.Get(2)\nasMaximumValue = SELF.Get(3)\nasDisplayFor = SELF.Get(4)\n\n' 0 means Av, 1 means Re\niDisplayFor = asDisplayFor.AsNumber\n\n'check that AVL file exists\nif (File.Exists(aAVLFile.AsFileName).Not) then\n  'cannot find AVL file\n  MsgBox.Error(\"C-Plan cannot find Legend file\" ++ aAVLFile,\n               \"Error in C-Plan Configuration\")\n  exit\nend\n\n'get the view\naView = av.GetProject.FindDoc(asView)\n'test whether view is valid\nif (aView = nil) then\n  'cannot find 
+this view\n  \n  'get user to select view and theme\n  'save these settings to ini file\n  'get and test view again\n  aNewSettings = av.run(\"CPlan.GetUserSettings\",{})\n  asView = aNewSettings.Get(0)\n  asTheme = aNewSettings.Get(1)\n  aView = av.GetProject.FindDoc(asView)\n  if (aView = nil) then\n    MsgBox.Error(\"C-Plan cannot find view\" ++ asView,\"Error in C-Plan Configuration\")\n    exit\n  end\nend\n\n'get the theme\naTheme = aView.FindTheme(asTheme)\n'test whether theme is valid\nif (aTheme = nil) then\n  'cannot find
+ this theme\n  \n  'get user to select view and theme\n  'save these settings to ini file\n  'get and test view again\n  aNewSettings = av.run(\"CPlan.GetUserSettings\",{})\n  asView = aNewSettings.Get(0)\n  asTheme = aNewSettings.Get(1)\n  \n  aTheme = aView.FindTheme(asTheme)\n  if (aTheme = nil) then\n    MsgBox.Error(\"C-Plan cannot find theme\" ++ asTheme,\"Error in C-Plan Configuration\")\n    exit\n  end  \nend\n\n'test if DISPLAY/TENURE fields exist in SHP table\naVTabName = aTheme.GetSrcName.GetFileName.GetFullName\nif (a
+VTabName.Count > 3) then\n  aVTabName = aVTabName.Left(aVTabName.Count - 3) + \"dbf\"\nend\naUpdateVTab = VTab.Make(aVTabName.AsFilename,True,False)\naDisplayFld = aUpdateVTab.FindField(\"DISPLAY\")\nif (aDisplayFld = nil) then\n\n  sCPlanPath = av.run(\"CPlan.FindCPlanPath\",{})\n  sSourceName = sCPlanPath + \"\\arcview\\display.dbf\"\n\n  aSourceVTab = VTab.Make(sSourceName.AsFilename,False,False)\n\n  fDFld = aSourceVTab.FindField(\"DISPLAY\")\n\n  FldList = List.Make\n  FldList.Add(fDFld)\n  aUpdateVTab.AddFields(FldList)\n  aUpdat
+eVTab.Flush\n  aUpdateVTab.DeActivate\n  \n  'now trigger the UpdateTenure from C-Plan\n  'call ControlForm.UpdateDatabase via DDE in C-Plan\n  aServerName = \"cplan\"\n  aTopicName = \"CommandConv\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\n  if (aDDE.HasError) then\n    MsgBox.Error(aDDE.GetErrorMsg, \"\")\n    return nil\n  end\n  aDDE.Execute(\"UpdateTenure\")\nelse\n  aLegend = aTheme.GetLegend\n\n  'load the default legend from file\n  aLegend.Load(aAVLFile.AsFileName,\n             #LEGEND_LOADTYPE_ALL)\n             \n
+  'adjust the labels for classes within the legend\n  rMaxValue = asMaximumValue.AsNumber\n  ' round the maximum value string\n  sMaximum = (((100 * rMaxValue).Round) / 100).AsString\n  rStep = rMaxValue / 5\n  if (iDisplayFor = 1) then\n    ' display values for available sites\n  \n    'aInfo = aLegend.ReturnClassInfo(10)\n    'aInfo.Set(0,sMaximum)\n    'aLegend.SetClassInfo(10,aInfo)\n    ' >B - A\n    rValue = rMaxValue - rStep\n    ' sValue is a string representation of rValue rounded to 2 decimal places\n    sValue
+ = (((100 * rValue).Round) / 100).AsString\n    aInfo = aLegend.ReturnClassInfo(10)\n    aInfo.Set(0,\">\" + sValue + \" - \" + sMaximum)\n    aLegend.SetClassInfo(10,aInfo)\n    ' >C - B\n    rPreviousValue = rValue\n    sPreviousValue = sValue\n    rValue = rMaxValue - (rStep * 2)\n    sValue = (((100 * rValue).Round) / 100).AsString\n    aInfo = aLegend.ReturnClassInfo(11)\n    aInfo.Set(0,\">\" + sValue + \" - \" + sPreviousValue)\n    aLegend.SetClassInfo(11,aInfo)\n    ' >D - C\n    rPreviousValue = rValue\n    sPreviousVa
+lue = sValue\n    rValue = rMaxValue - (rStep * 3)\n    sValue = (((100 * rValue).Round) / 100).AsString\n    aInfo = aLegend.ReturnClassInfo(12)\n    aInfo.Set(0,\">\" + sValue + \" - \" + sPreviousValue)\n    aLegend.SetClassInfo(12,aInfo)\n    ' >E - D\n    rPreviousValue = rValue\n    sPreviousValue = sValue\n    rValue = rMaxValue - (rStep * 4)\n    sValue = (((100 * rValue).Round) / 100).AsString\n    aInfo = aLegend.ReturnClassInfo(13)\n    aInfo.Set(0,\">\" + sValue + \" - \" + sPreviousValue)\n    aLegend.SetClassInfo(
+13,aInfo)\n  ' >0 - E\n    aInfo = aLegend.ReturnClassInfo(14)\n    aInfo.Set(0,\">0 - \" + sValue)\n    aLegend.SetClassInfo(14,aInfo)\n    ' rows 11 12 13 14 15\n  else\n    ' display values for reserved sites\n  \n    'aInfo = aLegend.ReturnClassInfo(11)\n    'aInfo.Set(0,sMaximum)\n    'aLegend.SetClassInfo(11,aInfo)\n    ' >B - A\n    rValue = rMaxValue - rStep\n    ' sValue is a string representation of rValue rounded to 2 decimal places\n    sValue = (((100 * rValue).Round) / 100).AsString\n    aInfo = aLegend.ReturnC
+lassInfo(11)\n    aInfo.Set(0,\">\" + sValue + \" - \" + sMaximum)\n    aLegend.SetClassInfo(11,aInfo)\n    ' >C - B\n    rPreviousValue = rValue\n    sPreviousValue = sValue\n    rValue = rMaxValue - (rStep * 2)\n    sValue = (((100 * rValue).Round) / 100).AsString\n    aInfo = aLegend.ReturnClassInfo(12)\n    aInfo.Set(0,\">\" + sValue + \" - \" + sPreviousValue)\n    aLegend.SetClassInfo(12,aInfo)\n    ' >D - C\n    rPreviousValue = rValue\n    sPreviousValue = sValue\n    rValue = rMaxValue - (rStep * 3)\n    sValue = (((100 
+* rValue).Round) / 100).AsString\n    aInfo = aLegend.ReturnClassInfo(13)\n    aInfo.Set(0,\">\" + sValue + \" - \" + sPreviousValue)\n    aLegend.SetClassInfo(13,aInfo)\n    ' >E - D\n    rPreviousValue = rValue\n    sPreviousValue = sValue\n    rValue = rMaxValue - (rStep * 4)\n    sValue = (((100 * rValue).Round) / 100).AsString\n    aInfo = aLegend.ReturnClassInfo(14)\n    aInfo.Set(0,\">\" + sValue + \" - \" + sPreviousValue)\n    aLegend.SetClassInfo(14,aInfo)\n  ' >0 - E\n    aInfo = aLegend.ReturnClassInfo(15)\n    aInfo
+.Set(0,\">0 - \" + sValue)\n    aLegend.SetClassInfo(15,aInfo)\n    ' rows 11 12 13 14 15\n  end\n             \n  'clear selections and invalidate the theme and legend so they will be redrawn\n  aTheme.ClearSelection\n  aTheme.InvalidateLegend\n  aTheme.Invalidate(TRUE)\nend"
+)
+
+(Script.17
+	Name:	"CPlan.WriteIniSettings"
+	SourceCode:	"'Script : CPlan.WriteIniSettings\n'Author : Matthew Watts\n'Date : Apr 21st 1998\n'Purpose : write ArcView ShapeTable,View and Theme settings to C-Plan database ini file\n'\n\naShapeTable = Self.Get(0)\naViewName = Self.Get(1)\naThemeName = Self.Get(2)\naPathToIniFile = Self.Get(3)\n\n'write values to INI file\n'aShapeTable contains path to the ini file\n\naIniFile = aPathToIniFile + \"\\cplan.ini\"\n\nif (av.run(\"CPlan.FileExists\",{aIniFile}) <> True) then\n  aIniFile = aPathToIniFile + \"\\emrtool.ini\"\nend\n\noutfile = LineFile.
+Make(aIniFile,#FILE_PERM_APPEND)\n\noutfile.WriteElt(\"\")\noutfile.WriteElt(\"[ArcView]\")\noutfile.WriteElt(\"ShapeTable=\" + aShapeTable)\noutfile.WriteElt(\"View=\" + aViewName)\noutfile.WriteElt(\"Theme=\" + aThemeName)\noutfile.WriteElt(\"\")\n\noutfile.Close"
+)
+
+(Script.18
+	Name:	"CPlan.GetUserSettings"
+	SourceCode:	"'Script : CPlan.GetUserSettings\n'Author : Matthew Watts\n'Date : Apr 21st 1998\n'Purpose : called by ThemeRedraw if view passed by C-Plan is invalid\n'          allows user to select appropriate view and theme from available ones,\n'          then saves settings to ini file for future use\n'\n\naDocs = av.GetProject.GetDocs\naViews = List.Make\n\nif (aDocs <> nil) then\n  for each document in aDocs\n    aClass = document.GetClass.GetClassName\n    if (aClass <> \"View\") then\n    else\n      aViewName = document.GetName\n  
+    aViews.Add(aViewName)\n    end\n  end\n  \n  'get user to select a view from the list\n  aChosenView = MsgBox.ListAsString(aViews,\n                            \"Select View to use with C-Plan\",\n                            \"Available Views\")\n     \n  if (aChosenView <> nil) then                         \n    'load themes in this view and get user to select a theme\n    aChosenTheme = MsgBox.List(av.FindDoc(aChosenView).GetThemes,\n                             \"Select Theme to use with C-Plan\",\n                    
+         \"Available Themes\")\n    if (aChosenTheme <> nil) then\n                             \n      aThemeName = aChosenTheme.GetName\n      aShapeTable = aChosenTheme.GetSrcName.GetFileName.GetFullName\n      'aShapeTable has extension .shp and needs extension .dbf\n      if (aShapeTable.Count > 3) then\n        aShapeTable = aShapeTable.Left(aShapeTable.Count - 3) + \"dbf\"\n      end\n  \n      'EXTRACT path and filename from aShapeTable\n      'find last \\ in the path name\n      iSlashPos = -1\n      for each i in 
+0..(aShapeTable.Count - 1)\n        aChar = aShapeTable.Middle(i,1)\n  \n        if (aChar <> \"\\\") then\n        else\n          iSlashPos = i\n        end\n      end\n  \n      if (iSlashPos >= 0) then\n        aPathName = aShapeTable.Left(iSlashPos)\n        aShapeTable = aShapeTable.Right(aShapeTable.Count - iSlashPos - 1)\n\n        aResultList = List.Make\n        aResultList.Add(aChosenView)\n        aResultList.Add(aThemeName)\n  \n        'allow user to select which field from the table is the key field\n        'aCh
+osenTheme is the theme containing the fields  \n        aKeyField = MsgBox.ListAsString(aChosenTheme.GetFTab.GetFields,\n                                        \"Select Key field to use with C-Plan\",\n                                        \"Available Fields\")\n        aKeyName = aKeyField.GetAlias\n        \n        aResultList.Add(aKeyName)\n  \n        'write values to INI file\n        'aShapeTable contains path to the ini file\n        'av.run(\"CPlan.WriteIniSettings\",{aShapeTable,\n        '                     
+            aChosenView,\n        '                                 aThemeName,\n        '                                 aPathName})\n        aIniFile = aPathName + \"\\cplan.ini\"\n\n        if (av.run(\"CPlan.FileExists\",{aIniFile}) <> True) then\n          aIniFile = aPathName + \"\\emrtool.ini\"\n        end\n\n        av.run(\"CPlan.DDERemoveArcViewSections\",{})\n\n        outfile = LineFile.Make(aIniFile.AsFilename,#FILE_PERM_APPEND)\n\n        outfile.WriteElt(\"\")\n        outfile.WriteElt(\"[ArcView]\")\n        outfile.W
+riteElt(\"ShapeTable=\" + aShapeTable)\n        outfile.WriteElt(\"View=\" + aChosenView)\n        outfile.WriteElt(\"Theme=\" + aThemeName)\n        outfile.WriteElt(\"Key=\" + aKeyName)\n        'outfile.WriteElt(\"\")\n\n        outfile.Close\n    \n        'return updated values to calling program\n        return aResultList\n      end\n    end\n  end\nend\n\n"
+)
+
+(Script.19
+	Name:	"CPlan.DDERemoveArcViewSections"
+	SourceCode:	"'Script : CPlan.DDERemoveArcViewSections\n'Author : Matthew Watts\n'Date : 14 June 1998\n'Purpose : Remove existing ArcView section from EMRTOOL.INI or CPLAN.INI\n'          so that user defined settings can be saved there.\n'          (via a DDE call to C-Plan)\n\n\n'call C-Plan using the IniConv dde conversation \naServerName = \"cplan\"\naTopicName = \"CommandConv\"\naDDE = DDEClient.Make(aServerName,aTopicName)\nif (aDDE.HasError) then\n  MsgBox.Error(aDDE.GetErrorMsg, \"error initialising DDE conversation with C-Plan\")\n
+  return nil\nend\naDDE.Execute(\"Remove ArcView Sections\")\n"
+)
+
+(Script.20
+	Name:	"CPlan.GetUserSettingsAndUpdate"
+	SourceCode:	"'Script : CPlan.GetUserSettingsAndUpdate\n'Author : Matthew Watts\n'Date : Aug 10th 1998\n'Purpose : Read the [ArcView] settings from the ini file for a C-Plan database.\n'          Return table, view, theme and key string identifiers.\n'\n\n'get the user to select settings and wait for the\n'results to be saved into the file\naResult = av.run(\"CPlan.GetUserSettings\",{SELF.Get(0)})\n\n'call ControlForm.UpdateDatabase via DDE in C-Plan\naServerName = \"cplan\"\naTopicName = \"CommandConv\"\naDDE = DDEClient.Make(aServerName,a
+TopicName)\nif (aDDE.HasError) then\n  MsgBox.Error(aDDE.GetErrorMsg, \"\")\n  return nil\nend\n\naDDE.Execute(\"UpdateDatabase\")\n"
+)
+
+(Script.21
+	Name:	"CPlan.GetIniSettings"
+	SourceCode:	"'Script : CPlan.GetIniSettings\n'Author : Matthew Watts\n'Date : Aug 10th 1998\n'Purpose : Read the [ArcView] settings from the ini file for a C-Plan database.\n'          Return table, view, theme and key string identifiers.\n'\n\naPathToCheck = SELF.Get(0)\n\naIniFile = aPathToCheck + \"\\cplan.ini\"\n\nif (av.run(\"CPlan.FileExists\",{aIniFile}) <> True) then\n  aIniFile = aPathToCheck + \"\\emrtool.ini\"\nend\n\nfStop = False\n\nif (av.run(\"CPlan.FileExists\",{aIniFile}) = True) then\n\n  'Read information from the ini file.\n  inf
+ile = LineFile.Make(aIniFile.AsFilename,#FILE_PERM_READ)\n  aLineList = List.Make\n  infile.Read( aLineList, infile.GetSize )\n  infile.close\n  \n  iSectionStart = aLineList.FindByValue(\"[ArcView]\")\n  \n  if (iSectionStart >= 0) then\n    'The [ArcView] section exists in this file.\n    'Keep moving past this point until we find \n    '    1) empty line indicating end of section\n    ' or 2) line beginning with [ indicating start of next section\n    ' or 3) end of the file\n    iSectionEnd = iSectionStart  'initialis
+e section end point\n    fSectionEnd = False          'initialise while loop stopping condition\n    'initialise table, view, theme and key\n    sTable = \"\"\n    sView = \"\"\n    sTheme = \"\"\n    sKey = \"\"\n    while (fSectionEnd = False)\n    \n      'For each line in the [ArcView] section, try to set table,view,theme and key.\n          \n      'if next element is not end of file\n      if (iSectionEnd < (aLineList.Count - 1)) then    \n        'iSectionEnd is zero based, aLineList.Count is one based\n        'if next l
+ine is not empty\n        sLine = aLineList.Get(iSectionEnd+1)\n        if (sLine <> \"\") then     'Get method takes zero based parameter  \n          'if next line begins with [ \n          if (sLine.Left(1) = \"[\") then  'Left method takes one based parameter\n            'start of next section reached\n            fSectionEnd = True \n          else\n            'increment line position\n            iSectionEnd = iSectionEnd + 1\n            'try to set one of the variables using current line\n            'try settin
+g sTable\n            if (sLine.Count > 11) then\n              if (sLine.Left(11) = \"ShapeTable=\") then\n                sTable = sLine.Right(sLine.Count - 11)\n              end            \n            end\n            'try setting sView\n            if (sLine.Count > 5) then\n              if (sLine.Left(5) = \"View=\") then\n                sView = sLine.Right(sLine.Count - 5)\n              end            \n            end\n            'theme\n            if (sLine.Count > 6) then\n              if (sLine.Left(6) = \"
+Theme=\") then\n                sTheme = sLine.Right(sLine.Count - 6)\n              end            \n            end\n            'key\n            if (sLine.Count > 4) then\n              if (sLine.Left(4) = \"Key=\") then\n                sKey = sLine.Right(sLine.Count - 4)\n              end            \n            end            \n          end   \n               \n        else\n          'empty line reached, ie. end of [ArcView] section\n          fSectionEnd = True\n        end\n              \n      else\n        'end 
+of file reached\n        fSectionEnd = True\n      end\n    \n    end     \n    \n    'if table, view, theme or key is not set, act as if section not found\n    if ((sTable = \"\")\n        or (sView = \"\")\n        or (sTheme = \"\")\n        or (sKey = \"\")) then\n      fStop = True\n      'MsgBox.Info(\"values not populated\",\"\")\n    end\n    \n  else\n    'An [ArcView] section does not exist in the ini file.\n    fStop = True\n    MsgBox.Info(\"section does not exist\",\"\")\n  end\n    \nelse\n  'There is no ini file on the specified 
+path.\n  fStop = True\n  'MsgBox.Info(\"File does not exist\",\"\")\nend\n\n\naResultList = List.Make\n\nif (fStop = True) then\n  'An ini file did not exist or [ArcView] settings were invalid.\n  'We must return a null result.\n  aResultList.Add(nil)\n  aResultList.Add(nil)\n  aResultList.Add(nil)\n  aResultList.Add(nil)\n  \n  'MsgBox.Info(\"null result\",\"\")\nelse\n  'Information was successfully retrieved from the file.\n  'Return the information as script result.\n  aResultList.Add(sTable)\n  aResultList.Add(sView)\n  aResultList
+.Add(sTheme)\n  aResultList.Add(sKey)\nend\n\nreturn aResultList"
+)
+
+(Script.22
+	Name:	"CPlan.ExtractPath"
+	SourceCode:	"'Script : CPlan.ExtractPath\n'Author : Matthew Watts\n'Date : Oct 19th 1998\n'Purpose : Return the path from a given string which contains\n'          both a path and filename.\n'\n\n'dbgfile = LineFile.Make(\"c:\\ext_path.txt\".AsFilename,#FILE_PERM_APPEND)\n\nsOriginalString = SELF.Get(0)\nsTruncatedString = \"\"\n\n'find the position of the last \\ in this string\niPos = 0\nif (sOriginalString.Count > 0) then\n  for each i in 0..(sOriginalString.Count-1)\n  \n    'dbgfile.WriteElt(sOriginalString.Middle(i,1))\n  \n    if (sOrigi
+nalString.Middle(i,1) = \"\\\") then\n      iPos = i  \n    end\n  end\n  \n  'now trim the string\n  if (iPos > 0) then\n    sTruncatedString = sOriginalString.Left(iPos)\n  end\nend\n\n'dbgfile.WriteElt(\"ORIGINAL:  \" + sOriginalString)\n'dbgfile.WriteElt(\"TRUNCATED: \" + sTruncatedString)\n'dbgfile.WriteElt(\"iPos:      \" + iPos.AsString)\n\n'dbgfile.Close\n\nReturn sTruncatedString"
+)
+
+(Script.23
+	Name:	"Minset.RunAdjacency"
+	SourceCode:	"'Script : Minset.RunAdjacency\n'Author : Matthew Watts\n'Date : Feb 9th 1998\n'Purpose : call CPlan.FindAdjacentSites for adjacency check\n'          and return result to C-Plan\n\n'load the site list from the file\n\naFilename = SELF.Get(3)\n\naOriginalSites = List.Make\n\n'load site list from aFilename to aOriginalSites\ntf = LineFile.Make(aFilename.AsFileName, #FILE_PERM_READ )\n  \nwhile (tf.IsAtEnd.Not)\n  iCode = tf.ReadElt.AsNumber\n  aOriginalSites.Add(iCode) \nend\n \ntf.Close\n\naSitesToSelect = av.run(\"Minset.FindAdja
+centSites\",\n                        {SELF.Get(0),   'view\n                         SELF.Get(1),   'theme\n                         SELF.Get(2),   'key field\n                         aOriginalSites 'sites to test\n                         })\n\n'write resulting site id's to the destination file\nav.run(\"Minset.WriteSitesFile\",\n       {aSitesToSelect, 'resulting sites\n        SELF.Get(4).AsString     'destination file\n        })\n\n'create sync file so C-Plan will know the run is finished\n'sSyncFile = av.Run(\"CPlan.
+ExtractPath\",{aFilename})\nav.run(\"Minset.CreateSyncFile\",{SELF.Get(5)})"
+)
+
+(Script.24
+	Name:	"Minset.RunProximity"
+	SourceCode:	"'Script : Minset.RunProximity\n'Author : Matthew Watts\n'Date : Feb 9th 1998\n'Purpose : returns list of sites within given distance of given\n'          list of sites\n'\n\naOriginalSites = List.Make\naFilename = SELF.Get(4)\n'load site list from aFilename to aOriginalSites\ntf = LineFile.Make(aFilename.AsFileName, #FILE_PERM_READ )\n  \nwhile (not tf.IsAtEnd)\n  iCode = tf.ReadElt.AsNumber\n  aOriginalSites.Add(iCode) \nend\n \ntf.Close\n\naSitesToSelect = av.run(\"Minset.FindProximitySites\",\n                        {SELF.Ge
+t(0),   'view\n                         SELF.Get(1),   'theme\n                         SELF.Get(2),   'key field\n                         SELF.Get(3),   'distance\n                         aOriginalSites 'sites to test\n                         })\n\n'write resulting site id's to the destination file\nav.run(\"Minset.WriteSitesFile\",\n       {aSitesToSelect, 'resulting sites\n        SELF.Get(5)     'destination file\n        })\n\n\n\n'create sync file so C-Plan will know the run is finished\nsSyncFile = av.Run(\"CPlan.Ex
+tractPath\",{aFilename})\nav.run(\"Minset.CreateSyncFile\",{SELF.Get(6)})\n"
+)
+
+(Script.25
+	Name:	"Minset.WriteSitesFile"
+	SourceCode:	"'Script : Minset.WriteSitesFile\n'Author : Matthew Watts\n'Date : Feb 16th 1998\n'Purpose : write a list of site identifiers to a file\n'\n\naSitesToWrite = SELF.Get(0)  'list of sites to write to file\naDestFile = SELF.Get(1)      'destination file name\n\noutfile = LineFile.Make(aDestFile.AsFilename,#FILE_PERM_WRITE)\n\nfor each i in 0..(aSitesToWrite.Count-1)\n  outfile.WriteElt(aSitesToWrite.Get(i).AsString)\nend\n\noutfile.Close"
+)
+
+(Script.26
+	Name:	"Minset.CreateSyncFile"
+	SourceCode:	"'Script : Minset.CreateSyncFile\n'Author : Matthew Watts\n'Date : Oct 19th 1998\n'Purpose : create a sync file so calling process will know this job is finished\n'\n\nsPathFile = SELF.Get(0)\n\nsyncfile = LineFile.Make(sPathFile.AsFilename,#FILE_PERM_WRITE)\nsyncfile.Close"
+)
+
+(Script.27
+	Name:	"Minset.FindAdjacentSites"
+	SourceCode:	"'Script : Minset.FindAdjacentSites\n'Author : Matthew Watts\n'Date : Feb 4th 1998\n'Purpose : Return list of sites which is adjacent to given list of sites\n'\n\n'get handle on the view\nasView = SELF.Get(0)\nasTheme = SELF.Get(1)\naView = av.GetProject.FindDoc(asView)\n'test whether view is valid\nif (aView = nil) then\n  'cannot find this view\n  MsgBox.Error(\"cannot find view\" ++ asView,\"Error in C-Plan Configuration\")\n  exit\nend\naTheme = aView.FindTheme(asTheme)\n'test whether theme is valid\nif (aTheme = nil) then\n  
+'cannot find this theme\n  MsgBox.Error(\"cannot find theme\" ++ asTheme,\"Error in C-Plan Configuration\")\n  exit  \nend\nsKeyFieldName = Self.Get(2)\nif ((aView <> nil) and (aView.GetClass.GetClassName = \"View\")) then\n  'clear selections\n  aTheme.ClearSelection\n    \n  'select list of given sites\n  aVTab = aTheme.GetFTab\n  aBitmap = aVTab.GetSelection  \n  aParamList = Self.Get(3)\n  expr = \"([\" + sKeyFieldName +\n         \"] = \" + aParamList.Get(0).AsString + \")\"\n  if (aParamList.Count > 1) then\n    for each i in 1.
+.(aParamList.Count-1)\n      expr = expr + \" or ([\" + sKeyFieldName +\n             \"] = \" + aParamList.Get(i).AsString + \")\"\n    end\n  end  \n  \n  'MsgBox.Info(expr,\"query\")\n  \n  aVTab.Query(expr, aBitmap, #VTAB_SELTYPE_NEW) \n  \n  'MsgBox.Info(\"before UpdateSelection\",\"test\") \n  \n  aVTab.UpdateSelection \n     \n  'MsgBox.Info(\"before SelectByFTab\",\"test\")\n     \n  'execute SelectByTheme intersection  \n  aVTab.SelectByFTab(aVTab, \n                     #FTAB_RELTYPE_INTERSECTS,\n                     0,\n           
+          #VTAB_SELTYPE_NEW)\n\n  'MsgBox.Info(\"after SelectByFTab\",\"test\")\n\n  'subtract given list from resulting selected sites\n  aResultList = List.Make\n  aKeyField = aVTab.FindField(sKeyFieldName)\n\n  'sTest = \"test\"\n\n  aSelection = aVTab.GetSelection\n  if (aSelection <> nil) then\n  for each row in aSelection\n    'if row is not one of the original selected sites passed,\n    'then add the row identifier to result\n\n    aRowKey = aVTab.ReturnValue(aKeyField,row)\n    \n    'MsgBox.Info(aRowKey.AsString,\"aRowKey
+ is :\")\n    \n    fAddRow = True\n    \n    for each i in 0..(aParamList.Count-1)\n      if (aParamList.Get(i).AsString = aRowKey.AsString) then\n        fAddRow = False\n        \n      end\n    end\n    \n    if (fAddRow) then\n      aResultList.Add(aRowKey.AsString)\n      'sTest = sTest + \" \" + aRowKey.AsString\n    end\n    \n  end\n  end\n  \n  'MsgBox.Info(sTest,\"x\")\n  \n  if (aResultList.Count = 0) then\n    return nil\n  else\n    return aResultList\n  end\nend"
+)
+
+(Script.28
+	Name:	"Minset.FindProximitySites"
+	SourceCode:	"'Script : Minset.FindProximitySites\n'Author : Matthew Watts\n'Date : Feb 9th 1998\n'Purpose : Return list of sites which is within given distance of given list of sites\n'\n\n'get handle on the view\nasView = SELF.Get(0)\nasTheme = SELF.Get(1)\naView = av.GetProject.FindDoc(asView)\n'test whether view is valid\nif (aView = nil) then\n  'cannot find this view\n  MsgBox.Error(\"cannot find view\" ++ asView,\"Error in C-Plan Configuration\")\n  exit\nend\naTheme = aView.FindTheme(asTheme)\n'test whether theme is valid\nif (aTheme 
+= nil) then\n  'cannot find this theme\n  MsgBox.Error(\"cannot find theme\" ++ asTheme,\"Error in C-Plan Configuration\")\n  exit  \nend\nsKeyFieldName = Self.Get(2)\nif ((aView <> nil) and (aView.GetClass.GetClassName = \"View\")) then\n  'clear selections\n  aTheme.ClearSelection\n    \n  'select list of given sites\n  aVTab = aTheme.GetFTab\n  aBitmap = aVTab.GetSelection\n  aDistance = Self.Get(3)  \n  aParamList = Self.Get(4)\n  expr = \"([\" + sKeyFieldName +\n         \"] = \" + aParamList.Get(0).AsString + \")\"\n  if (aParamL
+ist.Count > 1) then\n    for each i in 1..(aParamList.Count-1)\n      expr = expr + \" or ([\" + sKeyFieldName +\n             \"] = \" + aParamList.Get(i) + \")\"\n    end\n  end  \n  \n  'MsgBox.Info(expr,\"query\")\n  \n  aVTab.Query(expr, aBitmap, #VTAB_SELTYPE_NEW) \n  \n  'MsgBox.Info(\"before UpdateSelection\",\"test\") \n  \n  aVTab.UpdateSelection \n     \n  'MsgBox.Info(\"before SelectByFTab\",\"test\")\n     \n  'execute SelectByTheme intersection  \n  aVTab.SelectByFTab(aVTab, \n                     #FTAB_RELTYPE_ISWITHINDISTANCE
+OF,\n                     aDistance,\n                     #VTAB_SELTYPE_NEW)\n\n  'MsgBox.Info(\"after SelectByFTab\",\"test\")\n\n  'subtract given list from resulting selected sites\n  aResultList = List.Make\n  aKeyField = aVTab.FindField(sKeyFieldName)\n\n  'sTest = \"test\"\n\n  aSelection = aVTab.GetSelection\n  if (aSelection <> nil) then\n  for each row in aSelection\n    'if row is not one of the original selected sites passed,\n    'then add the row identifier to result\n\n    aRowKey = aVTab.ReturnValue(aKeyField,row)\n
+    \n    'MsgBox.Info(aRowKey.AsString,\"aRowKey is :\")\n    \n    fAddRow = True\n    \n    for each i in 0..(aParamList.Count-1)\n      if (aParamList.Get(i).AsString = aRowKey.AsString) then\n        fAddRow = False\n        \n      end\n    end\n    \n    if (fAddRow) then\n      aResultList.Add(aRowKey.AsString)\n      'sTest = sTest + \" \" + aRowKey.AsString\n    end\n    \n  end\n  end\n  \n  'MsgBox.Info(sTest,\"x\")\n  \n  if (aResultList.Count = 0) then\n    return nil\n  else\n    return aResultList\n  end\nend"
+)
+
+(Script.29
+	Name:	"CPlan.Install"
+	SourceCode:	"'Script : CPlan.Install\n'Author : Matthew Watts\n'Date : July 4th 1997\n'Purpose : Install script for the C-Plan extension\n'\n\nbb = av.GetProject.FindGUI(\"View\").GetButtonBar\n\nbSpace = Space.Make\nbSpace.SetName(\"ButtonSpace\")\n\nbb.Add(SELF.Get(0),0)\nbb.Add(SELF.Get(1),1)\nbb.Add(bSpace,2)\n'bb = av.GetProject.FindGUI(\"Table\").GetButtonBar\n'bb.Add(SELF.Get(2),1)\n'bb.Add(bSpace,2)\n\n"
+)
+
+(Script.30
+	Name:	"CPlan.UnInstall"
+	SourceCode:	"'Script : CPlan.Install\n'Author : Matthew Watts\n'Date : July 4th 1997\n'Purpose : UnInstall script for the C-Plan extension\n'\n\nbb = av.GetProject.FindGUI(\"View\").GetButtonBar\nbb.Remove(bb.FindByName(\"DDESelect\"))\nbb.Remove(bb.FindByName(\"StartCPlan\"))\nbb.Remove(bb.FindByName(\"ButtonSpace\"))\n'bb = av.GetProject.FindGUI(\"Table\").GetButtonBar\n'bb.Remove(bb.FindByName(\"AddFeatureCode\"))\n'bb.Remove(bb.FindByName(\"ButtonSpace\"))\n\n"
+)
+

@@ -1,0 +1,100 @@
+File
+	Open Selections
+	Browse Selections
+	Save Selections
+	Save Selections As
+	Open Combsize
+	Save Combsize
+	Exit
+
+Show
+	Contribution
+	Features To Target
+	Selection Log
+	Stage Memo
+	DBMS Lookup
+	Partial Deferral
+	SQL Lookup
+	SQL Map
+	SQL Add To Map
+	Timber Resource
+	Hide Mandatory
+	Hide Partial
+	Hide Flagged
+	Hide Excluded
+
+Choose SQL
+	Negotiated
+	Mandatory
+	Partial
+	Flagged
+	Excluded
+	Un-Negotiated
+	Un-Mandatory
+	Un-Deferred
+	Un-Partial
+	Un-Flagged
+	Un-Excluded
+
+Report
+	Site Count
+	Irreplaceability
+	Targets
+	Partial Deferral
+	Missing Features
+	All Reports
+
+Highlight
+	Load Site NAME
+	Load Site GEOCODE
+	Available All
+	Available None
+	Negotiated All
+	Negotiated None
+	Mandatory All
+	Mandatory None
+	Excluded All
+	Excluded None
+
+Irreplaceability
+	Run Irreplaceability
+	Force Select Combsize
+
+Options
+	Restrict Targets
+	DBMS Fields
+	Use Tool View
+	WinERMS
+	Irreplaceability
+	Files
+	Tool View
+	Load Options
+	Save Options
+
+Tools
+	Edit Targets
+	Initial Display State
+	Reload Names
+	Reload Targets
+	Redundancy Check (simple)
+	Redundancy Check (combination)
+
+Help
+	Contents
+	Search
+	About
+
+		 
+
+
+
+
+
+
+
+
+	
+
+
+
+

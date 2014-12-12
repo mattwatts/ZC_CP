@@ -1,0 +1,5 @@
+Input file: C:\matt\bob_spman\original\Nsw.prn
+
+Coefficient is:  0.067
+Significance is P=0.6600
+

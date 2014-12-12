@@ -1,0 +1,5 @@
+Input file: C:\matt\bob_spman\steve_not_working\Ft_100ft.prn
+
+Coefficient is:  0.763
+Significance is P=0.0000
+

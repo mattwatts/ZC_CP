@@ -1,0 +1,25 @@
+terminology ---
+
+change target naming conventions
+
+targets - extra tenure field
+
+	TENURE - cra purposes
+		freehold   crown   state forest
+
+
+
+tenure - deferred,man,etc
+
+avl files
+
+wizard
+	resource
+	new join
+	floating key field
+	security code
+
+testing minset
+	adj/prox
+	map/add to map
+

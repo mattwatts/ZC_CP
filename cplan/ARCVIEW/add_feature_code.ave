@@ -1,0 +1,66 @@
+''Name: Add_Feature_Code
+''Purpose: This script adds a string code to each record (in a field called 'FEATCODE'
+''         that consists of "fXXX" where XXX is a unique number - this can be used
+''         to create a unique feature code for use in generating the C-Plan matrix.
+
+theView = av.GetActiveDoc
+themesList = theView.GetActiveThemes
+if (themesList.Count = 0) then
+  MsgBox.Error("No active themes in view.","Aborting")
+  return nil
+end
+for each atheme in themesList
+  currentFtab = atheme.GetFtab
+  addFEATCODE = FALSE
+  hasFEATCODE = FALSE
+  updateattr = FALSE
+  for each attr in currentFtab.GetFields
+    if (attr.AsString.UCase = "FEATCODE") then
+      hasFEATCODE = TRUE
+      if (MsgBox.YesNo(atheme.AsString+" contains FEATCODE attribute."+nl+
+
+          "Do you want to update it?","Update",FALSE)) then
+        updateattr = TRUE
+        break
+      else
+        break
+      end
+    end
+  end
+  numRecs = currentFTab.GetNumRecords
+  if (hasFEATCODE.Not) then
+    addFEATCODE = (MsgBox.YesNo("Add Record Number Attribute "+nl+
+                "to "+atheme.AsString+"?","Query",TRUE))
+    if (addFEATCODE) then
+      currentFtab.SetEditable(TRUE)
+      recAttr = Field.Make("FEATCODE",#FIELD_CHAR,8,0)
+      av.ShowMsg("Adding FEATCODE Attribute to "+atheme.AsString+"...")
+
+      currentFtab.AddFields({recAttr})
+      av.ClearMsg
+    end
+  end
+  if ((updateattr) or (addFEATCODE)) then  
+    currentFtab.SetEditable(TRUE)
+    FEATCODEField = currentFtab.FindField("FEATCODE")
+    for each recNum in currentFtab
+      FEATCODE = ( recNum + 1 ).SetFormat("d").AsString
+      FEATCODE = "f"+FEATCODE
+      currentFtab.SetValue( FEATCODEField, recNum , FEATCODE )
+      av.ShowMsg("Populating FEATCODE Attribute of "+atheme.AsString+"...")
+      proceed = av.SetStatus((recNum / numRecs) * 100)
+
+      if ( proceed.Not ) then
+        av.ClearStatus
+        av.ShowMsg( "Stopped" )
+        return nil
+      end
+    end
+    currentFtab.SetEditable(FALSE)
+    av.SetStatus(100)
+    av.ClearMsg
+    av.ClearStatus
+  end
+end
+
+

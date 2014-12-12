@@ -1,0 +1,7 @@
+
+220201 The SQL query to load a table crashes if there is a space in the file name.
+
+
+ClickSourceChild
+
+DestinationChild

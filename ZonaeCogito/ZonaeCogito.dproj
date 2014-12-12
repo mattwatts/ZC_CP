@@ -1,0 +1,131 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{d72c0fa6-3cf7-4c1e-8038-de984e01c115}</ProjectGuid>
+    <MainSource>ZonaeCogito.dpr</MainSource>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>ZonaeCogito.exe</DCC_DependencyCheckOutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_Define>RELEASE</DCC_Define>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_Define>DEBUG</DCC_Define>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType>VCLApplication</Borland.ProjectType>
+    <BorlandProject>
+<BorlandProject xmlns=""> <Delphi.Personality>   <Parameters>
+      <Parameters Name="UseLauncher">False</Parameters>
+      <Parameters Name="LoadAllSymbols">True</Parameters>
+      <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+    </Parameters>
+    <VersionInfo>
+      <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+      <VersionInfo Name="AutoIncBuild">False</VersionInfo>
+      <VersionInfo Name="MajorVer">1</VersionInfo>
+      <VersionInfo Name="MinorVer">0</VersionInfo>
+      <VersionInfo Name="Release">0</VersionInfo>
+      <VersionInfo Name="Build">0</VersionInfo>
+      <VersionInfo Name="Debug">False</VersionInfo>
+      <VersionInfo Name="PreRelease">False</VersionInfo>
+      <VersionInfo Name="Special">False</VersionInfo>
+      <VersionInfo Name="Private">False</VersionInfo>
+      <VersionInfo Name="DLL">False</VersionInfo>
+      <VersionInfo Name="Locale">3081</VersionInfo>
+      <VersionInfo Name="CodePage">1252</VersionInfo>
+    </VersionInfo>
+    <VersionInfoKeys>
+      <VersionInfoKeys Name="CompanyName"></VersionInfoKeys>
+      <VersionInfoKeys Name="FileDescription"></VersionInfoKeys>
+      <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+      <VersionInfoKeys Name="InternalName"></VersionInfoKeys>
+      <VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys>
+      <VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys>
+      <VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys>
+      <VersionInfoKeys Name="ProductName"></VersionInfoKeys>
+      <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+      <VersionInfoKeys Name="Comments"></VersionInfoKeys>
+    </VersionInfoKeys>
+    <Source>
+      <Source Name="MainSource">ZonaeCogito.dpr</Source>
+    </Source>
+  </Delphi.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <ItemGroup />
+  <ItemGroup>
+    <DelphiCompile Include="ZonaeCogito.dpr">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="About.pas">
+      <Form>AboutForm</Form>
+    </DCCReference>
+    <DCCReference Include="arrange.pas">
+      <Form>ArrangeForm</Form>
+    </DCCReference>
+    <DCCReference Include="Build_Child.pas">
+      <Form>BuildChild</Form>
+    </DCCReference>
+    <DCCReference Include="C:\Documents and Settings\uqmwatts.UQ\My Documents\SelectMapQuery.pas">
+      <Form>MapQueryForm</Form>
+    </DCCReference>
+    <DCCReference Include="calibration.pas">
+      <Form>CalibrationForm</Form>
+    </DCCReference>
+    <DCCReference Include="Change_status.pas">
+      <Form>ChangeStatusForm</Form>
+    </DCCReference>
+    <DCCReference Include="CSV_Child.pas">
+      <Form>CSVChild</Form>
+    </DCCReference>
+    <DCCReference Include="DBF_Child.pas">
+      <Form>DBFChild</Form>
+    </DCCReference>
+    <DCCReference Include="DPARRAY\Ds.pas" />
+    <DCCReference Include="DPARRAY\DSCANVAS.PAS">
+      <Form>Form2</Form>
+    </DCCReference>
+    <DCCReference Include="Edit_Profile_Element.pas">
+      <Form>ProfileElementForm</Form>
+    </DCCReference>
+    <DCCReference Include="GIS.pas">
+      <Form>GIS_Child</Form>
+    </DCCReference>
+    <DCCReference Include="ineditp.pas">
+      <Form>InEditForm</Form>
+    </DCCReference>
+    <DCCReference Include="inedit_browse.pas">
+      <Form>InEditBrowseForm</Form>
+    </DCCReference>
+    <DCCReference Include="LoadScenario.pas">
+      <Form>LoadScenarioForm</Form>
+    </DCCReference>
+    <DCCReference Include="Marxan_interface.pas">
+      <Form>MarxanInterfaceForm</Form>
+    </DCCReference>
+    <DCCReference Include="Miscellaneous.pas" />
+    <DCCReference Include="MZ_system_test.pas">
+      <Form>MarZoneSystemTestForm</Form>
+    </DCCReference>
+    <DCCReference Include="R_access.pas">
+      <Form>R_Form</Form>
+    </DCCReference>
+    <DCCReference Include="SCP_Main.pas">
+      <Form>SCPForm</Form>
+    </DCCReference>
+    <DCCReference Include="Shape_Legend_Editor.pas">
+      <Form>MarxanLegendEditorForm</Form>
+    </DCCReference>
+    <DCCReference Include="User_Select_Fields.pas">
+      <Form>UserSelectFieldsForm</Form>
+    </DCCReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+</Project>

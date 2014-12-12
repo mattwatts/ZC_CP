@@ -1,0 +1,5 @@
+Input file: C:\matt\bob_spman\steve_not_working\Correl_1.prn
+
+Coefficient is:  0.428
+Significance is P=0.0000
+

@@ -1,0 +1,154 @@
+Matthew Watts
+Monday 15th March 1999
+
+
+Hotspots Analysis Methods using the C-Plan minset functionality
+---------------------------------------------------------------
+
+
+The following analysis are required:
+
+- 3 databases (as provided by Bob Pressey)
+     1) Northern Territory
+     2) New South Wales
+          contains 110 features
+     3) South Africa
+          contains 16 features
+
+- 6 variables (as defined by Bob Pressey and Simon Ferrier)
+     1) Irreplaceability
+     2) Summed Irreplaceability
+     3) Weighted Average Irreplaceability
+          NOTE : All features in all 3 databases are mutually exclusive
+                 for the calculation of this index.
+                 (ie. PCCONTRCutOff = number of features)
+          ALSO NOTE : For calculation of irreplaceability, feature area
+                      at sites is trimmed to contributing feature area at
+                      sites.
+     4) Maximum Rarity
+     5) Richness
+     6) Summed Rarity
+              
+- 2 variations on complementarity 
+     1) Complementarity
+          Meaning all variables are recalculated after each site is
+          selected.
+          (The meaning is the same for all 6 variables)
+     2) No Complementarity
+          Meaning varies according to which variable is in use.
+
+          For Irr, SumIrr, WavIrr calculate the values once then
+          don't recalculate them at all during iterations. 
+
+          For MaxRar, Rich, SumRar calculate values up front, then
+          recalculate values when 1 or more features destroyed.
+          ie. don't recalculate values at all if destruction not
+          used, don't recalculate values when 1 or more features
+          satisfied.
+
+- 4 variations on vulnerability
+     1) no vulnerability component
+          The variable in use is used with no modification.
+
+     2) normalise with maximum vulnerability
+          Means variable is combined with vulnerability in the
+          following way.
+          Max Vuln is the maximum vulnerability of any feature in
+          a site.
+          Max Vuln and the variable in use are then each normalised
+          (mapped to)
+          between 0 and 1 and the two normalised values are added.
+
+     3) normalise with weighted average vulnerability
+          Wav Vuln for each available site is defined as :
+
+                    sum for each feature of (carea * vuln)
+          WavVuln = --------------------------------------
+                       sum for each feature of carea
+
+          Where carea is 'contributing area' and 
+          vuln is 'vulnerability'. 
+
+          Wav Vuln and the variable in use are then each normalised
+          (mapped to)
+          between 0 and 1 and the two normalised values are added.
+
+     4) restrict to maximum 50% vulnerability
+          The Max Vuln values are determined for available sites as
+          defined in 2) above.  The top 50% of these values are then
+          analysed
+          according to the variable in use. ie. The bottom 50% of
+          these
+          values are not analysed according to the variable in use.
+
+- 2 variations on destruction  ??? Bob, is this correct?
+     1) destruction on
+          *** Need to determine for each of the 3 datasets,
+          how many sites to select for each cycle of destruction
+          (ie. the reservation rate for each dataset).
+          DESTRATE in the feature summary table is specified as the
+          % of
+          each feature to destroy in available sites at each
+          iteration.
+          See proviso for MaxRar, Rich, SumRar in
+          "2) No Complementarity" above.
+
+     2) destruction off
+          No destruction of features in available sites.
+
+This gives a total of (3 * 6 * 2 * 4 * 2) = 288 analyses.
+
+There are some variations on these requirements :
+     1) For destruction on rules Irr, SumIrr, WavIrr no runs are
+        to be done with 'No Complementarity', a reduction of
+        3 * 3 = 9 analyses
+     2) Vulnerability runs using only the vulnerability variables
+        defined as 2), 3) & 4) above .ie. use a fixed value
+        (no complementarity)
+        that is not combined with one of the 6 variables, an
+        addition of 3 * 3 = 9 analyses
+        ??? Bob, perhaps only 2) and 3) are used, as 4) seems to
+        make no sense in this context.  
+
+Total variation of 0 leaves (288 - 9 + 9) = 288 analyses.
+
+
+
+
+NOTES ON DATABASES
+
+NSW res & NSW crown used as reserved, drop NSW crown from res?  YES
+Crown list cannot be destructed, add this option to C-Plan minset
+destruction.
+Crown list is not reserved, restructure database accordingly.
+No NSW vector showing % of site reserved, so unable to check this.
+
+South Africa matrix is year1.xls   Is this correct ?  YES
+
+For NT and South Africa, % of site reserved vector is interpreted
+as greater than 50% means site is reserved.
+
+For NSW, % of site reserved vector is not available, use james
+'NSW RES' list instead.
+
+
+
+
+FURTHER JOBS FOR C-PLAN
+
+1) Test destruction, and add code to allow recovery (reload matrix)
+   after a destruction run.
+2) Add option for varying how many sites to select for each cycle
+   of destruction (ie. varying the reservation rate).
+  DONE
+3) Add capability to disable destruction on a list of specified
+   sites (this will be used to exclude jameses 'NSW Crown' list
+   from destruction when destruction is used on this dataset)
+  DONE
+4) Add 'no complementarity' option for MaxRar, Rich, SumRar to be
+   recalculated when 1 or more features has been completely
+   destroyed.
+   (This happens when current sum area [available area] for 1 or
+    more features is reduced to zero by destruction.)
+  DONE
+

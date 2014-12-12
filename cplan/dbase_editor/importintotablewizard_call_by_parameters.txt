@@ -1,0 +1,47 @@
+procedure TImportIntoTableForm.ImportSingleFieldIntoTable(const sDestinationTbl,
+                                                                sDestinationKey,
+                                                                sDestinationField,
+                                                                sSourceTbl,
+                                                                sSourceKey,
+                                                                sSourceField : string);
+begin
+     //
+     try
+        MakeDestinationLookupArray(sDestinationTbl,sDestinationKey); UPDATED
+        MakeFieldsToImport;                                          UPDATED
+        ParseFieldsToImport;                                         DOESN'T REQUIRE ANY CHANGES
+        AddExtraDestinationFields;                                   UPDATED
+          Use sNewName instead
+          uses sDestinationTable and DestinationChild
+     sDestinationTable := AvailableTablesGrid.Cells[0,AvailableTablesGrid.Selection.Top];
+     DestinationChild := TMDIChild(MainForm.MDIChildren[MainForm.ReturnChildIndex(sDestinationTable)]);
+        ParseDestinationTable;                                       UPDATED
+          Use sNewName instead
+          uses DestinationChild and ComboDestinationKey.Text
+        DestinationLookupArray.Destroy;                              D
+        DestinationSortedKey.Destroy;                                D
+        FreeFieldsToImport;
+
+     except
+           Screen.Cursor := crDefault;
+           MessageDlg('Exception in ImportSingleFieldIntoTable',mtError,[mbOk],0);
+     end;
+end;
+
+
+- added sNewName to FieldToImport_T which will allow new name to be stored and acted upon in the case where a field name will be imported to a field with a different name
+
+- set sNewName (using sDestinationField) in MakeFieldsToImport
+DONE
+- use sNewName in AddExtra... and ParseDest...
+DONE
+
+
+- we need to import these 4 fields (if applicable) using the field import wizard
+     LabelNameTable.Caption := 'no table selected';
+     LabelAreaTable.Caption := 'no table selected';
+     LabelTenureTable.Caption := 'no table selected';
+     LabelTargetTable.Caption := 'no table selected';
+- we need to write the tenure classes selected by the user to the ini file, then import the tenure field as it is, then parse through this field, reading the value and writing the i_status field based on the contents of the ini file
+
+

@@ -1,0 +1,38 @@
+summed rarity
+      "summed average rarity fraction (100/frequency in the data set) of all
+      under represented features"
+
+maxcontrib
+      "sum of contributions to full representation
+      (contribution = area of each feature that would narrow the gap
+       between the target area and the currently represented area)"
+
+max pccontrib
+	"sum of contributions (as in maxcontrib) expressed as
+       	percentages of site area"
+
+max rarcontrib
+      "sum of contributions (as in maxcontrib) for under-represented
+       feature(s) with highest rarity fractions (100/frequency in the data set)"
+
+mostcontrib
+      "number of under-represented features that would be fully
+       represented with the notional reservation of the sites"
+
+next rarest
+      "highest rarity fraction (100/frequency in the data set) of any
+       under represented feature"
+
+weighted maxcontrib
+      "sum of contributions (as in maxcontrib) weighted by the rarity
+       fraction (100/frequency in the data set) of each feature"
+
+weighted propcontrib
+      "sum of weighted contributions (as in weighted maxcontrib) but
+       with contributions expressed as a percentage of the remaining area
+       of each feature still to be represented"
+
+weighted max pccontrib
+	"sum of contributions (as in maxcontrib) expressed as
+       	percentages of site area"
+      	(And weight each value by feature richness before accumulating it for each site.)

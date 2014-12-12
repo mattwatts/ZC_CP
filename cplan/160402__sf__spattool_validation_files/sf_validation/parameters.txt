@@ -1,0 +1,6 @@
+sites 12
+configfeatures 0
+contribfeatures 1
+spreadfeatures 0
+radius 1000
+exponent 0.5

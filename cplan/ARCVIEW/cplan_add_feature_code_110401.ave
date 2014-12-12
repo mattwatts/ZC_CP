@@ -1,0 +1,72 @@
+''
+''Name: CPlan.AddFeatureCode
+''
+''Purpose: This script adds a string code to each record (in a field called 'GIS_KEY')
+''         that consists of "FXXX" where XXX is a unique number - this can be used
+''         to create a unique feature code for use in generating the C-Plan matrix.
+''
+
+' modifications :
+'   030401 Matt; Debug flow of control with regard to user dialog boxes
+'   040401 Matt; Now works with table gui instead of view gui
+'                Field name abstracted so it can be easily changed (sFieldToAdd)
+'                Changed F to upper case (interaction with dBase field names requires upper case)
+
+' this is the name of the field to add. it must be a valid dbase field name
+sFieldToAdd = "GIS_KEY"
+
+theTable = av.GetActiveDoc
+aVTab = theTable.GetVTab
+sStartingNumber = MsgBox.Input ("Enter a starting index","Add " + sFieldToAdd,"1")
+if (sStartingNumber <> nil) then
+  ' user has not pressed cancel
+  iStartingNumber = sStartingNumber.AsNumber
+
+  addGIS_KEY = TRUE
+  hasGIS_KEY = FALSE
+  updateattr = TRUE
+  
+  for each attr in aVTab.GetFields
+    if (attr.AsString.UCase = sFieldToAdd) then
+      hasGIS_KEY = TRUE
+      if (MsgBox.YesNo(theTable.AsString+" contains " + sFieldToAdd + " attribute."+nl+
+           "Do you want to update it?","Update " + sFieldToAdd,FALSE)) then
+        'updateattr = TRUE
+        break
+      else
+        updateattr = FALSE
+        break
+      end
+    end
+  end
+  numRecs = aVTab.GetNumRecords
+  if (hasGIS_KEY.Not) then
+    aVTab.SetEditable(TRUE)
+    recAttr = Field.Make(sFieldToAdd,#FIELD_CHAR,8,0)
+    av.ShowMsg("Adding " + sFieldToAdd + " Attribute to "+theTable.AsString+"...")
+    aVTab.AddFields({recAttr})
+    av.ClearMsg
+  end
+  if (updateattr) then  
+    aVTab.SetEditable(TRUE)
+    GIS_KEYField = aVTab.FindField(sFieldToAdd)
+    for each recNum in aVTab
+      GIS_KEY = ( recNum + iStartingNumber ).SetFormat("d").AsString
+      GIS_KEY = "F"+GIS_KEY
+      aVTab.SetValue( GIS_KEYField, recNum , GIS_KEY )
+      av.ShowMsg("Populating GIS_KEY Attribute of "+theTable.AsString+"...")
+      proceed = av.SetStatus((recNum / numRecs) * 100)
+
+      if ( proceed.Not ) then
+        av.ClearStatus
+        av.ShowMsg( "Stopped" )
+        return nil
+      end
+    end
+    aVTab.SetEditable(FALSE)
+    av.SetStatus(100)
+    av.ClearMsg
+    av.ClearStatus
+  end
+end
+

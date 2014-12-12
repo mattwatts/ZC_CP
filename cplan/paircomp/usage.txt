@@ -1,0 +1,2 @@
+a probability of 0.05 or greater means the 2 vectors of numbers are similar
+a probability of 0.01 or less means the 2 vectors are random

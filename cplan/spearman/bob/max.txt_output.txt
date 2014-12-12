@@ -1,0 +1,6 @@
+Input file: D:\software\spearman\bob\max.txt
+
+Number of tests 10000
+Coefficient is: 0.993006993006993
+Significance is P=0
+

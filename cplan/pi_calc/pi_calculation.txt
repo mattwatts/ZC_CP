@@ -1,0 +1,4 @@
+[pi]
+TotalPoints=421500000000
+TotalInQuadrant=331045360786
+pi=3.14159298492052

@@ -1,0 +1,6 @@
+Input file: D:\software\spearman\bob\aliens.txt
+
+Number of tests 10000
+Coefficient is: 0.965034965034965
+Significance is P=0
+

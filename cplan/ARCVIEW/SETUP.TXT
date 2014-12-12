@@ -1,0 +1,37 @@
+To install C-Plan 32 bit version and use with ArcView 3.
+
+
+1. Uninstall any previous version of CPlan32 with
+"Add/Remove Programs".
+
+2. Run the BDE32 installation set if you do not have the Borland Databse
+Engine installed on your system.
+
+3. Run the CPlan32 installation set to install C-Plan 32.
+
+4. Copy the cplan.avx file from the directory where it has been installed 
+(which is E:\Program Files\CPlan32\ArcView\cplan.avx on my system) to the
+path where ArcView 3.0 can recognise it
+(which is E:\ESRI\AV_GIS30\ARCVIEW\EXT32 on my system)
+
+5. Start ArcView, and load the C-Plan extension from the Extensions dialog
+(use the Project GUI, File|Extensions... dialog box to load the extension)
+
+6. Create a new View  NOTE: The name of your view must be specified in
+the INI file on the database path where your data is located.
+ie. The section should look like this;
+[ArcView]
+ShapeTable=v890.dbf
+View=View1
+Theme=v890.shp
+
+You will just have to modify the 'View' setting to have the same name
+as the view you have just created.
+
+7. Add the Shape theme to your view (which is v890.shp for the
+Urbenville dataset)
+
+8. Select the theme in the ArcView view legend bar by clicking on it.
+
+9. Click the running man icon to start C-Plan.
+

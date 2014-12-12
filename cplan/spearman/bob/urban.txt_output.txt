@@ -1,0 +1,6 @@
+Input file: D:\software\spearman\bob\urban.txt
+
+Number of tests 10000
+Coefficient is: 0.979020979020979
+Significance is P=0
+

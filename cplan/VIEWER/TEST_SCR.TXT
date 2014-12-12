@@ -1,0 +1,6 @@
+d:\software\aust.ico
+d:\software\aust2.ico
+d:\software\aust3.ico
+d:\software\aust4.ico
+d:\software\aust_bck.bmp
+d:\software\austra~1.bmp

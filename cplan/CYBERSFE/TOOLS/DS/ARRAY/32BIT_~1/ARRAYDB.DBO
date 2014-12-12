@@ -1,0 +1,253 @@
+unit Arraydb;
+{$undef _bit16_}          
+
+interface
+
+uses
+  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
+  Forms, Dialogs, StdCtrls, FileCtrl;
+
+type
+  TArrayDebug = class(TForm)
+    Button1: TButton;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    GroupBox3: TGroupBox;
+    GroupBox4: TGroupBox;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
+    Button8: TButton;
+    Button9: TButton;
+    Button10: TButton;
+    Button11: TButton;
+    Button12: TButton;
+    GroupBox5: TGroupBox;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit9: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ArrayDebug: TArrayDebug;
+
+procedure inittest;
+
+implementation
+uses
+    arrayt;
+
+{$R *.DFM}
+procedure inittest;
+begin
+    Application.CreateForm(TArrayDebug, ArrayDebug);
+    ArrayDebug.showmodal;
+    ArrayDebug.destroy;
+  end;
+procedure TArrayDebug.Button2Click(Sender: TObject);
+var
+   beg,fin : longint;
+   testarr : array_t;
+begin
+{$ifdef _bit16_}
+     beg := memavail;
+{$endif}
+     testarr := array_t.create;
+     testarr.destroy;
+{$ifdef _bit16_}
+     fin := memavail;
+{$endif}
+
+     edit1.text := inttostr(beg);
+     edit2.text := inttostr(fin);
+     edit3.text := inttostr(beg-fin);
+     edit1.update;
+     edit2.update;
+     edit3.update;
+
+end;
+
+procedure TArrayDebug.Button1Click(Sender: TObject);
+begin
+     close
+end;
+
+procedure TArrayDebug.Button3Click(Sender: TObject);
+var
+   testarr : array_t;
+   beg,fin : longint;
+   st,fn : longint;
+   x : longint;
+
+begin
+{$ifdef _bit16_}
+st := memavail;
+{$endif}
+     testarr := array_t.create;
+     fn := strtoint(edit9.text);
+
+     for x := 1 to fn do
+     begin
+{$ifdef _bit16_}
+     beg := memavail;
+{$endif}
+          testarr.init(strtoint(edit4.text),strtoint(edit5.text));
+          testarr.clr;
+          if x mod 100 = 0 then
+          begin
+               edit7.text := inttostr(x);
+               edit7.update;
+          end;
+{$ifdef _bit16_}
+     fin := memavail;
+{$endif}
+
+     if beg <> fin then
+     begin
+     edit1.text := inttostr(beg);
+     edit2.text := inttostr(fin);
+     edit3.text := inttostr(beg-fin);
+     edit1.update;
+     edit2.update;
+     edit3.update;
+
+     end;
+     end;
+
+     testarr.destroy;
+{$ifdef _bit16_}
+fn := memavail;
+{$endif}
+     edit3.text := inttostr(st-fn);
+     edit3.update;
+
+
+end;
+
+procedure TArrayDebug.Button4Click(Sender: TObject);
+var
+   testarr : array_t;
+   beg,fin : longint;
+   st,fn : longint;
+   x : longint;
+
+begin
+{$ifdef _bit16_}
+st := memavail;
+{$endif}
+     testarr := array_t.create;
+     fn := strtoint(edit9.text);
+
+     for x := 1 to fn do
+     begin
+{$ifdef _bit16_}
+     beg := memavail;
+{$endif}
+          testarr.init(strtoint(edit4.text),strtoint(edit5.text));
+          testarr.resize(strtoint(edit6.text));
+          testarr.clr;
+          if x mod 100 = 0 then
+          begin
+               edit7.text := inttostr(x);
+               edit7.update;
+          end;
+{$ifdef _bit16_}
+     fin := memavail;
+{$endif}
+
+     if beg <> fin then
+     begin
+     edit1.text := inttostr(beg);
+     edit2.text := inttostr(fin);
+     edit3.text := inttostr(beg-fin);
+     edit1.update;
+     edit2.update;
+     edit3.update;
+
+     end;
+     end;
+
+     testarr.destroy;
+{$ifdef _bit16_}
+fn := memavail;
+{$endif}
+     edit3.text := inttostr(st-fn);
+     edit3.update;
+
+
+end;
+
+procedure TArrayDebug.Button5Click(Sender: TObject);
+var
+   testarr : array_t;
+   x,l,y : longint;
+
+begin
+     testarr := array_t.create;
+     testarr.init(sizeof(longint),20000);
+
+     for x := 1 to 20000 do
+     begin
+          l := 20001 - x;
+          testarr.setvalue(x,@l);
+     end;
+     for x := 1 to 20000 do
+     begin
+          testarr.rtnvalue(20001-x,@l);
+          if l <> x then
+          edit6.text := 'Error ' + inttostr(x);
+          edit6.update;
+     end;
+end;
+
+procedure TArrayDebug.Button6Click(Sender: TObject);
+var
+   testarr : array_t;
+   x,l,y : longint;
+
+begin
+     testarr := array_t.create;
+     testarr.init(sizeof(longint),100000);
+
+     for x := 1 to 100000 do
+     begin
+          l := random(10000);
+          testarr.setvalue(x,@l);
+     end;
+
+     testarr.sortwrt(0,scLong);
+
+     for x := 1 to 100000 do
+     begin
+          testarr.rtnvalue(x,@l);
+          if l <> x then
+          edit6.text := 'Error ' + inttostr(x);
+          edit6.update;
+     end;
+end;
+
+end.

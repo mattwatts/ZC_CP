@@ -1,0 +1,29 @@
+Software Limitations
+
+- limitations in early stages that were remedied
+
+  16-bit MS Windows 3.1 -> 32-bit MS WinNT/95/etc,
+    most parts of program ran at least 100% faster with this improvement.
+  Optimised data structures and execution time in several stages,
+    now uses much less memory and runs much faster.
+  Only worked with WinERMS, now works with ArcView, enhanced selection,
+    mapping and zooming of sites.
+  Improved interfaces in C-Plan for enhanced display and selection.
+  Irrep predictor improved in several stages (EMR -> SF3 -> SF4 -> SF4hybrid).
+  SUMIRR weightings added to account for limitations in SUMIRR.
+
+- remaining limitations for further work
+
+  Spatial module from Simon & Bill for spatial calculations.
+  Corridor calculator from Michael.
+  Parallel processing to increase performance on large datasets (many C-Plan
+    methods are amenable to parallelism).
+  Further improvements to ArcView and C-Plan interfaces to improve display
+    and selection.
+  Selection log database, store this information using better method.
+  User defined tenure at run time (ie. allow tenure to change at run time).
+  Optimise minset.
+  Optimise site database.
+  Fix known bugs from bug list.
+  Private land issues to be resolved and integrated.
+  

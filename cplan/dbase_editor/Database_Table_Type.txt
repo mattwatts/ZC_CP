@@ -1,0 +1,21 @@
+Specifying the table type for Paradox, dBASE, and ASCII tables
+
+Section topics 	See also
+
+
+
+If an application accesses Paradox, dBASE, or comma-delimited ASCII text tables, then the BDE uses the TableType property to determine the table's type (its expected structure). TableType is not used when an application accesses SQL-based tables on database servers.
+By default TableType is set to ttDefault. When TableType is ttDefault, the BDE determines a table's type from its file-name extension. The following table summarizes the file name extensions recognized by the BDE and the assumptions it makes about a table's type:
+
+Extension	Table type
+No file extension	Paradox
+.DB	Paradox
+.DBF	dBASE
+.TXT	ASCII text
+If your local Paradox, dBASE, and ASCII text tables use the file extensions as described in the previous table, then you can leave TableType set to ttDefault. Otherwise, your application must set TableType to indicate the correct table type. The following table indicates the values you can assign to TableType:
+
+Value	Table type
+ttDefault	Table type determined automatically by the BDE
+ttParadox	Paradox
+ttDBase	dBASE
+ttASCII	Comma-delimited ASCII text

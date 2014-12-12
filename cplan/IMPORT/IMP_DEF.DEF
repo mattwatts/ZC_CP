@@ -1,0 +1,10 @@
+{$UNDEF DBG_ROW_TOTALS}
+
+{$IFDEF VER80}
+    {$DEFINE bit16}
+{$ELSE}
+    {$UNDEF bit16}
+{$ENDIF}
+
+(*{$DEFINE DEBUG}*)
+{$UNDEF DEBUG}

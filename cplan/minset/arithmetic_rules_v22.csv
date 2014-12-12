@@ -1,0 +1,14 @@
+cplan index,cplan name,old name (Toms list),new name (Toms list),old wc,new wc,delta words
+1,richness,,,,,
+2,rarity,,,,,
+3,summed rarity,summed rarity,summed rarity,2,2,
+4,maxcontrib,maxcontrib,contrib,1,1,
+5,max pccontrib,max pccontrib,pccontrib,2,1,**
+6,max rarcontrib,??,rarcontrib,2,1,**
+7,mostcontrib,mostcontrib,features_met,1,1,
+8,next rarest,next rarest,feature_rarity,2,1,**
+9,weighted maxcontrib,weighted maxcontrib,weighted contrib,2,2,
+10,weighted propcontrib,weighted propcontrib,weighted propcontrib,2,2,
+11,weighted max pccontrib,weighted max pccontrib,weighted pccontrib,3,2,**
+,,,,,,
+,,,,,,

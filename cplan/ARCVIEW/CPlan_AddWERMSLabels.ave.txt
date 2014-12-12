@@ -1,0 +1,80 @@
+'Script : CPlan.AddWERMSLabels
+'Author : Matthew Watts
+'Date : Fri July 18th '97
+'Purpose : Label an imported .GIS file from ERMS with
+'          the Labels in the ERMS .IND file
+'
+
+aActiveThemes = av.GetActiveDoc.GetActiveThemes
+if (aActiveThemes <> nil) then
+  'locate the theme we need to update
+  aTheme = aActiveThemes.Get(0)
+  aLegend = aTheme.GetLegend
+  aSymbolList = aLegend.GetSymbols
+
+
+  'get user to locate IND file which has labels for this layer
+  aIndFilename = FileDialog.Show("*.IND",
+                                 "ERMS Category List",
+                                 "Locate ERMS IND File for this layer")
+                                 
+  if ((aIndFilename <> nil)
+      and (aSymbolList.Count > 1)) then
+    'load category labels from aIndFilename
+  
+    aIndFile = LineFile.Make(aIndFilename,#FILE_PERM_READ)
+    if (aIndFile.GetSize > 0) then
+      'advance past first line
+      aIndFile.ReadElt
+      
+      'now traverse the themes legend adding labels from the IndFile
+      for each i in 1..(aSymbolList.Count-2)
+        aSymbol = aSymbolList.Get(i)
+      
+        'get aCatLabel from aIndFile
+        aLine = aIndFile.ReadElt
+        if (aLine <> nil) then
+          aCatLabel = aLine.Left(32).Trim
+
+
+          aInfoList = aLegend.ReturnClassInfo(i)
+
+          'test the feature index is correct else skip this element
+          'aIdentifier = aLine.Middle(32,aLine.Count-32).Trim
+          'if (aInfoList.Get(0) = aIdentifier) then
+      
+            aInfoList.Remove(0)
+            aInfoList.Insert(aCatLabel)
+        
+            aLegend.SetClassInfo(i,aInfoList)
+          'else
+            'try the identifier from the next line
+        
+            'aLine = aIndFile.ReadElt
+            'if (aLine <> nil) then
+            '  aCatLabel = aLine.Left(32).Trim
+            '  if (aInfoList.Get(0) = aLine.Middle(32,aLine.Count-32).Trim) then
+            '    aInfoList.Remove(0)
+            '    aInfoList.Insert(aCatLabel)
+            '    aLegend.SetClassInfo(i,aInfoList)
+          
+            '  end
+            'end
+          'end
+        end
+      end
+    
+    end
+  
+  end
+ 
+
+  'redraw the theme
+  aTheme.Invalidate(True)
+  aTheme.UpdateLegend
+   
+else
+  'cannot find any active themes
+  MsgBox.Info("You must select a theme","No theme selected")
+end
+

@@ -1,0 +1,51 @@
+avi = av.getactivedoc
+
+thecutter = avi.findtheme(msgbox.input
+("What is the name of the theme " +
+"that will cut shape(s) from the other shape file?",
+"",""))
+
+thecookies = avi.findtheme(msgbox.input
+("What is the name of the theme that will " +
+"have shape(s) cut out of it?","",""))
+
+
+
+cutFt = thecutter.getFtab
+cutSF = cutFt.findfield("shape")
+cookFT = thecookies.getFtab
+cookSF = cookFT.findfield("shape")
+
+newFt = Ftab.makeNew
+("cookies".asfilename,Polygon)
+
+newSF = newFt.findfield("shape")
+
+keyF = field.make
+("key", #FIELD_BYTE , 8, 0)
+
+newFt.addfields({keyF})
+
+' the error in on this line (error in reading shape record length for record 1)
+theCutPoly  = cutFt.returnValue
+(cutSF,0)
+
+for each rec in cookFt
+  apoly = cookFT.returnValue(cookSF,rec)
+  
+  newpoly = 
+  aPoly.ReturnDifference
+  (theCutPoly)
+  
+  newrec = newFt.addrecord
+  newFt.setValue(newSF,newrec,newpoly)
+  newFt.setValue(keyF,newrec,newrec)
+
+end
+
+'newshape = apoly.ReturnDifference (thecutter)
+
+newtheme = Ftheme.make(newFT)
+
+avi.addtheme(newtheme)
+

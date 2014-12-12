@@ -1,0 +1,6 @@
+Input file: C:\matt\bob_spman\original\Nsw2.prn
+
+Number of tests 10
+Coefficient is:  0.067
+Significance is P=0.8000
+

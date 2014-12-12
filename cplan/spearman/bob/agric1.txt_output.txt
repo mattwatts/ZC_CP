@@ -1,0 +1,6 @@
+Input file: D:\software\spearman\bob\agric1.txt
+
+Number of tests 10000
+Coefficient is: 0.987762237762238
+Significance is P=0
+

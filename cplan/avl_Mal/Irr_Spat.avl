@@ -1,0 +1,816 @@
+/3.2
+(ODB.1
+	FirstRootClassName:	"Legend"
+	Roots:	2
+	Version:	32
+)
+
+(Legend.2
+	SymType:	0x02
+	LegType:	0x08
+	ClassType:	0x03
+	FieldNames:	3
+	Symbols:	4
+	Class:	94
+	Class:	95
+	Class:	96
+	Class:	97
+	Class:	98
+	Class:	99
+	Class:	100
+	Class:	101
+	Class:	102
+	Class:	103
+	Class:	104
+	Class:	105
+	Class:	106
+	Class:	107
+	Class:	108
+	Class:	109
+	Class:	110
+	Class:	111
+	Class:	112
+	Class:	113
+	Class:	114
+	StdDevs:	1.00000000000000
+	NullSym:	115
+	NullValues:	119
+	StatValues:	120
+	Precision:	-3
+)
+
+(AVStr.3
+	S:	"Display"
+)
+
+(SymList.4
+	Child:	5
+	Child:	9
+	Child:	14
+	Child:	18
+	Child:	22
+	Child:	27
+	Child:	31
+	Child:	35
+	Child:	39
+	Child:	44
+	Child:	48
+	Child:	52
+	Child:	56
+	Child:	61
+	Child:	66
+	Child:	70
+	Child:	74
+	Child:	78
+	Child:	82
+	Child:	86
+	Child:	90
+)
+
+(BShSym.5
+	Color:	6
+	Outline:	1
+	OutlineColor:	7
+	OutlineWidth:	0.10000000000000
+	BgColor:	8
+)
+
+(TClr.6
+	Blue:	0xffff
+)
+
+(TClr.7
+	Red:	0xd9d
+	Green:	0x81
+	Blue:	0x8200
+)
+
+(TClr.8
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.9
+	Color:	10
+	Outline:	1
+	OutlineColor:	11
+	OutlineWidth:	0.10000000000000
+	BgColor:	12
+	Style:	0x03
+	Stipple:	13
+)
+
+(TClr.10
+	Red:	0xa5a5
+	Green:	0xa5a5
+	Blue:	0xa5a5
+)
+
+(TClr.11
+	Red:	0xa5a5
+	Green:	0xa5a5
+	Blue:	0xa5a5
+)
+
+(TClr.12
+	Red:	0xd2d2
+	Green:	0xd2d2
+	Blue:	0xd2d2
+)
+
+(Stipple.13
+	Columns:	8
+	Rows:	8
+	Bits:	80402010 08040201 
+)
+
+(BShSym.14
+	Color:	15
+	Outline:	1
+	OutlineColor:	16
+	OutlineWidth:	0.10000000000000
+	BgColor:	17
+)
+
+(TClr.15
+	Name:	"Transparent"
+)
+
+(TClr.16
+	Name:	"Transparent"
+)
+
+(TClr.17
+	Name:	"Transparent"
+)
+
+(BShSym.18
+	Color:	19
+	Outline:	1
+	OutlineColor:	20
+	OutlineWidth:	0.10000000000000
+	BgColor:	21
+)
+
+(TClr.19
+	Red:	0x63
+	Green:	0x5f5a
+	Blue:	0x63ff
+)
+
+(TClr.20
+	Red:	0x54
+	Green:	0x4721
+	Blue:	0x54ff
+)
+
+(TClr.21
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.22
+	Color:	23
+	Outline:	1
+	OutlineColor:	24
+	OutlineWidth:	0.10000000000000
+	BgColor:	25
+	Style:	0x03
+	Stipple:	26
+)
+
+(TClr.23
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(TClr.24
+	Red:	0x54
+	Green:	0x4721
+	Blue:	0x54ff
+)
+
+(TClr.25
+	Red:	0xc1b
+	Green:	0x61f5
+	Blue:	0x63ff
+)
+
+(Stipple.26
+	Columns:	8
+	Rows:	8
+	Bits:	88112244 88112244 
+)
+
+(BShSym.27
+	Color:	28
+	Outline:	1
+	OutlineColor:	29
+	OutlineWidth:	0.10000000000000
+	BgColor:	30
+)
+
+(TClr.28
+	Red:	0xfbd
+	Green:	0x7cab
+	Blue:	0x8200
+)
+
+(TClr.29
+	Red:	0x54
+	Green:	0x4721
+	Blue:	0x54ff
+)
+
+(TClr.30
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.31
+	Color:	32
+	Outline:	1
+	OutlineColor:	33
+	OutlineWidth:	0.10000000000000
+	BgColor:	34
+)
+
+(TClr.32
+	Red:	0xfbd
+	Green:	0x7cab
+	Blue:	0x8200
+)
+
+(TClr.33
+	Red:	0x54
+	Green:	0x4721
+	Blue:	0x54ff
+)
+
+(TClr.34
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.35
+	Color:	36
+	Outline:	1
+	OutlineColor:	37
+	OutlineWidth:	0.10000000000000
+	BgColor:	38
+)
+
+(TClr.36
+	Red:	0xfbd
+	Green:	0x7cab
+	Blue:	0x8200
+)
+
+(TClr.37
+	Red:	0x54
+	Green:	0x4721
+	Blue:	0x54ff
+)
+
+(TClr.38
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.39
+	Color:	40
+	Outline:	1
+	OutlineColor:	41
+	OutlineWidth:	0.10000000000000
+	BgColor:	42
+	Style:	0x03
+	Stipple:	43
+)
+
+(TClr.40
+	Blue:	0xffff
+)
+
+(TClr.41
+	Red:	0xfe
+	Green:	0x7c18
+	Blue:	0xfeff
+)
+
+(TClr.42
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(Stipple.43
+	Columns:	8
+	Rows:	8
+	Bits:	c0603018 0c060381 
+)
+
+(BShSym.44
+	Color:	45
+	Outline:	1
+	OutlineColor:	46
+	OutlineWidth:	0.10000000000000
+	BgColor:	47
+)
+
+(TClr.45
+	Red:	0xd2d2
+	Green:	0xd2d2
+	Blue:	0xd2d2
+)
+
+(TClr.46
+	Red:	0x5a00
+	Green:	0x5a00
+	Blue:	0x5a00
+)
+
+(TClr.47
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.48
+	Color:	49
+	Outline:	1
+	OutlineColor:	50
+	OutlineWidth:	0.10000000000000
+	BgColor:	51
+)
+
+(TClr.49
+	Red:	0xffff
+	Blue:	0xffff
+)
+
+(TClr.50
+	Red:	0xb434
+	Green:	0xfef
+	Blue:	0xfeff
+)
+
+(TClr.51
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.52
+	Color:	53
+	Outline:	1
+	OutlineColor:	54
+	OutlineWidth:	0.10000000000000
+	BgColor:	55
+)
+
+(TClr.53
+	Green:	0xffff
+)
+
+(TClr.54
+	Red:	0x189
+	Green:	0x8200
+	Blue:	0x81
+)
+
+(TClr.55
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.56
+	Color:	57
+	Outline:	1
+	OutlineColor:	58
+	OutlineWidth:	0.10000000000000
+	BgColor:	59
+	Style:	0x01
+	Stipple:	60
+)
+
+(TClr.57
+	Red:	0x5cf
+	Green:	0x46c5
+	Blue:	0x9512
+)
+
+(TClr.58
+	Name:	"Transparent"
+)
+
+(TClr.59
+	Name:	"Transparent"
+)
+
+(Stipple.60
+	Columns:	8
+	Rows:	8
+	Bits:	00000000 00000000 
+)
+
+(BShSym.61
+	Color:	62
+	OutlineColor:	63
+	OutlineWidth:	0.10000000000000
+	BgColor:	64
+	Style:	0x01
+	Stipple:	65
+)
+
+(TClr.62
+	Red:	0xcecf
+	Green:	0x973
+	Blue:	0x1af9
+)
+
+(TClr.63
+)
+
+(TClr.64
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(Stipple.65
+	Columns:	8
+	Rows:	8
+	Bits:	00000000 00000000 
+)
+
+(BShSym.66
+	Color:	67
+	Outline:	1
+	OutlineColor:	68
+	OutlineWidth:	0.10000000000000
+	BgColor:	69
+)
+
+(TClr.67
+	Red:	0x8200
+	Green:	0x81
+	Blue:	0x81
+)
+
+(TClr.68
+	Red:	0x5aff
+	Green:	0x5a
+	Blue:	0x2262
+)
+
+(TClr.69
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.70
+	Color:	71
+	Outline:	1
+	OutlineColor:	72
+	OutlineWidth:	0.10000000000000
+	BgColor:	73
+)
+
+(TClr.71
+	Red:	0xff00
+	Green:	0xad9f
+	Blue:	0xfe
+)
+
+(TClr.72
+	Red:	0xaeff
+	Green:	0x5263
+	Blue:	0xae
+)
+
+(TClr.73
+	Red:	0x8200
+	Green:	0x81
+	Blue:	0x81
+)
+
+(BShSym.74
+	Color:	75
+	Outline:	1
+	OutlineColor:	76
+	OutlineWidth:	0.10000000000000
+	BgColor:	77
+)
+
+(TClr.75
+	Red:	0xbaff
+	Green:	0xa23f
+	Blue:	0xba
+)
+
+(TClr.76
+	Red:	0x73ca
+	Green:	0x83ff
+	Blue:	0x25a3
+)
+
+(TClr.77
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.78
+	Color:	79
+	Outline:	1
+	OutlineColor:	80
+	OutlineWidth:	0.10000000000000
+	BgColor:	81
+)
+
+(TClr.79
+	Red:	0xb8d4
+	Green:	0xdeff
+	Blue:	0x8625
+)
+
+(TClr.80
+	Red:	0x189
+	Green:	0x8200
+	Blue:	0x81
+)
+
+(TClr.81
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.82
+	Color:	83
+	Outline:	1
+	OutlineColor:	84
+	OutlineWidth:	0.10000000000000
+	BgColor:	85
+)
+
+(TClr.83
+	Red:	0xfeff
+	Green:	0xf74a
+	Blue:	0xa559
+)
+
+(TClr.84
+	Red:	0xfeff
+	Green:	0xf735
+	Blue:	0x827c
+)
+
+(TClr.85
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.86
+	Color:	87
+	Outline:	1
+	OutlineColor:	88
+	OutlineWidth:	0.10000000000000
+	BgColor:	89
+)
+
+(TClr.87
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(TClr.88
+	Red:	0xd2d2
+	Green:	0xd2d2
+	Blue:	0xd2d2
+)
+
+(TClr.89
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.90
+	Color:	91
+	Outline:	1
+	OutlineColor:	92
+	OutlineWidth:	0.10000000000000
+	BgColor:	93
+)
+
+(TClr.91
+	Name:	"Transparent"
+)
+
+(TClr.92
+	Name:	"Transparent"
+)
+
+(TClr.93
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(LClass.94
+	IsText:	1
+	Label:	"Initial Reserve"
+	MinStr:	"Res"
+	MaxStr:	"Res"
+	Precision:	-3
+)
+
+(LClass.95
+	IsText:	1
+	Label:	"Initial Excluded"
+	MinStr:	"Ign"
+	MaxStr:	"Ign"
+	Precision:	-3
+)
+
+(LClass.96
+	IsText:	1
+	Precision:	-3
+)
+
+(LClass.97
+	IsText:	1
+	Label:	"Class 1"
+	MinStr:	"R1"
+	MaxStr:	"R1"
+	Precision:	-3
+)
+
+(LClass.98
+	IsText:	1
+	Label:	"Class 2"
+	MinStr:	"R2"
+	MaxStr:	"R2"
+	Precision:	-3
+)
+
+(LClass.99
+	IsText:	1
+	Label:	"Class 3"
+	MinStr:	"R3"
+	MaxStr:	"R3"
+	Precision:	-3
+)
+
+(LClass.100
+	IsText:	1
+	Label:	"Class 4"
+	MinStr:	"R4"
+	MaxStr:	"R4"
+	Precision:	-3
+)
+
+(LClass.101
+	IsText:	1
+	Label:	"Class 5"
+	MinStr:	"R5"
+	MaxStr:	"R5"
+	Precision:	-3
+)
+
+(LClass.102
+	IsText:	1
+	Label:	"Partial Reserve"
+	MinStr:	"PDe"
+	MaxStr:	"PDe"
+	Precision:	-3
+)
+
+(LClass.103
+	IsText:	1
+	Label:	"Excluded"
+	MinStr:	"Exc"
+	MaxStr:	"Exc"
+	Precision:	-3
+)
+
+(LClass.104
+	IsText:	1
+	Label:	"Map"
+	MinStr:	"SQL"
+	MaxStr:	"SQL"
+	Precision:	-3
+)
+
+(LClass.105
+	IsText:	1
+	Label:	"Flagged"
+	MinStr:	"Flg"
+	MaxStr:	"Flg"
+	Precision:	-3
+)
+
+(LClass.106
+	IsText:	1
+	Precision:	-3
+)
+
+(LClass.107
+	IsText:	1
+	Label:	"Spatial Contribution. (Ranked)"
+	Precision:	-3
+)
+
+(LClass.108
+	IsText:	1
+	Label:	">99 - 100% (Top 1%)"
+	MinStr:	"001"
+	MaxStr:	"001"
+	Precision:	-3
+)
+
+(LClass.109
+	IsText:	1
+	Label:	">95 - 99%   (Next 4%)"
+	MinStr:	"002"
+	MaxStr:	"002"
+	Precision:	-3
+)
+
+(LClass.110
+	IsText:	1
+	Label:	">80 - 95%   (Next 15%)"
+	MinStr:	"003"
+	MaxStr:	"003"
+	Precision:	-3
+)
+
+(LClass.111
+	IsText:	1
+	Label:	">50 - 80%   (Next 30%)"
+	MinStr:	"004"
+	MaxStr:	"004"
+	Precision:	-3
+)
+
+(LClass.112
+	IsText:	1
+	Label:	"  >0 - 50%   (Lowest 50%)"
+	MinStr:	"005"
+	MaxStr:	"005"
+	Precision:	-3
+)
+
+(LClass.113
+	IsText:	1
+	Label:	"Spatial Contribution = 0"
+	MinStr:	"0Co"
+	MaxStr:	"0Co"
+	Precision:	-3
+)
+
+(LClass.114
+	IsNoData:	1
+	IsText:	1
+	Label:	"No Data"
+	Precision:	-3
+)
+
+(BShSym.115
+	Color:	116
+	Outline:	1
+	OutlineColor:	117
+	OutlineWidth:	0.10000000000000
+	BgColor:	118
+)
+
+(TClr.116
+	Name:	"Transparent"
+)
+
+(TClr.117
+	Name:	"Transparent"
+)
+
+(TClr.118
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(NameDict.119
+)
+
+(NameDict.120
+)
+

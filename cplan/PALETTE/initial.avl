@@ -1,0 +1,188 @@
+/3.0
+(ODB.1
+	FirstRootClassName:	"Legend"
+	Roots:	2
+	Version:	30
+)
+
+(Legend.2
+	SymType:	0x02
+	LegType:	0x08
+	ClassType:	0x03
+	FieldNames:	3
+	Symbols:	4
+	Class:	22
+	Class:	23
+	Class:	24
+	Class:	25
+	StdDevs:	1.00000000000000
+	NullSym:	26
+	NullValues:	30
+	StatValues:	31
+	Precision:	-3
+)
+
+(AVStr.3
+	S:	"Tenure"
+)
+
+(SymList.4
+	Child:	5
+	Child:	9
+	Child:	13
+	Child:	18
+)
+
+(BShSym.5
+	Color:	6
+	Outline:	1
+	OutlineColor:	7
+	OutlineWidth:	0.10000000000000
+	BgColor:	8
+)
+
+(TClr.6
+	Blue:	0xffff
+)
+
+(TClr.7
+)
+
+(TClr.8
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.9
+	Color:	10
+	Outline:	1
+	OutlineColor:	11
+	OutlineWidth:	0.10000000000000
+	BgColor:	12
+)
+
+(TClr.10
+	Red:	0x7878
+	Green:	0x7878
+	Blue:	0x7878
+)
+
+(TClr.11
+)
+
+(TClr.12
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.13
+	Color:	14
+	Outline:	1
+	OutlineColor:	15
+	OutlineWidth:	0.10000000000000
+	BgColor:	16
+	Style:	0x03
+	Stipple:	17
+)
+
+(TClr.14
+)
+
+(TClr.15
+)
+
+(TClr.16
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(Stipple.17
+	Columns:	8
+	Rows:	8
+	Bits:	0044a011 0a440055 
+)
+
+(BShSym.18
+	Color:	19
+	Outline:	1
+	OutlineColor:	20
+	OutlineWidth:	0.10000000000000
+	BgColor:	21
+)
+
+(TClr.19
+	Name:	"Transparent"
+)
+
+(TClr.20
+	Name:	"Transparent"
+)
+
+(TClr.21
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(LClass.22
+	IsText:	1
+	Label:	"Initial Reserve"
+	MinStr:	"Reserved"
+	MaxStr:	"Reserved"
+	Precision:	-3
+)
+
+(LClass.23
+	IsText:	1
+	Label:	"Initial Excluded"
+	MinStr:	"Ignored"
+	MaxStr:	"Ignored"
+	Precision:	-3
+)
+
+(LClass.24
+	IsText:	1
+	Label:	"Unreserved"
+	MinStr:	"Available"
+	MaxStr:	"Available"
+	Precision:	-3
+)
+
+(LClass.25
+	IsNoData:	1
+	IsText:	1
+	Label:	"No Data"
+	Precision:	-3
+)
+
+(BShSym.26
+	Color:	27
+	Outline:	1
+	OutlineColor:	28
+	OutlineWidth:	0.10000000000000
+	BgColor:	29
+)
+
+(TClr.27
+	Name:	"Transparent"
+)
+
+(TClr.28
+	Name:	"Transparent"
+)
+
+(TClr.29
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(NameDict.30
+)
+
+(NameDict.31
+)
+

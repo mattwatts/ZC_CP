@@ -1,0 +1,22 @@
+AboutBox			Help|About box
+ChoiceForm			Show|Selection Log
+ChooseDBForm		startup DB choice form
+CombRunForm			Report|*   Options for reports
+ContributionForm	Show|Contribution
+ControlForm			main Control Form
+Deferral_Query		TestToUnDeferrSites
+EditCountForm		for Random test
+EditForm			Tools|Edit Targets
+F1FindForm			Show|Features To Target
+					Show|Contribution [Features To Target]
+FailExSites			TestToExcludeSites
+FeatGridForm		single/multiple Features form
+LookupForm			Show|Lookup
+OptionsForm			Options|*
+PartEdForm			Show|Partial Deferral
+PossibleSitesForm	????Available Sites For Features
+RestTargForm		Options|Restrict Targets
+S1GridForm			Show|Features To Target [Find Available Sites]
+S2ShowForm			Show|Features To Target [Show Deferred Sites]
+SQLForm				Search|*
+ToolForm			Options|Use Tool Bar

@@ -1,0 +1,14 @@
+Import Into Table
+  1st page of wizard, make more obvious which table clicked
+
+Summary of jobs completed by wizard, so it is more obvious if the wizard has proceeded correctly to completion.
+
+Update gauge, update this as import wizard executes primary tasks
+
+Checks not being done,
+
+  check type & size of existing field
+
+Select source field & destination field (add ability to specify new field name)
+
+

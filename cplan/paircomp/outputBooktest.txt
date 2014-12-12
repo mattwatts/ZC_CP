@@ -1,0 +1,4 @@
+
+Actual F-ratio is:  388.8889
+
+Probability is: 0.0000

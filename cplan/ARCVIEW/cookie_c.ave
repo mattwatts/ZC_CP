@@ -1,0 +1,47 @@
+avi = av.getactivedoc
+
+thecutter = avi.findtheme(msgbox.input
+("What is the name of the cutting theme?",
+"",""))
+
+thecookies = avi.findtheme(msgbox.input
+("What is the name of the theme to" +
+"be cut","",""))
+
+
+
+cutFt = thecutter.getFtab
+cutSF = cutFt.findfield("shape")
+cookFT = thecookies.getFtab
+cookSF = cookFT.findfield("shape")
+
+newFt = Ftab.makeNew
+("cookies".asfilename,Polygon)
+
+newSF = newFt.findfield("shape")
+
+keyF = field.make
+("key", #FIELD_BYTE , 8, 0)
+
+newFt.addfields({keyF})
+
+
+theCutPoly  = cutFt.returnValue
+(cutSF,0)
+
+for each rec in cookFt
+  apoly = cookFT.returnValue(cookSF,rec)
+  
+  newpoly = 
+  aPoly.ReturnIntersection
+  (theCutPoly)
+  
+  newrec = newFt.addrecord
+  newFt.setValue(newSF,newrec,newpoly)
+  newFt.setValue(keyF,newrec,newrec)
+
+end
+
+newtheme = Ftheme.make(newFT)
+
+avi.addtheme(newtheme)

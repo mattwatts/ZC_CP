@@ -1,0 +1,285 @@
+File
+	Open Selections
+	  Opens an existing EMS file which contains
+
+	  - current status of all sites
+	  - cumulative selection log
+	  - date stamp
+		  ***(need to modify this slightly to update at save time)
+	  - stage memo
+	    text memo which may be edited by user for usage as
+		meta-data statement for this EMS file
+		  ***(change to auto-edit-memo on save?
+		   else will rarely be used)
+	  - partial deferral feature choices
+
+	Browse Selections
+	  Locate a succession of EMS files and view their
+	  stage memo, or Open
+
+	Save Selections
+	  Save EMS file of same name as last saved,
+	  else prompt for path and filename	to save EMS file
+
+	Save Selections As
+	  Prompt for path and filename to save EMS file
+
+	Open Combsize
+	  Load a previously saved CMB, combination size file
+	  (for calculation of irreplaceability)
+	Save Combsize
+	  Save the currently selected combination size 
+	  to a CMB file
+	Exit
+	  Exit the appliction
+	  Prompts for save EMS if changes
+	    *** check if registering changes correctly
+	  Prompts for save Options if changes 
+	    *** check if registering Option changes properly
+
+Show
+	Contribution
+	  Displays the ContributionForm which has a
+	  contribution graph for sites and features
+	  with options
+	    *** load and save these options to INI file?
+
+	Features To Target
+	  Table of Feature Labels and Codes and % of 
+	  rTrimmedTarget which is currently satisfied
+
+	  Copy highlighted text to 
+
+	  you can select (highlight) a SMALL subset of features and
+	
+	  -Find Possible Sites
+	   show a list of Available sites
+	   which contain the features and % contribution to
+	   ???target which they will make if added NOW
+
+	  -Show Contributing Sites
+	   show a list of Deferred and ??Partly Deferred sites
+	   which contain the features and ???target
+
+
+	Selection Log
+	  Display the Selection Log form
+	  has controls to traverse Selection Log and
+	  edit Reasons/deselect sites
+
+	Stage Memo
+	  Edit/View Stage Memo
+	  edit a text meta-data-statement for this EMS file
+	    ***remove auto-add-date here and add to save EMS
+	  
+	DBMS Lookup
+	  do a DBMS lookup on any/all highlighted sites
+	Partial Deferral
+	  Edit/View Partial Deferral feature choices
+	SQL Lookup
+	  Build a SQL query to select a group of
+	   sites from the Site Summary Table
+	  Do a DBMS Lookup on the resultant site list
+	SQL Map
+	  build a SQL query Site list
+	  Map result in GIS as 'Query Result' (status SQL)
+	   and remove existing sites that are 'Query Result'
+	SQL Add To Map
+	  build a SQL query Site list
+	  Map result in GIS as 'Query Result' and retain existing
+	   sites that are 'Query Result'
+	Timber Resource
+	  Do summary from Site Summary Table timber indexes	based
+	   on current site status
+	  If fields present and specified in the INI file
+	Hide Mandatory
+	  toggle visible/not visible on Mandatory site ListBox
+	  on right of ControlForm
+	Hide Partial
+	  toggle visible/not visible on Partial
+	Hide Flagged
+	  toggle visible/not visible on Flagged
+	Hide Excluded
+	  toggle visible/not visible on Excluded
+
+Choose SQL
+	Negotiated
+	Mandatory
+	Partial
+	Flagged
+	Excluded
+	Un-Negotiated
+	Un-Mandatory
+	Un-Deferred
+	Un-Partial
+	Un-Flagged
+	Un-Excluded
+
+	  Build a SQL query to select a group of
+	   sites from the Site Summary Table
+	  Select or De-select resultant site list
+
+Report
+	Site Count
+	  Prompt for Description (meta-data-statement for report)
+	  Prompt for output path and filename
+	  Generate TXT report of site status classes X count and area2
+
+	Irreplaceability
+	  Prompt for Description (meta-data-statement for report)
+	  Prompt for output path and filename
+	  Generate CSV Spreadsheet report of sites X some attributes
+	   'NAME,GEOCODE,SITEAREA,%AREAUSED,IRREPLACEABILITY,' +
+                    'DISPLAY,STATUS,SUMIRR'
+	Targets
+	  Prompt for Description (meta-data-statement for report)
+	  Prompt for output path and filename
+	  Generate CSV report of features X some attributes
+	  1. Name
+      2. Code
+      3. Total area in existing reserves
+      4. Original available
+      5. Total area in existing reserves and original available
+      6. RACAC Target
+      7. RACAC Target trimmed to existing
+             reserves and original available
+      8. Flat target (set to 0 is not in use)
+      9. Original Effective Target
+      10. Current deferred
+      11. Current excluded
+      12. Current available
+      13. Current Effective RACAC Target
+      14. % Original Target Met (of RACAC Target)
+      15. % Trimmed Target Met
+      16. % Flat Target Met
+      17. % Effective Target Met
+
+	Partial Deferral
+	  Prompt
+	  Generate TXT report of Partially Deferral	sites X
+	   breakdown of their features as Deferred/Not Deferred
+
+	Missing Features
+	  Prompt
+	  Generate CSV report of any features from the site
+	   summary table not found in any sites
+
+	All Reports
+	  Prompt
+	  Generate all reports in turn
+
+Highlight
+	Load Site NAME
+	  Locate a text file which contains a list of
+	   sites by NAME, one per line, and highlight
+	   them in whichever ListBox they occur in
+	  Give a summary of sites found X status
+
+	Load Site GEOCODE
+	  Locate a text file which contains a list of
+	   sites by GEOCODE, one per line, and highlight
+	   them in whichever ListBox they occur in
+	  Give a summary of sites found X status
+
+	Available All
+	  highlight all available sites
+	Available None
+	  un-highlight available sites
+	Negotiated All
+	  highlight all Negotiated sites
+	Negotiated None
+	  un-highlight Negotiated sites
+	Mandatory All
+	  highlight all Mandatory sites
+	Mandatory None
+	  un-highlight Mandatory sites
+	Excluded All
+	  highlight all Excluded sites
+	Excluded None
+	  un-highlight Excluded sites
+	Clear All Boxes
+	  un-highlight all boxes
+
+Irreplaceability
+	Run Irreplaceability
+                  Register user selections
+                  Load combsize CMB file if exists (flag with option)
+                  Save selected combsize to CMB file
+                  else
+                  Select Combsize and save it to CMB file
+                  Recalculate irreplaceability based on current
+                    targets and status of sites
+                  Update Site Summary Table
+                  Trigger GIS to update display based
+                    on Fields of the SSTable
+	Force Select Combsize
+                  Do above except always select CMB size
+                    and save it (overwriting an existing CMB
+                    file if there is one)
+
+Options
+	Restrict Targets
+                  Choose a subset of features for the calculation of
+                    irreplaceability
+                  Click again to switch off
+
+	DBMS Fields
+                  Edit/View available DBMS fields in the Site Summary
+                    table for display in lookups
+	Use Tool View
+                  Switch to tool panel/icon view
+	WinERMS
+                  Open Options form
+                  WinERMS page View/Edit
+	Irreplaceability
+                   Open Options form
+	     Irreplaceability page View/Edit
+	Files
+                   Open Options form
+	     Files page View/Edit
+	Tool View
+                  Open Options Form
+	    Tool View page View/Edit
+	Load Options
+                  Load options from INI file
+	Save Options
+                  Save options to INI file
+
+Tools
+	Edit Targets
+                  traverse the feature Targets located in the
+                   Feature Summary Table and edit them
+	Initial Display State
+                  reset INITORD and SUBSORD fields in Site Summary Table
+                   on TENURE Reserved, Ignored, Available
+	Reload Names
+                  Update site Names from Site Summary Table and rebuild BIN files
+	Reload Targets
+                  Update feature Targets from Feature Summary Table and rebuild BIN files
+	Redundancy Check (simple)
+                  James Redundancy check simple on deferred sites, redundant sites highlighted
+	Redundancy Check (combination)
+                  James Redundancy check combination on deferred sites, redundant sites highlighted
+
+Help
+	Contents
+                  grayed
+	Search
+                  grayed
+	About
+                   Displays about form with Logo, Version, Etc
+
+		 
+
+
+
+
+
+
+
+
+	
+
+
+
+

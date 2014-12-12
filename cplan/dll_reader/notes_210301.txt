@@ -1,0 +1,17 @@
+1st time ran for ~5 minutes then appeared to finish what it was doing then lock up
+2nd time access violation when calling openapi
+3rd time it is running
+
+(maybe need parameters to be var, probably const by default)
+
+after changing to mix of var and const parameters, 'Privileged instruction' exception
+EPrivilege is raised when an application tries to execute a processor instruction that is invalid for the current processor privilege level.
+
+220301
+It seems we are using the wrong calling convention.
+Get source code from Glenn and diagnose
+  establish calling convention
+
+  cdecl; seems to correct problem with makeContact in c2dtest1.dll
+
+program runs for ages and keeps running

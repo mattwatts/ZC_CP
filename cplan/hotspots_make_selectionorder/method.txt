@@ -1,0 +1,25 @@
+- Convert autosave.log file into SelectionOrder.csv
+
+search for '***-----------separator-----------*** AvailKey End'
+
+write header 'SiteKey'
+
+write site keys
+
+then search for '***-----------separator-----------*** NegotKey End'
+
+- In order to convert site key to site index,
+  
+    load \0\sites0.csv
+    ignore first 2 rows
+    load column 2 until end of file
+
+    convert the site key array to a fast lookup array
+
+    convert the site keys one at a time to site index
+    
+
+
+
+LoadCrownStatus
+DebugCrownStatus <- sumirr variations

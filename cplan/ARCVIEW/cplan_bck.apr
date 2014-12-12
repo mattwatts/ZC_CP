@@ -1,0 +1,3060 @@
+/3.0
+(ODB.1
+	Dependencies:	"$AVEXT/spatial.avx\n"
+	FirstRootClassName:	"Project"
+	Roots:	2
+	Version:	30
+)
+
+(Project.2
+	Name:	"cplan_bck.apr"
+	CreationDate:	"Tuesday, May 13, 1997 09:37:34"
+	GUIName:	"Project"
+	Win:	3
+	CSMgr:	4
+	VisGUIWidth:	70
+	Doc:	5
+	Doc:	8
+	Doc:	11
+	Doc:	14
+	Doc:	17
+	Doc:	20
+	Doc:	23
+	Doc:	26
+	Doc:	29
+	Doc:	32
+	Doc:	35
+	Doc:	38
+	Doc:	41
+	Doc:	44
+	Doc:	47
+	Doc:	50
+	Doc:	53
+	Doc:	56
+	Doc:	59
+	Doc:	62
+	Doc:	65
+	Doc:	68
+	Doc:	71
+	Doc:	74
+	Doc:	77
+	Doc:	80
+	Doc:	83
+	Doc:	86
+	Doc:	89
+	Doc:	92
+	Doc:	95
+	Doc:	98
+	Doc:	101
+	Doc:	104
+	Doc:	107
+	Doc:	110
+	Doc:	113
+	Doc:	116
+	Doc:	119
+	Doc:	122
+	Buttons:	135
+	Buttons:	136
+	Buttons:	137
+	Dependencies:	138
+	Scripts:	139
+	Prefs:	140
+	GUI:	146
+	WorkDir:	898
+	WinX:	-4
+	WinY:	-4
+	WinW:	648
+	WinH:	488
+	SerialNumber:	"709981104784"
+	SelColor:	899
+	GUINames:	900
+	GUINames:	901
+	GUINames:	902
+	GUINames:	903
+	GUINames:	904
+	GUINames:	905
+	GUINames:	906
+)
+
+(DocWin.3
+	Owner:	2
+	Open:	1
+	X:	7
+	Y:	6
+	W:	268
+	H:	323
+)
+
+(CSMgr.4
+)
+
+(SEd.5
+	Name:	"CPlan.AddWERMSLabels"
+	CreationDate:	"Friday, July 18, 1997 01:39:34"
+	GUIName:	"Script"
+	Win:	6
+	CSMgr:	7
+	Source:	"'Script : CPlan.AddWERMSLabels\n'Author : Matthew Watts\n'Date : Fri July 18th '97\n'Purpose : Label an imported .GIS file from ERMS with\n'          the Labels in the ERMS .IND file\n'\n\naActiveThemes = av.GetActiveDoc.GetActiveThemes\nif (aActiveThemes <> nil) then\n  'locate the theme we need to update\n  aTheme = aActiveThemes.Get(0)\n  aLegend = aTheme.GetLegend\n  aSymbolList = aLegend.GetSymbols\n\n\n  'get user to locate IND file which has labels for this layer\n  aIndFilename = FileDialog.Show(\"*.IND\",\n          
+                       \"ERMS Category List\",\n                                 \"Locate ERMS IND File for this layer\")\n                                 \n  if ((aIndFilename <> nil)\n      and (aSymbolList.Count > 1)) then\n    'load category labels from aIndFilename\n  \n    aIndFile = LineFile.Make(aIndFilename,#FILE_PERM_READ)\n    if (aIndFile.GetSize > 0) then\n      'advance past first line\n      aIndFile.ReadElt\n      \n      'now traverse the themes legend adding labels from the IndFile\n      for each i in 1.
+.(aSymbolList.Count-2)\n        aSymbol = aSymbolList.Get(i)\n      \n        'get aCatLabel from aIndFile\n        aLine = aIndFile.ReadElt\n        if (aLine <> nil) then\n          aCatLabel = aLine.Left(32).Trim\n\n\n          aInfoList = aLegend.ReturnClassInfo(i)\n\n          'test the feature index is correct else skip this element\n          'aIdentifier = aLine.Middle(32,aLine.Count-32).Trim\n          'if (aInfoList.Get(0) = aIdentifier) then\n      \n            aInfoList.Remove(0)\n            aInfoList.Insert(
+aCatLabel)\n        \n            aLegend.SetClassInfo(i,aInfoList)\n          'else\n            'try the identifier from the next line\n        \n            'aLine = aIndFile.ReadElt\n            'if (aLine <> nil) then\n            '  aCatLabel = aLine.Left(32).Trim\n            '  if (aInfoList.Get(0) = aLine.Middle(32,aLine.Count-32).Trim) then\n            '    aInfoList.Remove(0)\n            '    aInfoList.Insert(aCatLabel)\n            '    aLegend.SetClassInfo(i,aInfoList)\n          \n            '  end\n     
+       'end\n          'end\n        end\n      end\n    \n    end\n  \n  end\n \n\n  'redraw the theme\n  aTheme.Invalidate(True)\n  aTheme.UpdateLegend\n   \nelse\n  'cannot find any active themes\n  MsgBox.Info(\"You must select a theme\",\"No theme selected\")\nend\n\n"
+	FontSize:	1
+)
+
+(DocWin.6
+	Owner:	5
+	X:	20
+	Y:	20
+	W:	639
+	H:	269
+)
+
+(CSMgr.7
+)
+
+(SEd.8
+	Name:	"CPlan.DDEInitShpTable"
+	CreationDate:	"Wednesday, 22 April 1998 20:35:13"
+	GUIName:	"Script"
+	Win:	9
+	CSMgr:	10
+	Source:	"'Script : CPlan.DDEInitShpTable\n'Author : Matthew Watts\n'Date : Apr 22nd 1998\n'Purpose : call C-Plan function InitShpTable remotely\n'\n\n'Hard Wired Settings for DDE Server to post selections to: \naServerName = \"tool32\"\naTopicName = \"CommandConv\"\naDDE = DDEClient.Make(aServerName,aTopicName)\nif (aDDE.HasError) then\n  'try tool50, tool150, tool850 & tool1700\n  aServerName = \"tool50\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\n  if (aDDE.HasError) then\n    aServerName = \"tool150\"\n    aDDE = DDEClient.Make(a
+ServerName,aTopicName)\n    if (aDDE.HasError) then\n      aServerName = \"tool850\"\n      aDDE = DDEClient.Make(aServerName,aTopicName)\n      if (aDDE.HasError) then\n        aServerName = \"tool1700\"\n        aDDE = DDEClient.Make(aServerName,aTopicName)\n        if (aDDE.HasError) then\n      \n          MsgBox.Error(aDDE.GetErrorMsg, \"\")\n          return nil\n        end\n      end\n    end\n  end\nend\n\naDDE.Execute(\"InitShpTable\")\n"
+	FontSize:	1
+)
+
+(DocWin.9
+	Owner:	8
+	X:	232
+	Y:	218
+	W:	777
+	H:	393
+)
+
+(CSMgr.10
+)
+
+(SEd.11
+	Name:	"CPlan.DDERemoveArcViewSections"
+	CreationDate:	"Sunday, 14 June 1998 21:16:16"
+	GUIName:	"Script"
+	Win:	12
+	CSMgr:	13
+	Source:	"'Script : CPlan.DDERemoveArcViewSections\n'Author : Matthew Watts\n'Date : 14 June 1998\n'Purpose : Remove existing ArcView section from EMRTOOL.INI or CPLAN.INI\n'          so that user defined settings can be saved there.\n'          (via a DDE call to C-Plan)\n\n\n'call C-Plan using the IniConv dde conversation \naServerName = \"tool32\"\naTopicName = \"CommandConv\"\naDDE = DDEClient.Make(aServerName,aTopicName)\nif (aDDE.HasError) then\n  aServerName = \"tool150\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\nif (a
+DDE.HasError) then\n  aServerName = \"tool50\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\nif (aDDE.HasError) then\n  aServerName = \"tool850\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\nif (aDDE.HasError) then\n  aServerName = \"tool1700\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\nif (aDDE.HasError) then\n  MsgBox.Error(aDDE.GetErrorMsg, \"error initialising DDE conversation with C-Plan\")\n  return nil\nend\naDDE.Execute(\"Remove ArcView Sections\")\n"
+	FontSize:	1
+)
+
+(DocWin.12
+	Owner:	11
+	X:	206
+	Y:	116
+	W:	727
+	H:	471
+)
+
+(CSMgr.13
+)
+
+(SEd.14
+	Name:	"CPlan.DDESelect"
+	CreationDate:	"Tuesday, May 13, 1997 12:21:26"
+	GUIName:	"Script"
+	Win:	15
+	CSMgr:	16
+	Source:	"'Script : CPlan.DDESelect\n'Author : Matthew Watts\n'Date : May 13th 1997\n'Purpose : post selected sites in a view to C-Plan\n'\n\n'Hard Wired Settings for DDE Server to post selections to: \naServerName = \"tool32\"\naTopicName = \"SelectDDE\"\n\n'attempt to establish DDE connection to the selection server\naDDE = DDEClient.Make(aServerName,aTopicName)\n\nif (aDDE.HasError) then\n  aServerName = \"tool150\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\n\nif (aDDE.HasError) then\n  aServerName = \"tool50\"\n  aDDE = DDEClien
+t.Make(aServerName,aTopicName)\nend\n\nif (aDDE.HasError) then\n  aServerName = \"tool850\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\n\nif (aDDE.HasError) then\n  aServerName = \"tool1700\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\n\nif (aDDE.HasError) then\n  MsgBox.Error(aDDE.GetErrorMsg, \"\")\n  return nil\nend\n\n'We must read the key field, theme and view from the ini file.\naTheme = av.GetActiveDoc.GetActiveThemes.Get(0)\naPath = aTheme.GetSrcName.GetFileName.GetFullName\niPos = -1            \nfor eac
+h i in 0..(aPath.Count - 1)\n  if (aPath.Middle(i,1) = \"\\\") then\n     iPos = i\n  end\nend   \nif (iPos >= 0) then\n  aPath = aPath.Left(iPos) 'trim \\file.ext from aPath\nend\naSettings = av.run(\"CPlan.GetIniSettings\",{aPath})\n'Call CPlan.GetUserSettings if [ArcView] section does not exist.\nif (aSettings.Get(0) = nil) then\n  aSettings = av.run(\"CPlan.GetUserSettings\",{})\n  'Try to read the key field, theme and view from the ini file again.\n  aSettings = av.run(\"CPlan.GetIniSettings\",{aPath})\nend\n\nif (aSettings.Get
+(0) = nil) then\n  'the ini settings are invalid\n\nelse\n  aKeyName = aSettings.Get(3)\n\n  'send CPlan the start select message\n  aDDE.Execute(\"start select\")\n\n  'write the key of each selected site \n  '(equivalent to SiteKey in C-Plan)\n  'to the DDE Server\n  aThemeFTab = aTheme.GetFTab\n  aField = aThemeFTab.FindField(aKeyName)\n  for each rec in aThemeFTab.GetSelection\n    aDDE.Execute(aThemeFTab.ReturnValue(aField,rec).AsString)\n  end\n\n  'send CPlan the end select message\n  aDDE.Execute(\"end select\")\nend"
+	FontSize:	1
+)
+
+(DocWin.15
+	Owner:	14
+	X:	308
+	Y:	145
+	W:	671
+	H:	447
+)
+
+(CSMgr.16
+)
+
+(SEd.17
+	Name:	"CPlan.DDESelectPoint"
+	Creator:	"Matthew Watts"
+	CreationDate:	"Thursday, June 05, 1997 10:29:17"
+	GUIName:	"Script"
+	Win:	18
+	CSMgr:	19
+	Source:	"'Script : CPlan.DDESelectPoint\n'Author : Matthew Watts\n'Date : June 5th 1997\n'Purpose : post selected sites in a view to C-Plan\n'          as they are selected (for Selection Tool)\n'\n\n\n\n' call system script View.SelectPoint to select user sites\n'\n\nView.SelectPoint\n\n'\n' end of call to View.SelectPoint\n'\n\n\n\n\n'Hard Wired Settings for DDE Server to post selections to: \naServerName = \"tool32\"\naTopicName = \"SelectDDE\"\n\n'attempt to establish DDE connection to the selection server\naDDE = DDEClient.Make(aServerName,
+aTopicName)\n\nif (aDDE.HasError) then\n  MsgBox.Error(aDDE.GetErrorMsg, \"\")\n  return nil\nend\n\n\n'write the Attribute of each selected site \n'(equivalent to Geocode in C-Plan)\n'to the DDE Server\naTheme = av.GetActiveDoc.GetActiveThemes.Get(0)\naThemeFTab = aTheme.GetFTab\naField = aThemeFTab.FindField(\"Attribute\")\nfor each rec in aThemeFTab.GetSelection\n  aDDE.Execute(aThemeFTab.ReturnValue(aField,rec).AsString)\nend\n\n"
+	FontSize:	1
+)
+
+(DocWin.18
+	Owner:	17
+	X:	-4
+	Y:	-4
+	W:	645
+	H:	676
+)
+
+(CSMgr.19
+)
+
+(SEd.20
+	Name:	"CPlan.DoNothing"
+	CreationDate:	"Tuesday, 30 June 1998 12:31:05"
+	GUIName:	"Script"
+	Win:	21
+	CSMgr:	22
+	Source:	"MsgBox.Info(\"doing\",\"nothing\")"
+	FontSize:	1
+)
+
+(DocWin.21
+	Owner:	20
+	X:	134
+	Y:	234
+	W:	363
+	H:	246
+)
+
+(CSMgr.22
+)
+
+(SEd.23
+	Name:	"CPlan.ExtractPath"
+	CreationDate:	"Monday, 19 October 1998 11:58:55"
+	GUIName:	"Script"
+	Win:	24
+	CSMgr:	25
+	Source:	"'Script : CPlan.ExtractPath\n'Author : Matthew Watts\n'Date : Oct 19th 1998\n'Purpose : Return the path from a given string which contains\n'          both a path and filename.\n'\n\n'dbgfile = LineFile.Make(\"c:\\ext_path.txt\".AsFilename,#FILE_PERM_APPEND)\n\nsOriginalString = SELF.Get(0)\nsTruncatedString = \"\"\n\n'find the position of the last \\ in this string\niPos = 0\nif (sOriginalString.Count > 0) then\n  for each i in 0..(sOriginalString.Count-1)\n  \n    'dbgfile.WriteElt(sOriginalString.Middle(i,1))\n  \n    if (sOrigi
+nalString.Middle(i,1) = \"\\\") then\n      iPos = i  \n    end\n  end\n  \n  'now trim the string\n  if (iPos > 0) then\n    sTruncatedString = sOriginalString.Left(iPos)\n  end\nend\n\n'dbgfile.WriteElt(\"ORIGINAL:  \" + sOriginalString)\n'dbgfile.WriteElt(\"TRUNCATED: \" + sTruncatedString)\n'dbgfile.WriteElt(\"iPos:      \" + iPos.AsString)\n\n'dbgfile.Close\n\nReturn sTruncatedString"
+	FontSize:	1
+)
+
+(DocWin.24
+	Owner:	23
+	X:	262
+	Y:	175
+	W:	632
+	H:	391
+)
+
+(CSMgr.25
+)
+
+(SEd.26
+	Name:	"CPlan.FileExists"
+	CreationDate:	"Thursday, 19 February 1998 08:52:42"
+	GUIName:	"Script"
+	Win:	27
+	CSMgr:	28
+	Source:	"'Script : CPlan.FileExists\n'Author : Matthew Watts\n'Date : Feb 19th 1998\n'Purpose : checks for the existance of a file\n'\n\naFilename = SELF.Get(0)\nopenfile = TextFile.Make(aFilename.AsFilename,#FILE_PERM_READ)\nif (openfile = nil) then\n  'file does not exist\n  return False\nelse\n  'file does exist\n  openfile.Close\n  return True\nend"
+	FontSize:	1
+)
+
+(DocWin.27
+	Owner:	26
+	X:	5
+	Y:	5
+	W:	561
+	H:	254
+)
+
+(CSMgr.28
+)
+
+(SEd.29
+	Name:	"CPlan.FindCPlanPath"
+	CreationDate:	"Thursday, July 03, 1997 11:57:47"
+	GUIName:	"Script"
+	Win:	30
+	CSMgr:	31
+	Source:	"'Script : CPlan.FindCPlanPath\n'Author : Matthew Watts\n'Date : July 3rd 1997\n'Purpose : load the path to C-Plan from the\n'          win dir\\cplandb.ini file\n'          (this section is added by the setup program)\n'\n\n' set a default value for CPlanPath\nCPlanPath = \"\"\n\n\naWinDir = System.GetEnvVar(\"windir\")\n\naFN = (aWinDir + \"\\cplandb.ini\").AsFileName\n\n'MsgBox.Info(\"here is the ini path\",aWinDir + \"\\cplandb.ini\")\n\naIniFile = LineFile.Make(aFN,#FILE_PERM_READ)\n \n\n'we are looking for something like this\n'[Paths]\n
+'32bit=E:\\Program Files\\CPlan32\n\naLength = aIniFile.GetSize\n\nif (aLength > 0) then\n  for each i in 1..aLength\n    aLine = aIniFile.ReadElt\n    if (aLine = \"[Paths]\") then\n      'we have found the Paths section\n      aFirstLine = aIniFile.ReadElt\n      if (aFirstLine.Left(6) = \"32bit=\") then\n        'use this line\n        CPlanPath = aFirstLine.Right(aFirstLine.Count-6)\n        \n      else\n        aSecondLine = aIniFile.ReadElt\n        if ((aFirstLine.Left(6) = \"16bit=\")\n        and (aSecondLine.Left(6) = \"3
+2bit=\")) then\n          'use this line\n          CPlanPath = aSecondLine.Right(aSecondLine.Count-6)\n        end\n      end\n    end\n  end\n  \nend\n\n\n'MsgBox.Info(\"here is the returned path\",CPlanPath)\n\nif (CPlanPath = \"\") then\n  MsgBox.Info(\"Please re-install C-Plan 32\",\n              \"C-Plan 32 path not found\")\n \nend\n\n\nreturn CPlanPath"
+	FontSize:	1
+)
+
+(DocWin.30
+	Owner:	29
+	X:	40
+	Y:	8
+	W:	539
+	H:	331
+)
+
+(CSMgr.31
+)
+
+(SEd.32
+	Name:	"CPlan.FindMaximumFeatures"
+	CreationDate:	"Wednesday, 18 February 1998 10:47:34"
+	GUIName:	"Script"
+	Win:	33
+	CSMgr:	34
+	Source:	"'Script : CPlan.FindMaximumFeatures\n'Author : Matthew Watts\n'Date : Feb 18th 1998\n'Purpose : returns the maximum number of features that occur in a given\n'          database path (ie. Database1 to DatabaseN)\n'\n\nsPathToCheck = SELF.Get(0)\niMaximum = 0\n\nif (File.Exists((sPathToCheck + \"\\emrtool.ini\").AsFilename)) then\n  sIni = sPathToCheck + \"\\emrtool.ini\"\nelse\n  sIni = sPathToCheck + \"\\cplan.ini\"\nend\n\n'check that the file exists\n'if file doesn't exist, result of this macro will be 0\nif (File.Exists(sIni.AsFi
+lename)) then\n\n  tf = LineFile.Make(sIni.AsFileName, #FILE_PERM_READ )\n  \n  while (tf.IsAtEnd.Not)\n    sLine = tf.ReadElt\n    if (sLine.Contains(\"MatrixSize=\")) then\n      sValue = sLine.Right(sLine.Count-11)\n      'MsgBox.Info(sValue,\"value\")\n      iValue = sValue.AsNumber\n      if (iValue > iMaximum) then\n        iMaximum = iValue\n      end\n    end \n  end\n \n  tf.Close\n  \nend\n\nreturn iMaximum"
+	FontSize:	1
+)
+
+(DocWin.33
+	Owner:	32
+	X:	106
+	Y:	85
+	W:	647
+	H:	423
+)
+
+(CSMgr.34
+)
+
+(SEd.35
+	Name:	"CPlan.GetIniSettings"
+	CreationDate:	"Monday, 10 August 1998 10:03:31"
+	GUIName:	"Script"
+	Win:	36
+	CSMgr:	37
+	Source:	"'Script : CPlan.GetIniSettings\n'Author : Matthew Watts\n'Date : Aug 10th 1998\n'Purpose : Read the [ArcView] settings from the ini file for a C-Plan database.\n'          Return table, view, theme and key string identifiers.\n'\n\naPathToCheck = SELF.Get(0)\n\naIniFile = aPathToCheck + \"\\cplan.ini\"\n\nif (av.run(\"CPlan.FileExists\",{aIniFile}) <> True) then\n  aIniFile = aPathToCheck + \"\\emrtool.ini\"\nend\n\nfStop = False\n\nif (av.run(\"CPlan.FileExists\",{aIniFile}) = True) then\n\n  'Read information from the ini file.\n  inf
+ile = LineFile.Make(aIniFile.AsFilename,#FILE_PERM_READ)\n  aLineList = List.Make\n  infile.Read( aLineList, infile.GetSize )\n  infile.close\n  \n  iSectionStart = aLineList.FindByValue(\"[ArcView]\")\n  \n  if (iSectionStart >= 0) then\n    'The [ArcView] section exists in this file.\n    'Keep moving past this point until we find \n    '    1) empty line indicating end of section\n    ' or 2) line beginning with [ indicating start of next section\n    ' or 3) end of the file\n    iSectionEnd = iSectionStart  'initialis
+e section end point\n    fSectionEnd = False          'initialise while loop stopping condition\n    'initialise table, view, theme and key\n    sTable = \"\"\n    sView = \"\"\n    sTheme = \"\"\n    sKey = \"\"\n    while (fSectionEnd = False)\n    \n      'For each line in the [ArcView] section, try to set table,view,theme and key.\n          \n      'if next element is not end of file\n      if (iSectionEnd < (aLineList.Count - 1)) then    'iSectionEnd is zero based, aLineList.Count is one based\n        'if next line is no
+t empty\n        sLine = aLineList.Get(iSectionEnd+1)\n        if (sLine <> \"\") then     'Get method takes zero based parameter  \n          'if next line begins with [ \n          if (sLine.Left(1) = \"[\") then  'Left method takes one based parameter\n            'start of next section reached\n            fSectionEnd = True \n          else\n            'increment line position\n            iSectionEnd = iSectionEnd + 1\n            'try to set one of the variables using current line\n            'try setting sTable\n
+            if (sLine.Count > 11) then\n              if (sLine.Left(11) = \"ShapeTable=\") then\n                sTable = sLine.Right(sLine.Count - 11)\n              end            \n            end\n            'try setting sView\n            if (sLine.Count > 5) then\n              if (sLine.Left(5) = \"View=\") then\n                sView = sLine.Right(sLine.Count - 5)\n              end            \n            end\n            'theme\n            if (sLine.Count > 6) then\n              if (sLine.Left(6) = \"Theme=\") 
+then\n                sTheme = sLine.Right(sLine.Count - 6)\n              end            \n            end\n            'key\n            if (sLine.Count > 4) then\n              if (sLine.Left(4) = \"Key=\") then\n                sKey = sLine.Right(sLine.Count - 4)\n              end            \n            end            \n          end   \n               \n        else\n          'empty line reached, ie. end of [ArcView] section\n          fSectionEnd = True\n        end\n              \n      else\n        'end of file r
+eached\n        fSectionEnd = True\n      end\n    \n    end     \n    \n    'if table, view, theme or key is not set, act as if section not found\n    if ((sTable = \"\")\n        or (sView = \"\")\n        or (sTheme = \"\")\n        or (sKey = \"\")) then\n      fStop = True\n      'MsgBox.Info(\"values not populated\",\"\")\n    end\n    \n  else\n    'An [ArcView] section does not exist in the ini file.\n    fStop = True\n    MsgBox.Info(\"section does not exist\",\"\")\n  end\n    \nelse\n  'There is no ini file on the specified path.\n  f
+Stop = True\n  'MsgBox.Info(\"File does not exist\",\"\")\nend\n\n\naResultList = List.Make\n\nif (fStop = True) then\n  'An ini file did not exist or [ArcView] settings were invalid.\n  'We must return a null result.\n  aResultList.Add(nil)\n  aResultList.Add(nil)\n  aResultList.Add(nil)\n  aResultList.Add(nil)\n  \n  'MsgBox.Info(\"null result\",\"\")\nelse\n  'Information was successfully retrieved from the file.\n  'Return the information as script result.\n  aResultList.Add(sTable)\n  aResultList.Add(sView)\n  aResultList.Add(sThe
+me)\n  aResultList.Add(sKey)\nend\n\nreturn aResultList"
+	FontSize:	1
+)
+
+(DocWin.36
+	Owner:	35
+	X:	43
+	Y:	228
+	W:	780
+	H:	385
+)
+
+(CSMgr.37
+)
+
+(SEd.38
+	Name:	"CPlan.GetUserSettings"
+	CreationDate:	"Tuesday, 21 April 1998 12:51:25"
+	GUIName:	"Script"
+	Win:	39
+	CSMgr:	40
+	Source:	"'Script : CPlan.GetUserSettings\n'Author : Matthew Watts\n'Date : Apr 21st 1998\n'Purpose : called by ThemeRedraw if view passed by C-Plan is invalid\n'          allows user to select appropriate view and theme from available ones,\n'          then saves settings to ini file for future use\n'\n\naDocs = av.GetProject.GetDocs\naViews = List.Make\n\nif (aDocs <> nil) then\n  for each document in aDocs\n    aClass = document.GetClass.GetClassName\n    if (aClass <> \"View\") then\n    else\n      aViewName = document.GetName\n  
+    aViews.Add(aViewName)\n    end\n  end\n  \n  'get user to select a view from the list\n  aChosenView = MsgBox.ListAsString(aViews,\n                            \"Select View to use with C-Plan\",\n                            \"Available Views\")\n     \n  if (aChosenView <> nil) then                         \n    'load themes in this view and get user to select a theme\n    aChosenTheme = MsgBox.List(av.FindDoc(aChosenView).GetThemes,\n                             \"Select Theme to use with C-Plan\",\n                    
+         \"Available Themes\")\n    if (aChosenTheme <> nil) then\n                             \n      aThemeName = aChosenTheme.GetName\n      aShapeTable = aChosenTheme.GetSrcName.GetFileName.GetFullName\n      'aShapeTable has extension .shp and needs extension .dbf\n      if (aShapeTable.Count > 3) then\n        aShapeTable = aShapeTable.Left(aShapeTable.Count - 3) + \"dbf\"\n      end\n  \n      'EXTRACT path and filename from aShapeTable\n      'find last \\ in the path name\n      iSlashPos = -1\n      for each i in 
+0..(aShapeTable.Count - 1)\n        aChar = aShapeTable.Middle(i,1)\n  \n        if (aChar <> \"\\\") then\n        else\n          iSlashPos = i\n        end\n      end\n  \n      if (iSlashPos >= 0) then\n        aPathName = aShapeTable.Left(iSlashPos)\n        aShapeTable = aShapeTable.Right(aShapeTable.Count - iSlashPos - 1)\n\n        aResultList = List.Make\n        aResultList.Add(aChosenView)\n        aResultList.Add(aThemeName)\n  \n        'allow user to select which field from the table is the key field\n        'aCh
+osenTheme is the theme containing the fields  \n        aKeyField = MsgBox.ListAsString(aChosenTheme.GetFTab.GetFields,\n                                        \"Select Key field to use with C-Plan\",\n                                        \"Available Fields\")\n        aKeyName = aKeyField.GetAlias\n        \n        aResultList.Add(aKeyName)\n  \n        'write values to INI file\n        'aShapeTable contains path to the ini file\n        'av.run(\"CPlan.WriteIniSettings\",{aShapeTable,\n        '                     
+            aChosenView,\n        '                                 aThemeName,\n        '                                 aPathName})\n        aIniFile = aPathName + \"\\cplan.ini\"\n\n        if (av.run(\"CPlan.FileExists\",{aIniFile}) <> True) then\n          aIniFile = aPathName + \"\\emrtool.ini\"\n        end\n\n        av.run(\"CPlan.DDERemoveArcViewSections\",{})\n\n        outfile = LineFile.Make(aIniFile.AsFilename,#FILE_PERM_APPEND)\n\n        outfile.WriteElt(\"\")\n        outfile.WriteElt(\"[ArcView]\")\n        outfile.W
+riteElt(\"ShapeTable=\" + aShapeTable)\n        outfile.WriteElt(\"View=\" + aChosenView)\n        outfile.WriteElt(\"Theme=\" + aThemeName)\n        outfile.WriteElt(\"Key=\" + aKeyName)\n        'outfile.WriteElt(\"\")\n\n        outfile.Close\n    \n        'return updated values to calling program\n        return aResultList\n      end\n    end\n  end\nend\n\n"
+	FontSize:	1
+)
+
+(DocWin.39
+	Owner:	38
+	X:	251
+	Y:	132
+	W:	800
+	H:	335
+)
+
+(CSMgr.40
+)
+
+(SEd.41
+	Name:	"CPlan.GetUserSettingsAndUpdate"
+	CreationDate:	"Monday, 10 August 1998 20:50:45"
+	GUIName:	"Script"
+	Win:	42
+	CSMgr:	43
+	Source:	"'Script : CPlan.GetUserSettingsAndUpdate\n'Author : Matthew Watts\n'Date : Aug 10th 1998\n'Purpose : Read the [ArcView] settings from the ini file for a C-Plan database.\n'          Return table, view, theme and key string identifiers.\n'\n\n'get the user to select settings and wait for the\n'results to be saved into the file\naResult = av.run(\"CPlan.GetUserSettings\",{SELF.Get(0)})\n\n'call ControlForm.UpdateDatabase via DDE in C-Plan\naServerName = \"tool32\"\naTopicName = \"CommandConv\"\naDDE = DDEClient.Make(aServerName,
+aTopicName)\nif (aDDE.HasError) then\n  'try tool50, tool150, tool850\n  aServerName = \"tool50\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\n  if (aDDE.HasError) then\n    aServerName = \"tool150\"\n    aDDE = DDEClient.Make(aServerName,aTopicName)\n    if (aDDE.HasError) then\n      aServerName = \"tool850\"\n      aDDE = DDEClient.Make(aServerName,aTopicName)\n      if (aDDE.HasError) then\n        aServerName = \"tool1700\"\n        aDDE = DDEClient.Make(aServerName,aTopicName)\n        if (aDDE.HasError) then\n        
+  MsgBox.Error(aDDE.GetErrorMsg, \"\")\n          return nil\n        end\n      end\n    end\n  end\nend\naDDE.Execute(\"UpdateDatabase\")\n"
+	FontSize:	1
+)
+
+(DocWin.42
+	Owner:	41
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.43
+)
+
+(SEd.44
+	Name:	"CPlan.InitShpTable"
+	CreationDate:	"Thursday, 23 April 1998 13:59:59"
+	GUIName:	"Script"
+	Win:	45
+	CSMgr:	46
+	Source:	"'Script : CPlan.InitShpTable\n'Author : Matthew Watts\n'Date : Apr 23 1998\n'Purpose : Init Shape Table by adding DISPLAY/TENURE fields\n'\n\nif (SELF <> nil) then\n  aTableName = SELF.Get(0)\n  aUpdateVTab = VTab.Make(aTableName.AsFilename,True,False)\n  sCPlanPath = av.run(\"CPlan.FindCPlanPath\",{})\n  sSourceName = sCPlanPath + \"\\s_v2.dbf\"\n\n  aSourceVTab = VTab.Make(sSourceName.AsFilename,False,False)\n\n  fDFld = aSourceVTab.FindField(\"DISPLAY\")\n  fTFld = aSourceVTab.FindField(\"TENURE\")\n\n  FldList = List.Make\n  FldL
+ist.Add(fDFld)\n  FldList.Add(fTFld)\n  aUpdateVTab.AddFields(FldList)\nend\n\n"
+	FontSize:	1
+)
+
+(DocWin.45
+	Owner:	44
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.46
+)
+
+(SEd.47
+	Name:	"CPlan.Install"
+	CreationDate:	"Friday, July 04, 1997 12:39:43"
+	GUIName:	"Script"
+	Win:	48
+	CSMgr:	49
+	Source:	"'Script : CPlan.Install\n'Author : Matthew Watts\n'Date : July 4th 1997\n'Purpose : Install script for the C-Plan extension\n'\n\n'the SELF statement is not returning appropriate values\n\n\n\nbb = av.GetProject.FindGUI(\"View\").GetButtonBar\nbb.Add(SELF.Get(0),0)\nbb.Add(SELF.Get(1),1)\n'bb.Add(SELF.Get(2),2)\nbSpace = Space.Make\nbSpace.SetName(\"ButtonSpace\")\nbb.Add(bSpace,2)\n\n'tb = av.GetProject.FindGUI(\"View\").GetToolBar\n'tb.Add(SELF.Get(2),0)\n'tSpace = Space.Make\n'tSpace.SetName(\"ToolSpace\")\n'tb.Add(tSpace,1)"
+	FontSize:	1
+)
+
+(DocWin.48
+	Owner:	47
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.49
+)
+
+(SEd.50
+	Name:	"CPlan.Make"
+	CreationDate:	"Friday, July 04, 1997 12:16:55"
+	GUIName:	"Script"
+	Win:	51
+	CSMgr:	52
+	Source:	"'Script : CPlan.Make\n'Author : Matthew Watts\n'Date : July 4th 1997\n'Purpose : Make script for the C-Plan extension\n'\n\n'make the extension object\naExt = Extension.Make(\"d:\\software\\arcview\\cplan.avx\".AsFileName,\n                      \"C-Plan\",\n                      av.GetProject.FindScript(\"CPlan.Install\"),\n                      av.GetProject.FindScript(\"CPlan.UnInstall\"),\n                      {})\n                      \n\n'find buttons we need to add\nbBar = av.GetProject.FindGUI(\"View\").GetButtonBar\naBtn1 = 
+bBar.FindByScript(\"CPlan.StartCPlan\")\naBtn1.SetName(\"StartCPlan\")\naBtn2 = bBar.FindByScript(\"CPlan.DDESelect\")\naBtn2.SetName(\"DDESelect\")\n'aBtn3 = bBar.FindByScript(\"CPlan.TabulateAreas\")\n'aBtn3.SetName(\"TabulateAreas\")\n\n'add the 2 buttons\naExt.Add(aBtn1)\naExt.Add(aBtn2)\n'aExt.Add(aBtn3)\n\n'find tool we need to add\n'tBar = av.GetProject.FindGUI(\"View\").GetToolBar\n'aTool1 = tBar.FindByScript(\"CPlan.DDESelectPoint\")\n'aTool1.SetName(\"DDESelectPoint\")\n\n'add the tool\n'aExt.Add(aTool1)\n\n'add associated scripts\n'aE
+xt.Add(av.GetProject.FindScript(\"CPlan.DDESelectPoint\"))\naExt.Add(av.GetProject.FindScript(\"CPlan.StartCPlan\"))\naExt.Add(av.GetProject.FindScript(\"CPlan.DDESelect\"))\n'aExt.Add(av.GetProject.FindScript(\"CPlan.TabulateAreas\"))\n\n'add other scripts\naExt.Add(av.GetProject.FindScript(\"CPlan.FindCPlanPath\"))\naExt.Add(av.GetProject.FindScript(\"CPlan.ThemeRedraw\"))\naExt.Add(av.GetProject.FindScript(\"CPlan.FindMaximumFeatures\"))\naExt.Add(av.GetProject.FindScript(\"CPlan.FileExists\"))\n'aExt.Add(av.GetProject.FindScript
+(\"CPlan.SpatialIntersect\"))\naExt.Add(av.GetProject.FindScript(\"CPlan.ZoomToValues\"))\n\n'add scripts for getting/setting user options\naExt.add(av.GetProject.FindScript(\"CPlan.WriteIniSettings\"))\naExt.add(av.GetProject.FindScript(\"CPlan.GetUserSettings\"))\naExt.add(av.GetProject.FindScript(\"CPlan.DDERemoveArcViewSections\"))\naExt.add(av.GetProject.FindScript(\"CPlan.GetUserSettingsAndUpdate\"))\naExt.add(av.GetProject.FindScript(\"CPlan.GetIniSettings\"))\n\n'add scripts for minset Adjacency and Proximity rules\naExt.ad
+d(av.GetProject.FindScript(\"CPlan.ExtractPath\"))\naExt.add(av.GetProject.FindScript(\"Minset.RunAdjacency\"))\naExt.add(av.GetProject.FindScript(\"Minset.RunProximity\"))\naExt.add(av.GetProject.FindScript(\"Minset.WriteSitesFile\"))\naExt.add(av.GetProject.FindScript(\"Minset.CreateSyncFile\"))\naExt.add(av.GetProject.FindScript(\"Minset.FindAdjacentSites\"))\naExt.add(av.GetProject.FindScript(\"Minset.FindProximitySites\"))\n\naExt.SetAbout(\"C-Plan is a Conservation Planning Extension for use with C-Plan 32\")\naExt.SetExtVers
+ion(1)\naExt.Commit"
+	FontSize:	1
+)
+
+(DocWin.51
+	Owner:	50
+	X:	48
+	Y:	14
+	W:	573
+	H:	340
+)
+
+(CSMgr.52
+)
+
+(SEd.53
+	Name:	"CPlan.RemoveExistingArcViewSection"
+	CreationDate:	"Friday, 12 June 1998 15:43:01"
+	GUIName:	"Script"
+	Win:	54
+	CSMgr:	55
+	Source:	"'Script : CPlan.RemoveExistingArcViewSection\n'Author : Matthew Watts\n'Date : 12 June 1998\n'Purpose : Remove existing ArcView section from EMRTOOL.INI or CPLAN.INI\n'          so that user defined settings can be saved there.\n'          Also, trim redundant spaces, and write single lines between\n'          sections with no spaces.\n'\n\nsFilename = SELF.Get(0)\n\nsTmpFile = sFilename + \"x\"\n\nnewfile = LineFile.Make(sTmpFile.AsFilename,#FILE_PERM_WRITE)\n\nfiletoupdate = LineFile.Make(sFilename.AsFilename,#FILE_PERM_R
+EAD)\n\n\nfArcViewSection = False\nsElement = filetoupdate.ReadElt\nwhile (sElement <> nil)\n  if (sElement = \"[ArcView]\") then \n    fArcViewSection = True\n    sElement = filetoupdate.ReadElt\n  end\n  \n  if (fArcViewSection = True) then\n    'we are in the arcview section and must skip the elements until we get\n    'to a line starting in [\n    if (sElement.Count > 0) then\n      if (sElement.IndexOf(\"[\") = 1) then\n        fArcViewSection = False\n        newfile.WriteElt(sElement)\n      end\n    end\n    \n  else\n    'w
+e are outside of the body of the ArcView section and must just write\n    'the lines directly to the newfile\n    newfile.WriteElt(sElement)    \n  end\n  \n  sElement = filetoupdate.ReadElt\nend\n\nnewfile.Close\nfiletoupdate.Close\n\n'sTmpFile   ' temporary file\n'sFilename  ' old file which must be replaced \n\n'newfile.Delete(sFilename.AsFilename)\n'newfile.Copy(sTmpFile.AsFilename,\n'             sFilename.AsFilename)\n'newfile.Delete(sTmpFile.AsFilename)"
+	FontSize:	1
+)
+
+(DocWin.54
+	Owner:	53
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.55
+)
+
+(SEd.56
+	Name:	"CPlan.SpatialIntersect"
+	CreationDate:	"Wednesday, 11 March 1998 14:41:59"
+	GUIName:	"Script"
+	Win:	57
+	CSMgr:	58
+	Source:	"'Script : CPlan.SpatialIntersect\n'Author : Matthew Watts *** see note below\n'Date : March 11th 1998\n'Purpose : Tabulate areas for one unit layer and intersection layer\n'\n' NOTE : calls code from Spatial.TabulateAreas which is an ESRU/ArcView Spatial Analyst function\n'\n\n                                             \naUnitLayer = SELF.Get(0)\naSelectionUnitField = SELF.Get(1)\naIntersectLayer = SELF.Get(2)\naIntersectionField = SELF.Get(3)\n\n'MsgBox.Info(\"Unit Layer\" + aUnitLayer.GetName +\n'            \"Unit Field
+\" + aSelectionUnitField.GetName +\n'            \"Intersect Layer\" + aIntersectLayer.GetName +\n'            \"Intersection Field\" + aIntersectionField.GetName,\n'            \"Spatial Intersect\")\n\n'create list params with :\n'          colTheme 0\n'          colField/rowField 1\n'          rowTheme 2\n'          rowField/colField 3\n'\n'\nparams = List.Make\nparams.Add(aUnitLayer)\nparams.Add(aSelectionUnitField)\nparams.Add(aIntersectLayer)\nparams.Add(aIntersectionField)\n\ntheView = av.GetActiveDoc\n\n' obtain projection\naP
+rj = theView.GetProjection\n\n' obtain parameters for operation\n'params = TabulateAreaDialog.Show(theView)\nif (params = nil) then return NIL end\nif (params.Count < 4) then return NIL end\ncolTheme = params.Get(0)\nrowTheme = params.Get(2)\n\n' make sure themes overlay\ncolExtent = colTheme.ReturnExtent\nrowExtent = rowTheme.ReturnExtent\nif (colExtent.Intersects(rowExtent).Not) then\n  MsgBox.Error(\"Input themes do not overlay\",\"Tabulate Areas\")\n  return NIL\nend\n\nif (colTheme.Is(GTheme)) then\n  aVTab = colTheme.GetGr
+id.GetVTab\n  if (aVTab = NIL) then\n    colGrid = colTheme.GetGrid\n  else\n    if (aVTab.GetNumSelRecords > 0) then\n      colGrid = colTheme.GetGrid.ExtractSelection\n    else\n      colGrid = colTheme.GetGrid\n    end\n  end\n  colField = params.Get(1)\n  if (rowTheme.Is(GTheme)) then\n    aVTab = rowTheme.GetGrid.GetVTab\n    if (aVTab = NIL) then\n      rowObj = rowTheme.GetGrid\n    else\n      if (aVTab.GetNumSelRecords > 0) then\n        rowObj = rowTheme.GetGrid.ExtractSelection\n      else\n        rowObj = rowThem
+e.GetGrid\n      end\n    end\n  else\n    rowObj = rowTheme.GetFTab\n  end\n  rowField = params.Get(3)\n  switch = FALSE\nelseif (rowTheme.Is(GTheme)) then\n  aVTab = rowTheme.GetGrid.GetVTab\n  if (aVTab = NIL) then\n    colGrid = rowTheme.GetGrid\n  else\n    if (aVTab.GetNumSelRecords > 0) then\n      colGrid = rowTheme.GetGrid.ExtractSelection\n    else\n      colGrid = rowTheme.GetGrid\n    end\n  end\n  rowObj = colTheme.GetFTab\n  colField = params.Get(3)\n  rowField = params.Get(1)\n  switch = TRUE\nelse\n\n  'set extent a
+nd cell size for conversion if not already set\n  ae = theView.GetExtension(AnalysisEnvironment)\n  box = Rect.Make(0@0,1@1)\n  cellSize = 1\n  if ((ae.GetExtent(box) <> #ANALYSISENV_VALUE) or (ae.GetCellSize(cellSize) <> #ANALYSISENV_VALUE)) then\n    ce = AnalysisPropertiesDialog.Show(theView, TRUE, \"Temporary Grid Specification\")\n    if (ce = NIL) then return NIL end\n    ce.GetCellSize(cellSize)\n    ce.GetExtent(box)\n  end\n  colField = params.Get(1)\n  colGrid = Grid.MakeFromFTab(colTheme.GetFTab,aPrj,colField
+,{cellSize,box})\n  if (colGrid.HasError) then return NIL end\n  if (colGrid.GetVTab = NIL) then return NIL end\n  if(colField.IsTypeString) then\n    colField = colGrid.GetVTab.FindField(\"S_VALUE\")\n  else\n    colField = colGrid.GetVTab.FindField(\"VALUE\")\n  end\n  rowObj = rowTheme.GetFTab\n  rowField = params.Get(3)\n  switch = FALSE\nend\n\n' apply mask if set\ntheMaskGTheme = theView.GetExtension(AnalysisEnvironment).GetMask\nif (theMaskGTheme = NIL) then\n  columnGrid = colGrid\nelse\n  columnGrid = colGrid.ExtractByM
+ask(theMaskGTheme.GetGrid)\nend\n\nareaVTab = columnGrid.TabulateArea(colField,rowObj,aPrj,rowField,switch)\nif(areaVTab.HasError) then\n  return NIL\nend\nareaTable = Table.Make(areaVTab)\nareaTable.SetName(\"Areas of\" ++ colTheme.GetName ++ \"Tabulated For Each Zone in\" ++ rowTheme.GetName)\nav.GetProject.AddDoc(areaTable)\nareaTable.GetWin.Open\n\n\n\n\n\n\n\n\n"
+	FontSize:	1
+)
+
+(DocWin.57
+	Owner:	56
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.58
+)
+
+(SEd.59
+	Name:	"CPlan.StartCPlan"
+	CreationDate:	"Monday, May 26, 1997 02:13:51"
+	GUIName:	"Script"
+	Win:	60
+	CSMgr:	61
+	Source:	"'Script : CPlan.StartCPlan\n'Author : Matthew Watts\n'Date : May 26th 1997\n'Purpose : start C-Plan application if it is not already started\n'\n\n'Hard Wired Settings for C-Plan 32 DDE selection server: \naServerName = \"tool50\"\naTopicName = \"SelectDDE\"\naDDE = DDEClient.Make(aServerName,aTopicName)\nif (aDDE.HasError) then\n  aServerName = \"tool150\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\nif (aDDE.HasError) then\n  aServerName = \"tool850\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\nif (aDDE.HasErr
+or) then\n  aServerName = \"tool1700\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\n\n'Hard Wired path to EXE for testing only.\n'This will be set when the C-Plan extension starts\n'_CPLAN_PATH = \"d:\\out32\"\n\n'load _CPLAN_PATH from the global INI file\n_CPLAN_PATH = av.Run(\"CPlan.FindCPlanPath\",{})\n\n'attempt to establish DDE connection to the selection server\nif (aDDE.HasError) then  \n  aServerName = \"tool32\"\n  aDDE = DDEClient.Make(aServerName,aTopicName)\nend\n\n'MsgBox.Info(_CPLAN_PATH,aDDE.GetErrorMsg)\nif (
+aDDE.HasError) then\n  'C-Plan selection server not responding, C-Plan is not started\n  'we need to Start C-Plan\n  'MsgBox.Info(\"s\",\"start\")\n  'find database path to pass into C-Plan\n  aView = av.GetActiveDoc\n  if (aView <> nil) then\n    if (aView.GetClass.GetClassName = \"View\") then\n  \n      aPath = aView.GetActiveThemes.Get(0).GetSrcName.GetFileName.GetFullName\n  \n      'trim \\file.ext from aPath\n      'find position of last \\ in aPath\n      iPos = -1\n      for each i in 0..(aPath.Count - 1)\n        'MsgBo
+x.Info(aPath.Middle(i,1),\"extract\")\n        if (aPath.Middle(i,1) = \"\\\") then\n          iPos = i\n        end\n      end   \n      'trim aPath\n      if (iPos >= 0) then\n        aPath = aPath.Left(iPos)\n      end\n      'MsgBox.Info(iPos.AsString,\"iPos\")\n\n      'find the maximum feature count at this path so\n      iMax = av.run(\"CPlan.FindMaximumFeatures\",{aPath})\n      if (iMax > 0) then\n      \n        'determine which EXE file to start\n        fTest50 = av.run(\"CPlan.FileExists\",{_CPLAN_PATH + \"\\tool50.exe\"})\n
+        fTest150 = av.run(\"CPlan.FileExists\",{_CPLAN_PATH + \"\\tool150.exe\"})\n        fTest1700 = av.run(\"CPlan.FileExists\",{_CPLAN_PATH + \"\\tool1700.exe\"})\n      \n        if ((iMax <= 50) and (fTest50)) then\n          aServerName = \"tool50\"\n        else\n          if ((iMax <= 150) and (fTest150)) then\n            aServerName = \"tool150\"\n          else\n            'test if iMax is in [501,850] and use tool 850 if it is not\n            if ((iMax > 500) and (iMax <= 850)) then\n              aServerName = \"tool
+850\"\n            else\n              if ((iMax > 850) and (iMax <= 1700) and (fTest1700)) then\n                aServerName = \"tool1700\"\n              end\n            end\n          end\n        end\n  \n        'start C-Plan now\n        'MsgBox.Info(_CPLAN_PATH + \"\\\" + aServerName + \".EXE\" ++ \"\"\" + aPath + \"\"\",\"param\")\n        System.Execute(_CPLAN_PATH + \"\\\" + aServerName + \".EXE\" ++ aPath.Quote ++ \"-a\")\n      else\n        'there is no C-Plan database with the currently selected theme\n        'user will have to
+ 1) select theme which has C-Plan database\n        '               or 2) create a C-Plan database with the C-Plan Table Editor\n        MsgBox.Info(\"You will have to either select the theme which has a C-Plan\" + NL +\n                    \"database attached to it, or create a C-Plan database using\" + NL +\n                    \"the C-Plan Table Editor\",\n                    \"There is no C-Plan database attached to the current theme\")\n      end\n    end\n  end  \nend\n"
+	FontSize:	1
+)
+
+(DocWin.60
+	Owner:	59
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.61
+)
+
+(SEd.62
+	Name:	"CPlan.TabulateAreas"
+	CreationDate:	"Wednesday, 11 March 1998 14:23:36"
+	GUIName:	"Script"
+	Win:	63
+	CSMgr:	64
+	Source:	"'Script : CPlan.TabulateAreas\n'Author : Matthew Watts\n'Date : March 11th 1998\n'Purpose : Tabulate areas for one or more layers\n'\n\naView = av.GetActiveDoc\nif (aView <> nil) then\n  if (aView.GetClass.GetClassName = \"View\") then\n  \n    aThemes = aView.GetThemes\n    \n    if (aThemes = nil) then\n      fStop = True\n    else\n    \n      aSelectionUnitList = MsgBox.MultiList(aThemes,\n                                          \"Select one or more Selection Unit Layers\",\n                                          \"Avail
+able layers\")\n                                          \n      if (aSelectionUnitList = nil) then\n        fStop = True\n      else\n        fStop = False\n      end\n    end\n       \n    if (not fStop) then                                   \n      aIntersectionList = MsgBox.MultiList(aThemes,\n                                         \"Select one or more Layers to intersect with the Selection Unit Layers\",\n                                         \"Available layers\")\n      if (aIntersectionList = nil) then\n        
+fStop = True\n      end\n    end\n                                         \n    'perform the intersection of the selected layer(s) and write the result to output file(s)\n    \n    if (not fStop) then\n    if ((aSelectionUnitList.Count > 0) and\n        (aIntersectionList.Count > 0)) then\n        \n      'choose key field for each Selection Unit Layer and Intersection Layer\n      aSelectionUnitFields = List.Make\n      for each aUnitLayer in aSelectionUnitList \n        'get theme in aView with name aUnitLayer\n      
+  aTheme = aUnitLayer\n        aFields = aTheme.GetFTab.GetFields\n        'get user to choose key field from aUnitLayer\n        aChosenField = MsgBox.List (aFields,\n                                    \"Choose key field\",\n                                    \"Fields from \" + aUnitLayer.GetName)\n\n        'add key field to aSelectionUnitFields\n        if (aChosenField <> nil) then\n          aSelectionUnitFields.Add(aChosenField)\n        end\n      end\n      \n      if (aSelectionUnitFields.Count = aSelectionUnitLi
+st.Count) then\n        fStop = False\n      else\n        fStop = True\n      end\n      \n      if (not fStop) then\n        aIntersectionFields = List.Make\n        for each aIntersectionLayer in aIntersectionList \n          'get theme in aView with name aIntersectionLayer\n          aTheme = aIntersectionLayer\n          aFields = aTheme.GetFTab.GetFields\n          'get user to choose key field from aIntersectionLayer\n          aChosenField = MsgBox.List (aFields,\n                                    \"Choose key f
+ield\",\n                                    \"Fields from \" + aIntersectionLayer.GetName)\n\n          'add key field to aIntersectionFields \n          if (aChosenField <> nil) then\n            aIntersectionFields.Add(aChosenField)\n          end\n        end\n        \n        if (aIntersectionList.Count <> aIntersectionFields.Count) then\n          fStop = True\n        end\n      end\n      \n      if (not fStop) then\n        'execute intersections \n        iIntersect = 0\n        for each aIntersectionLayer in aInter
+sectionList \n         \n          aIntersectionField = aIntersectionFields.Get(iIntersect)\n        \n          iUnit = 0      \n          for each aUnitLayer in aSelectionUnitList \n          \n            aSelectionUnitField = aSelectionUnitFields.Get(iUnit)\n            \n            'intersect aUnitLayer with aIntersectionLayer\n            av.run(\"CPlan.SpatialIntersect\",{aUnitLayer,aSelectionUnitField,\n                                             aIntersectionLayer,aIntersectionField})\n            \n           
+ iUnit = iUnit + 1\n          end\n        \n          iIntersect = iIntersect + 1\n        end\n      end\n    end\n    end\n  end\nend"
+	FontSize:	1
+)
+
+(DocWin.63
+	Owner:	62
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.64
+)
+
+(SEd.65
+	Name:	"CPlan.ThemeRedraw"
+	CreationDate:	"Tuesday, May 13, 1997 09:51:54"
+	GUIName:	"Script"
+	Win:	66
+	CSMgr:	67
+	Source:	"'Script : CPlan.ThemeRedraw\n'Author : Matthew Watts\n'Date : May 13th 1997\n'Purpose : redraw Irreplaceability view with parameters\n'          posted from C-Plan\n'\n\n\n'read View, Theme and AVLFile as calling parameters\nif (self.Is(List).Not) then\n  MsgBox.Info(\"list is empty\",\"cannot Redraw Theme\")\n  return nil\nelseif (self.count <> 3) then\n  MsgBox.Info(\"parameter list is not 3 elements\",\"cannot Redraw Theme\")\n  return nil\nend\n\nasView = SELF.Get(0)\nasTheme = SELF.Get(1)\naAVLFile = SELF.Get(2)\n\n'check that AVL
+ file exists\nif (File.Exists(aAVLFile.AsFileName).Not) then\n  'cannot find AVL file\n  MsgBox.Error(\"cannot find Legend file\" ++ aAVLFile,\"Error in C-Plan Configuration\")\n  exit\nend\n\n'MsgBox.Info(\"after checking AVL file exists\",\"debug\")\n\n'get the view\naView = av.GetProject.FindDoc(asView)\n'test whether view is valid\nif (aView = nil) then\n  'cannot find this view\n  \n  'get user to select view and theme\n  'save these settings to ini file\n  'get and test view again\n  aNewSettings = av.run(\"CPlan.GetUserSetting
+s\",{})\n  asView = aNewSettings.Get(0)\n  asTheme = aNewSettings.Get(1)\n  aView = av.GetProject.FindDoc(asView)\n  if (aView = nil) then\n    MsgBox.Error(\"cannot find view\" ++ asView,\"Error in C-Plan Configuration\")\n    exit\n  end\nend\n\n'MsgBox.Info(\"after getting view\",\"debug\")\n\n'get the theme\naTheme = aView.FindTheme(asTheme)\n'test whether theme is valid\nif (aTheme = nil) then\n  'cannot find this theme\n  \n  'get user to select view and theme\n  'save these settings to ini file\n  'get and test view again\n  aNew
+Settings = av.run(\"CPlan.GetUserSettings\",{})\n  asView = aNewSettings.Get(0)\n  asTheme = aNewSettings.Get(1)\n  \n  aTheme = aView.FindTheme(asTheme)\n  if (aTheme = nil) then\n    MsgBox.Error(\"cannot find theme\" ++ asTheme,\"Error in C-Plan Configuration\")\n    exit\n  end  \nend\n\n'test if DISPLAY/TENURE fields exist in SHP table\naVTabName = aTheme.GetSrcName.GetFileName.GetFullName\nif (aVTabName.Count > 3) then\n  aVTabName = aVTabName.Left(aVTabName.Count - 3) + \"dbf\"\nend\naUpdateVTab = VTab.Make(aVTabName.AsFile
+name,True,False)\naTenureFld = aUpdateVTab.FindField(\"TENURE\")\naDisplayFld = aUpdateVTab.FindField(\"DISPLAY\")\nif ((aTenureFld = nil) or (aDisplayFld = nil)) then\n\n  sCPlanPath = av.run(\"CPlan.FindCPlanPath\",{})\n  sSourceName = sCPlanPath + \"\\s_v2.dbf\"\n\n  aSourceVTab = VTab.Make(sSourceName.AsFilename,False,False)\n\n  fDFld = aSourceVTab.FindField(\"DISPLAY\")\n  fTFld = aSourceVTab.FindField(\"TENURE\")\n\n  FldList = List.Make\n  if (aDisplayFld = nil) then\n    FldList.Add(fDFld)\n  end\n  if (aTenureFld = nil) then\n 
+   FldList.Add(fTFld)\n  end\n  aUpdateVTab.AddFields(FldList)\n  aUpdateVTab.Flush\n  aUpdateVTab.DeActivate\nelse\n\n\n  'MsgBox.Info(\"after getting theme\",\"debug\")\n\n  aLegend = aTheme.GetLegend\n\n  'load the default legend from file\n  aLegend.Load(aAVLFile.AsFileName,\n             #LEGEND_LOADTYPE_ALL)\n             \n  'MsgBox.Info(\"after loading legend\",\"debug\")             \n\n  'clear selections and invalidate the theme and legend so they will be redrawn\n  aTheme.ClearSelection\n  aTheme.InvalidateLegend\n  aTheme.
+Invalidate(TRUE)\n\n  'MsgBox.Info(\"end of CPlan.ThemeRedraw\",\"debug\")\nend"
+	FontSize:	1
+)
+
+(DocWin.66
+	Owner:	65
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.67
+)
+
+(SEd.68
+	Name:	"CPlan.UnInstall"
+	CreationDate:	"Friday, July 04, 1997 12:44:50"
+	GUIName:	"Script"
+	Win:	69
+	CSMgr:	70
+	Source:	"'Script : CPlan.Install\n'Author : Matthew Watts\n'Date : July 4th 1997\n'Purpose : UnInstall script for the C-Plan extension\n'\n\nbb = av.GetProject.FindGUI(\"View\").GetButtonBar\nbb.Remove(bb.FindByName(\"DDESelect\"))\nbb.Remove(bb.FindByName(\"StartCPlan\"))\n'bb.Remove(bb.FindByName(\"TabulateAreas\"))\nbb.Remove(bb.FindByName(\"ButtonSpace\"))\n\n'tb = av.GetProject.FindGUI(\"View\").GetToolBar\n'tb.Remove(tb.FindByName(\"DDESelectPoint\"))\n'tb.Remove(tb.FindByName(\"ToolSpace\"))\n"
+	FontSize:	1
+)
+
+(DocWin.69
+	Owner:	68
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.70
+)
+
+(SEd.71
+	Name:	"CPlan.ViewPartialFeatures"
+	CreationDate:	"Friday, July 18, 1997 11:11:21"
+	GUIName:	"Script"
+	Win:	72
+	CSMgr:	73
+	Source:	"'Script : CPlan.ViewPartialFeatures\n'Author : Matthew Watts\n'Date : Fri July 18th '97\n'Purpose : Get user to select subset of features in a theme for display\n'\n\naActiveThemes = av.GetActiveDoc.GetActiveThemes\nif (aActiveThemes <> nil) then\n  'make everything transparent in the first active theme\n  aTheme = aActiveThemes.Get(0)\n\n  aLegend = aTheme.GetLegend\n\n  aColor = Color.Make\n  aColor.SetTransparent(True)\n\n  aSymbolList = aLegend.GetSymbols\n  \n  aFeatList = List.Make\n  \n  'traverse symbol list, making fe
+atures transparent\n  'and adding feature labels to aFeatList\n  if (aSymbolList.Count > 1) then\n    for each i in 0..(aSymbolList.Count-2)\n      aSymbol = aSymbolList.Get(i)\n      \n      aInfoList = aLegend.ReturnClassInfo(i)\n                \n      'add this feature label to the FeatList\n      aFeatList.Add(aInfoList.Get(0))\n                \n      aSymbol.SetColor(aColor)\n      aSymbol.SetBgColor(aColor)\n    end\n  end\n\n  aUserList = MsgBox.MultiListAsString(aFeatList,\n                   \"Select a subset of f
+eatures for display\",\n                   \"CPlan.ViewPartialFeature\")\n\n  aBlackColor = Color.GetBlack\n  \n  'traverse symbol list, making features black\n  'that the user has selected\n  if ((aUserList <> nil)\n      and (aSymbolList.Count > 1)) then\n    for each i in 0..(aSymbolList.Count-2)\n      aSymbol = aSymbolList.Get(i)\n      \n      aInfoList = aLegend.ReturnClassInfo(i)\n                \n      'add this feature label to the FeatList\n      aLabel = aInfoList.Get(0).AsString\n      \n      for each feat in aU
+serList\n        if (feat.AsString = aLabel) then\n          'make this feature black\n          aSymbol.SetColor(aBlackColor)\n          aSymbol.SetBgColor(aBlackColor)\n        end\n      end\n                \n    end\n  end\n\n  'redraw the theme\n  aTheme.Invalidate(True)\n  aTheme.UpdateLegend\n   \nelse\n  'cannot find any active themes\n  MsgBox.Info(\"You must select a theme\",\"No theme selected\")\nend\n\n"
+	FontSize:	1
+)
+
+(DocWin.72
+	Owner:	71
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.73
+)
+
+(SEd.74
+	Name:	"CPlan.WriteIniSettings"
+	CreationDate:	"Tuesday, 21 April 1998 13:38:32"
+	GUIName:	"Script"
+	Win:	75
+	CSMgr:	76
+	Source:	"'Script : CPlan.WriteIniSettings\n'Author : Matthew Watts\n'Date : Apr 21st 1998\n'Purpose : write ArcView ShapeTable,View and Theme settings to C-Plan database ini file\n'\n\naShapeTable = Self.Get(0)\naViewName = Self.Get(1)\naThemeName = Self.Get(2)\naPathToIniFile = Self.Get(3)\n\n'write values to INI file\n'aShapeTable contains path to the ini file\n\naIniFile = aPathToIniFile + \"\\cplan.ini\"\n\nif (av.run(\"CPlan.FileExists\",{aIniFile}) <> True) then\n  aIniFile = aPathToIniFile + \"\\emrtool.ini\"\nend\n\noutfile = LineFile.
+Make(aIniFile,#FILE_PERM_APPEND)\n\noutfile.WriteElt(\"\")\noutfile.WriteElt(\"[ArcView]\")\noutfile.WriteElt(\"ShapeTable=\" + aShapeTable)\noutfile.WriteElt(\"View=\" + aViewName)\noutfile.WriteElt(\"Theme=\" + aThemeName)\noutfile.WriteElt(\"\")\n\noutfile.Close"
+	FontSize:	1
+)
+
+(DocWin.75
+	Owner:	74
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.76
+)
+
+(SEd.77
+	Name:	"CPlan.ZoomToValues"
+	CreationDate:	"Monday, 29 June 1998 12:25:46"
+	GUIName:	"Script"
+	Win:	78
+	CSMgr:	79
+	Source:	"'Script : CPlan.ZoomToValues\n'Author : Matthew Watts\n'Date : 29 June 1998\n'Purpose : view & theme & field & value passed by the user,\n'            - locate appropriate view and theme\n'            - select polygons where field = value\n'            - zoom to selected polygons in theme\n'\n\n'MsgBox.Info(\"CPlan.ZoomToValues\",\"Start\")\n\nsView = SELF.Get(0)\nsTheme = SELF.Get(1)\nsField = SELF.Get(2)\nsValue = SELF.Get(3)\nsZoom = SELF.Get(4)\n\naView = av.GetProject.FindDoc(sView)\n\nfSuccess = FALSE\n\nif (aView <> nil) the
+n\n  aTheme = aView.FindTheme(sTheme)\n  if (aTheme <> nil) then\n    'we have the correct view and theme\n    fSuccess = TRUE\n    'MsgBox.Info(\"CPlan.ZoomToValues\",\"Success\")\n    \n  end\nend\n\nif (fSuccess) then\n  'parameters were successful\n  'execute query to select sites\n  aVTab = aTheme.GetFTab\n  BMap = Bitmap.Make(aVTab.GetNumRecords)\n  sQuery = \"([\" + sField + \"] = \" + sValue.Quote + \")\"\n  aVTab.Query(sQuery,\n              BMap,\n              #VTAB_SELTYPE_NEW \n             )\n  aVTab.SetSelection(BMap)\n  '
+MsgBox.Info(sQuery,\"Query\")\n  'zoom to selected sites\n  if (sZoom = \"True\") then\n    'user has selected they want to zoom to the selected sites\n    \n    r = Rect.MakeEmpty\n    if (aTheme.CanSelect) then\n      r = r.UnionWith(aTheme.GetSelectedExtent)\n    end\n    if (r.IsEmpty) then\n      return nil\n    elseif ( r.ReturnSize = (0@0) ) then\n      aView.GetDisplay.PanTo(r.ReturnOrigin)\n    else\n      aView.GetDisplay.SetExtent(r.Scale(1.1))\n    end\n    'MsgBox.Info(\"after zoom\",\"\")\n  end\nelse\n  'parameters wer
+e unsuccessful\n  MsgBox.Info(\"CPlan.ZoomToValues\",\"parameters were unsuccessful\")\nend\n\n"
+	FontSize:	1
+)
+
+(DocWin.78
+	Owner:	77
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.79
+)
+
+(SEd.80
+	Name:	"Minset.CreateSyncFile"
+	CreationDate:	"Monday, 19 October 1998 11:40:04"
+	GUIName:	"Script"
+	Win:	81
+	CSMgr:	82
+	Source:	"'Script : Minset.CreateSyncFile\n'Author : Matthew Watts\n'Date : Oct 19th 1998\n'Purpose : create a sync file so calling process will know this job is finished\n'\n\nsPathFile = SELF.Get(0)\n\nsyncfile = LineFile.Make(sPathFile.AsFilename,#FILE_PERM_WRITE)\nsyncfile.Close"
+	FontSize:	1
+)
+
+(DocWin.81
+	Owner:	80
+	X:	169
+	Y:	85
+	W:	761
+	H:	345
+)
+
+(CSMgr.82
+)
+
+(SEd.83
+	Name:	"Minset.DDESiteList"
+	CreationDate:	"Thursday, 05 February 1998 12:17:27"
+	GUIName:	"Script"
+	Win:	84
+	CSMgr:	85
+	Source:	"'Script : Minset.DDESiteList\n'Author : Matthew Watts\n'Date : Feb 5th 1998\n'Purpose : post list of sites to C-Plan\n'          used for\n'                  - returning list of adjacent sites\n'\n\n'Hard Wired Settings for DDE Server to post selections to: \naServerName = \"tool32\"\naTopicName = \"MinsetSelectDDE\"\n\n'\naSitesToPost = Self.Get(0)\nsMessage = Self.Get(1).AsString\n\naDDE = DDEClient.Make(aServerName,aTopicName)\nif (aDDE.HasError) then\n  MsgBox.Error(aDDE.GetErrorMsg, \"\")\n  return nil\nend\naDDE.Execute(\"start 
+\" + sMessage)\n'write the Attribute of each selected site \n'(equivalent to Geocode in C-Plan)\n'to the DDE Server\nif (aSitesToPost <> nil) then\n  for each i in 0..(aSitesToPost.Count-1)\n    aDDE.Execute(aSitesToPost.Get(i).AsString)\n  end\nend\naDDE.Execute(\"end \" + sMessage)"
+	FontSize:	1
+)
+
+(DocWin.84
+	Owner:	83
+	X:	-6
+	Y:	-6
+	W:	1034
+	H:	644
+)
+
+(CSMgr.85
+)
+
+(SEd.86
+	Name:	"Minset.FindAdjacentSites"
+	CreationDate:	"Thursday, 05 February 1998 09:02:18"
+	GUIName:	"Script"
+	Win:	87
+	CSMgr:	88
+	Source:	"'Script : Minset.FindAdjacentSites\n'Author : Matthew Watts\n'Date : Feb 4th 1998\n'Purpose : Return list of sites which is adjacent to given list of sites\n'\n\n'get handle on the view\nasView = SELF.Get(0)\nasTheme = SELF.Get(1)\naView = av.GetProject.FindDoc(asView)\n'test whether view is valid\nif (aView = nil) then\n  'cannot find this view\n  MsgBox.Error(\"cannot find view\" ++ asView,\"Error in C-Plan Configuration\")\n  exit\nend\naTheme = aView.FindTheme(asTheme)\n'test whether theme is valid\nif (aTheme = nil) then\n  
+'cannot find this theme\n  MsgBox.Error(\"cannot find theme\" ++ asTheme,\"Error in C-Plan Configuration\")\n  exit  \nend\nsKeyFieldName = Self.Get(2)\nif ((aView <> nil) and (aView.GetClass.GetClassName = \"View\")) then\n  'clear selections\n  aTheme.ClearSelection\n    \n  'select list of given sites\n  aVTab = aTheme.GetFTab\n  aBitmap = aVTab.GetSelection  \n  aParamList = Self.Get(3)\n  expr = \"([\" + sKeyFieldName +\n         \"] = \" + aParamList.Get(0).AsString + \")\"\n  if (aParamList.Count > 1) then\n    for each i in 1.
+.(aParamList.Count-1)\n      expr = expr + \" or ([\" + sKeyFieldName +\n             \"] = \" + aParamList.Get(i).AsString + \")\"\n    end\n  end  \n  \n  'MsgBox.Info(expr,\"query\")\n  \n  aVTab.Query(expr, aBitmap, #VTAB_SELTYPE_NEW) \n  \n  'MsgBox.Info(\"before UpdateSelection\",\"test\") \n  \n  aVTab.UpdateSelection \n     \n  'MsgBox.Info(\"before SelectByFTab\",\"test\")\n     \n  'execute SelectByTheme intersection  \n  aVTab.SelectByFTab(aVTab, \n                     #FTAB_RELTYPE_INTERSECTS,\n                     0,\n           
+          #VTAB_SELTYPE_NEW)\n\n  'MsgBox.Info(\"after SelectByFTab\",\"test\")\n\n  'subtract given list from resulting selected sites\n  aResultList = List.Make\n  aKeyField = aVTab.FindField(sKeyFieldName)\n\n  'sTest = \"test\"\n\n  aSelection = aVTab.GetSelection\n  if (aSelection <> nil) then\n  for each row in aSelection\n    'if row is not one of the original selected sites passed,\n    'then add the row identifier to result\n\n    aRowKey = aVTab.ReturnValue(aKeyField,row)\n    \n    'MsgBox.Info(aRowKey.AsString,\"aRowKey
+ is :\")\n    \n    fAddRow = True\n    \n    for each i in 0..(aParamList.Count-1)\n      if (aParamList.Get(i).AsString = aRowKey.AsString) then\n        fAddRow = False\n        \n      end\n    end\n    \n    if (fAddRow) then\n      aResultList.Add(aRowKey.AsString)\n      'sTest = sTest + \" \" + aRowKey.AsString\n    end\n    \n  end\n  end\n  \n  'MsgBox.Info(sTest,\"x\")\n  \n  if (aResultList.Count = 0) then\n    return nil\n  else\n    return aResultList\n  end\nend"
+	FontSize:	1
+)
+
+(DocWin.87
+	Owner:	86
+	X:	116
+	Y:	68
+	W:	698
+	H:	422
+)
+
+(CSMgr.88
+)
+
+(SEd.89
+	Name:	"Minset.FindProximitySites"
+	CreationDate:	"Monday, 09 February 1998 15:12:06"
+	GUIName:	"Script"
+	Win:	90
+	CSMgr:	91
+	Source:	"'Script : Minset.FindProximitySites\n'Author : Matthew Watts\n'Date : Feb 9th 1998\n'Purpose : Return list of sites which is within given distance of given list of sites\n'\n\n'get handle on the view\nasView = SELF.Get(0)\nasTheme = SELF.Get(1)\naView = av.GetProject.FindDoc(asView)\n'test whether view is valid\nif (aView = nil) then\n  'cannot find this view\n  MsgBox.Error(\"cannot find view\" ++ asView,\"Error in C-Plan Configuration\")\n  exit\nend\naTheme = aView.FindTheme(asTheme)\n'test whether theme is valid\nif (aTheme 
+= nil) then\n  'cannot find this theme\n  MsgBox.Error(\"cannot find theme\" ++ asTheme,\"Error in C-Plan Configuration\")\n  exit  \nend\nsKeyFieldName = Self.Get(2)\nif ((aView <> nil) and (aView.GetClass.GetClassName = \"View\")) then\n  'clear selections\n  aTheme.ClearSelection\n    \n  'select list of given sites\n  aVTab = aTheme.GetFTab\n  aBitmap = aVTab.GetSelection\n  aDistance = Self.Get(3)  \n  aParamList = Self.Get(4)\n  expr = \"([\" + sKeyFieldName +\n         \"] = \" + aParamList.Get(0).AsString + \")\"\n  if (aParamL
+ist.Count > 1) then\n    for each i in 1..(aParamList.Count-1)\n      expr = expr + \" or ([\" + sKeyFieldName +\n             \"] = \" + aParamList.Get(i) + \")\"\n    end\n  end  \n  \n  'MsgBox.Info(expr,\"query\")\n  \n  aVTab.Query(expr, aBitmap, #VTAB_SELTYPE_NEW) \n  \n  'MsgBox.Info(\"before UpdateSelection\",\"test\") \n  \n  aVTab.UpdateSelection \n     \n  'MsgBox.Info(\"before SelectByFTab\",\"test\")\n     \n  'execute SelectByTheme intersection  \n  aVTab.SelectByFTab(aVTab, \n                     #FTAB_RELTYPE_ISWITHINDISTANCE
+OF,\n                     aDistance,\n                     #VTAB_SELTYPE_NEW)\n\n  'MsgBox.Info(\"after SelectByFTab\",\"test\")\n\n  'subtract given list from resulting selected sites\n  aResultList = List.Make\n  aKeyField = aVTab.FindField(sKeyFieldName)\n\n  'sTest = \"test\"\n\n  aSelection = aVTab.GetSelection\n  if (aSelection <> nil) then\n  for each row in aSelection\n    'if row is not one of the original selected sites passed,\n    'then add the row identifier to result\n\n    aRowKey = aVTab.ReturnValue(aKeyField,row)\n
+    \n    'MsgBox.Info(aRowKey.AsString,\"aRowKey is :\")\n    \n    fAddRow = True\n    \n    for each i in 0..(aParamList.Count-1)\n      if (aParamList.Get(i).AsString = aRowKey.AsString) then\n        fAddRow = False\n        \n      end\n    end\n    \n    if (fAddRow) then\n      aResultList.Add(aRowKey.AsString)\n      'sTest = sTest + \" \" + aRowKey.AsString\n    end\n    \n  end\n  end\n  \n  'MsgBox.Info(sTest,\"x\")\n  \n  if (aResultList.Count = 0) then\n    return nil\n  else\n    return aResultList\n  end\nend"
+	FontSize:	1
+)
+
+(DocWin.90
+	Owner:	89
+	X:	60
+	Y:	184
+	W:	809
+	H:	250
+)
+
+(CSMgr.91
+)
+
+(SEd.92
+	Name:	"Minset.RunAdjacency"
+	CreationDate:	"Monday, 09 February 1998 09:44:13"
+	GUIName:	"Script"
+	Win:	93
+	CSMgr:	94
+	Source:	"'Script : Minset.RunAdjacency\n'Author : Matthew Watts\n'Date : Feb 9th 1998\n'Purpose : call CPlan.FindAdjacentSites for adjacency check\n'          and return result to C-Plan\n\n'load the site list from the file\n\naFilename = SELF.Get(3)\n\naOriginalSites = List.Make\n\n'load site list from aFilename to aOriginalSites\ntf = LineFile.Make(aFilename.AsFileName, #FILE_PERM_READ )\n  \nwhile (tf.IsAtEnd.Not)\n  iCode = tf.ReadElt.AsNumber\n  aOriginalSites.Add(iCode) \nend\n \ntf.Close\n\naSitesToSelect = av.run(\"Minset.FindAdja
+centSites\",\n                        {SELF.Get(0),   'view\n                         SELF.Get(1),   'theme\n                         SELF.Get(2),   'key field\n                         aOriginalSites 'sites to test\n                         })\n\n'write resulting site id's to the destination file\nav.run(\"Minset.WriteSitesFile\",\n       {aSitesToSelect, 'resulting sites\n        SELF.Get(4).AsString     'destination file\n        })\n\n'create sync file so C-Plan will know the run is finished\n'sSyncFile = av.Run(\"CPlan.
+ExtractPath\",{aFilename})\nav.run(\"Minset.CreateSyncFile\",{SELF.Get(5)})"
+	FontSize:	1
+)
+
+(DocWin.93
+	Owner:	92
+	X:	86
+	Y:	13
+	W:	479
+	H:	302
+)
+
+(CSMgr.94
+)
+
+(SEd.95
+	Name:	"Minset.RunProximity"
+	CreationDate:	"Monday, 09 February 1998 15:05:17"
+	GUIName:	"Script"
+	Win:	96
+	CSMgr:	97
+	Source:	"'Script : Minset.RunProximity\n'Author : Matthew Watts\n'Date : Feb 9th 1998\n'Purpose : returns list of sites within given distance of given\n'          list of sites\n'\n\naOriginalSites = List.Make\naFilename = SELF.Get(4)\n'load site list from aFilename to aOriginalSites\ntf = LineFile.Make(aFilename.AsFileName, #FILE_PERM_READ )\n  \nwhile (not tf.IsAtEnd)\n  iCode = tf.ReadElt.AsNumber\n  aOriginalSites.Add(iCode) \nend\n \ntf.Close\n\naSitesToSelect = av.run(\"Minset.FindProximitySites\",\n                        {SELF.Ge
+t(0),   'view\n                         SELF.Get(1),   'theme\n                         SELF.Get(2),   'key field\n                         SELF.Get(3),   'distance\n                         aOriginalSites 'sites to test\n                         })\n\n'write resulting site id's to the destination file\nav.run(\"Minset.WriteSitesFile\",\n       {aSitesToSelect, 'resulting sites\n        SELF.Get(5)     'destination file\n        })\n\n\n\n'create sync file so C-Plan will know the run is finished\nsSyncFile = av.Run(\"CPlan.Ex
+tractPath\",{aFilename})\nav.run(\"Minset.CreateSyncFile\",{SELF.Get(6)})\n"
+	FontSize:	1
+)
+
+(DocWin.96
+	Owner:	95
+	X:	98
+	W:	451
+	H:	321
+)
+
+(CSMgr.97
+)
+
+(SEd.98
+	Name:	"Minset.TestAdjacency"
+	CreationDate:	"Monday, 08 December 1997 14:38:36"
+	GUIName:	"Script"
+	Win:	99
+	CSMgr:	100
+	Source:	"'Script : Minset.TestAdjacency\n'Author : Matthew Watts\n'Date : Feb 5th 1998\n'Purpose : Test calling CPlan.FindAdjacentSites for adjacency check\n'\n\naOriginalSites = List.Make\naOriginalSites.Add(2)\n\naSitesToSelect = av.run(\"Minset.FindAdjacentSites\",{aOriginalSites,\"Gridcode\"})\n\nif (aSitesToSelect = nil) then\n  sInfo = \"none\"\nelse\n  sInfo = \"\"\n  for each i in 0..(aSitesToSelect.Count - 1)\n    sInfo = sInfo + \" \" + aSitesToSelect.Get(i).AsString\n  end\nend\n\nMsgBox.Info(sInfo,\"sites adjacent to 2\")\n\n'post adjace
+nt sites back to C-Plan\n'av.Run(\"Minset.DDESiteList\",{aSitesToSelect,\"adjacent\"})"
+	FontSize:	1
+)
+
+(DocWin.99
+	Owner:	98
+	X:	3
+	Y:	321
+	W:	643
+	H:	306
+)
+
+(CSMgr.100
+)
+
+(SEd.101
+	Name:	"Minset.TestCPlanAdjacencyCall"
+	CreationDate:	"Monday, 09 February 1998 10:05:41"
+	GUIName:	"Script"
+	Win:	102
+	CSMgr:	103
+	Source:	"'Script : Minset.TestCPlanAdjacencyCall\n'Author : Matthew Watts\n'Date : Feb 9th 1998\n'Purpose : Test calling CPlan.FindAdjacentSites for adjacency check\n'          (in the same way it will be called by C-Plan)\n\n'aOriginalSites = List.Make\n'aOriginalSites.Add(\"2\")\n\nav.run(\"Minset.RunAdjacency\",{\"eden\",\n                              \"eden.shp\",\n                              \"attribute\",\n                              \"69\",\"70\",\"71\",\n                              \"73\",\"76\",\"78\",\n                              \"8
+0\",\"84\",\"87\",\n                              \"89\",\"92\",\"97\",\n                              \"100\"})\n"
+	FontSize:	1
+)
+
+(DocWin.102
+	Owner:	101
+	X:	32
+	Y:	262
+	W:	605
+	H:	290
+)
+
+(CSMgr.103
+)
+
+(SEd.104
+	Name:	"Minset.TestCPlanProximityCall"
+	CreationDate:	"Monday, 09 February 1998 15:16:35"
+	GUIName:	"Script"
+	Win:	105
+	CSMgr:	106
+	Source:	"'Script : Minset.TestCPlanProximityCall\n'Author : Matthew Watts\n'Date : Feb 9th 1998\n'Purpose : Test calling CPlan.FindProximitySites for proximity check\n'          (in the same way it will be called by C-Plan)\n\nav.run(\"Minset.RunProximity\",{\"eden\",\n                              \"eden.shp\",\n                              \"attribute\",\n                              2000,\n                              \"69\",\"70\",\"71\",\n                              \"73\",\"76\",\"78\",\n                              \"80\",\"84\",\"87\",\n   
+                           \"89\",\"92\",\"97\",\n                              \"100\"})\n"
+	FontSize:	1
+)
+
+(DocWin.105
+	Owner:	104
+	X:	46
+	Y:	325
+	W:	639
+	H:	268
+)
+
+(CSMgr.106
+)
+
+(SEd.107
+	Name:	"Minset.TestCreateSyncFile"
+	CreationDate:	"Monday, 19 October 1998 11:43:21"
+	GUIName:	"Script"
+	Win:	108
+	CSMgr:	109
+	Source:	"'Script : Minset.TestCreateSyncFile\n'Author : Matthew Watts\n'Date : Oct 19th 1998\n'Purpose : test call Minset.CreateSyncFile\n'\n\nav.run(\"Minset.CreateSyncFile\",{\"c:\\testsync.txt\"})"
+	FontSize:	1
+)
+
+(DocWin.108
+	Owner:	107
+	X:	212
+	Y:	315
+	W:	773
+	H:	281
+)
+
+(CSMgr.109
+)
+
+(SEd.110
+	Name:	"Minset.WriteSitesFile"
+	CreationDate:	"Monday, 16 February 1998 14:07:04"
+	GUIName:	"Script"
+	Win:	111
+	CSMgr:	112
+	Source:	"'Script : Minset.WriteSitesFile\n'Author : Matthew Watts\n'Date : Feb 16th 1998\n'Purpose : write a list of site identifiers to a file\n'\n\naSitesToWrite = SELF.Get(0)  'list of sites to write to file\naDestFile = SELF.Get(1)      'destination file name\n\noutfile = LineFile.Make(aDestFile.AsFilename,#FILE_PERM_WRITE)\n\nfor each i in 0..(aSitesToWrite.Count-1)\n  outfile.WriteElt(aSitesToWrite.Get(i).AsString)\nend\n\noutfile.Close"
+	FontSize:	1
+)
+
+(DocWin.111
+	Owner:	110
+	X:	5
+	Y:	7
+	W:	740
+	H:	296
+)
+
+(CSMgr.112
+)
+
+(SEd.113
+	Name:	"Script1"
+	CreationDate:	"Thursday, 12 March 1998 09:14:31"
+	GUIName:	"Script"
+	Win:	114
+	CSMgr:	115
+	Source:	"theView = av.GetActiveDoc\nfor each t in theView.GetActiveThemes\n\n  if (t.Is( FTHEME ).Not) then \n      if (t.CanExportToFtab.Not) then \n         continue\n      end\n  end\n\n  if (t.Is (FTHEME).Not) then\n  \n   def = av.GetProject.MakeFileName(\"theme\", \"shp\")\n   def = FileDialog.Put(def, \"*.shp\", \"Convert \" + t.getName)\n   if (def = NIL) then return NIL end\n   anFTab = t.ExportToFtab(def)\n      \n  else\n  \n   tbl = t.GetFTab\n   attribVis = FALSE\n   for each f in tbl.GetFields\n    if ((f.IsVisible) and not (f.IsT
+ypeShape)) then\n      attribVis = TRUE\n      break\n    end\n   end\n   shapeVis = tbl.FindField(\"Shape\").IsVisible\n   if ((attribVis and shapeVis).Not) then\n     continue\n   end \n   def = av.GetProject.MakeFileName(\"theme\", \"shp\")\n   def = FileDialog.Put(def, \"*.shp\", \"Convert \" + t.getName)\n    \n   if (def = NIL) then return nil end\n  \n   shpfld = (tbl.FindField(\"Shape\"))\n   if (shpfld.IsVisible.Not) then\n    shpfld.SetVisible(shpfld.IsVisible.Not)\n    WasNotVisible = TRUE\n   else\n    WasNotVisible =FALSE\n  
+ end\n  \n   anFTab = tbl.Export(def, Shape, tbl.GetSelection.Count > 0)\n   \n   if (anFTab.HasError) then\n     if (anFTab.HasLockError) then\n       MsgBox.Error(\"Unable to acquire Write Lock for file \" + def.GetBaseName,\"\")\n     else\n       MsgBox.Error(\"Unable to create \" + def.GetBaseName,\"\")\n     end\n     return nil\n   end    \n  \n   if (WasNotVisible) then\n    shpfld.SetVisible(FALSE)\n   end\n  \n  end\n  if (MsgBox.YesNo(\"Add shapefile as theme to the view?\",\n    \"Convert to Shapefile\",true).Not) then contin
+ue end\n\n  'create a theme and add it to the View\n  fthm = FTheme.Make(anFTab)\n  theView.AddTheme(fthm)\n  'bring the View to the front\n  theView.GetWin.Activate\nend"
+)
+
+(DocWin.114
+	Owner:	113
+	X:	5
+	Y:	5
+	W:	562
+	H:	555
+)
+
+(CSMgr.115
+)
+
+(SEd.116
+	Name:	"Script2"
+	CreationDate:	"Monday, 29 June 1998 12:41:42"
+	GUIName:	"Script"
+	Win:	117
+	CSMgr:	118
+	Source:	"'contents of view.query\ntheView = av.GetActiveDoc\ntheTheme = theView.GetActiveThemes.Get(0)\nif (theTheme.HasAttributes) then\n  theTheme.BuildQuery\nend\n\n'contents of view.zoomtoselected\nav.GetProject.SetModified(true)\ntheView = av.GetActiveDoc\nr = Rect.MakeEmpty\nfor each t in theView.GetActiveThemes\n  if (t.CanSelect) then\n    r = r.UnionWith(t.GetSelectedExtent)\n  end\nend\nif (r.IsEmpty) then\n  return nil\nelseif ( r.ReturnSize = (0@0) ) then\n  theView.GetDisplay.PanTo(r.ReturnOrigin)\nelse\n  theView.GetDispla
+y.SetExtent(r.Scale(1.1))\nend\n"
+)
+
+(DocWin.117
+	Owner:	116
+	X:	579
+	Y:	147
+	W:	653
+	H:	643
+)
+
+(CSMgr.118
+)
+
+(SEd.119
+	Name:	"Script3"
+	CreationDate:	"Monday, 29 June 1998 19:23:36"
+	GUIName:	"Script"
+	Win:	120
+	CSMgr:	121
+	Source:	"av.run(\"CPlan.ZoomToValues\",{\"view1\",\"n3.shp\",\"DISPLAY\",\"SQL\"})"
+)
+
+(DocWin.120
+	Owner:	119
+	X:	55
+	Y:	313
+	W:	549
+	H:	246
+)
+
+(CSMgr.121
+)
+
+(View.122
+	Name:	"View1"
+	CreationDate:	"Monday, 19 October 1998 14:36:17"
+	GUIName:	"View"
+	Win:	123
+	CSMgr:	124
+	DocExts:	125
+	Graphics:	128
+	Dpy:	129
+	TOCWidth:	150
+)
+
+(DocWin.123
+	Owner:	122
+	X:	157
+	Y:	97
+	W:	482
+	H:	286
+)
+
+(CSMgr.124
+)
+
+(SpAnEnv.125
+	CellEnum:	126
+	CellSize:	127
+	ExtEnum:	126
+	Extent:	127
+)
+
+(AVEnum.126
+	Name:	"ANALYSISENV_MAXOF"
+)
+
+(Nil.127
+)
+
+(GList.128
+	Dpy:	129
+	FormatNumb:	134
+)
+
+(MapDpy.129
+	Left:	399509.50000000000000
+	Bottom:	6812480.25000000000000
+	Top:	6888506.75000000000000
+	Right:	568172.50000000000000
+	Scale:	130
+	FrameTop:	2.60416666666667
+	FrameRight:	3.26041666666667
+	PageDpy:	131
+	FitToPage:	1
+	MouseLoc:	133
+)
+
+(Numb.130
+	N:	0.00001933095383
+)
+
+(PageDpy.131
+	Top:	2.60416666666667
+	Right:	3.26041666666667
+	ReportUnits:	1
+	Units:	1
+	Scale:	132
+	ZoomRight:	3.26041666666667
+	ZoomTop:	2.60416666666667
+	GridSpacingX:	0.25000000000000
+	GridSpacingY:	0.25000000000000
+)
+
+(Numb.132
+	N:	0.30670926517572
+)
+
+(PointD.133
+	x:	563322.76517571881000
+	y:	6830016.84185303560000
+)
+
+(Numb.134
+)
+
+(LButn.135
+	HelpTopic:	"New_button"
+	Update:	"Doc.NewUpdate"
+	Label:	"&New"
+	Click:	"Script.New"
+)
+
+(LButn.136
+	HelpTopic:	"Open_button"
+	Update:	"Doc.OpenUpdate"
+	Label:	"&Open"
+	Click:	"Doc.Open"
+)
+
+(LButn.137
+	HelpTopic:	"Run_button"
+	Update:	"Script.ActionUpdate"
+	Label:	"&Run"
+	Click:	"Script.Action"
+)
+
+(FN.138
+	Path:	"$AVEXT/spatial.avx"
+)
+
+(NameDict.139
+)
+
+(NameDict.140
+	Obj:	141
+)
+
+(AVDict.141
+	InternalName:	"Spatial Analyst"
+	Key:	142
+	Key:	143
+	Value:	144
+	Value:	145
+)
+
+(AVStr.142
+	S:	"Loaded"
+)
+
+(AVStr.143
+	S:	"Version"
+)
+
+(Bool.144
+	Truth:	1
+)
+
+(Numb.145
+	N:	1001.00000000000000
+)
+
+(DocGUI.146
+	Name:	"View"
+	Type:	"View"
+	Modified:	1
+	Visible:	1
+	MenuBar:	147
+	ButnBar:	270
+	Popups:	323
+	ToolBar:	342
+	NewScript:	"View.New"
+	OpenScript:	"Doc.Open"
+	ActionScript:	"Doc.Action"
+	NewUpdateScript:	"Doc.NewUpdate"
+	OpenUpdateScript:	"Doc.OpenUpdate"
+	ActionUpdateScript:	"Doc.ActionUpdate"
+	Title:	"Views"
+	Icon:	359
+)
+
+(MenuBar.147
+	Child:	148
+	Child:	164
+	Child:	184
+	Child:	205
+	Child:	231
+	Child:	255
+	Child:	265
+)
+
+(PMenu.148
+	InternalName:	"File"
+	Child:	149
+	Child:	150
+	Child:	151
+	Child:	152
+	Child:	153
+	Child:	154
+	Child:	155
+	Child:	156
+	Child:	157
+	Child:	158
+	Child:	159
+	Child:	160
+	Child:	161
+	Child:	162
+	Child:	163
+	Label:	"&File"
+)
+
+(Choice.149
+	Help:	"Closes the active component"
+	HelpTopic:	"Close"
+	Label:	"&Close"
+	Click:	"Project.CloseDoc"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.150
+	Help:	"Closes all components"
+	HelpTopic:	"Close_All"
+	Label:	"Close &All"
+	Click:	"Project.CloseAll"
+	Shortcut:	"Keys.None"
+)
+
+(Space.151
+)
+
+(Choice.152
+	Help:	"Allows you to specify the current working directory"
+	HelpTopic:	"Set_Working_Directory"
+	Label:	"Set &Working Directory..."
+	Click:	"Project.SetProjectWorkDir"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.153
+	Help:	"Saves the current project"
+	HelpTopic:	"Save_Project"
+	Label:	"&Save Project"
+	Click:	"Project.Save"
+	Shortcut:	"Keys.Ctrl+S"
+)
+
+(Space.154
+)
+
+(Choice.155
+	Help:	"Prints the view"
+	HelpTopic:	"Print"
+	Update:	"Doc.PrintUpdate"
+	Label:	"&Print..."
+	Click:	"View.Print"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.156
+	Help:	"Edits the printer and the printing options"
+	HelpTopic:	"Print_Setup"
+	Label:	"P&rint Setup..."
+	Click:	"Project.PrintSetup"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.157
+	Help:	"Exports the view"
+	HelpTopic:	"Export"
+	Update:	"View.HasThemesUpdate"
+	Label:	"&Export..."
+	Click:	"View.ExportDisp"
+	Shortcut:	"Keys.None"
+)
+
+(Space.158
+)
+
+(Choice.159
+	InternalName:	"spatial"
+	Help:	"Displays the dialog box to delete, edit, and copy grid data sets"
+	HelpTopic:	"Manage_Grids@spatial.hlp"
+	Label:	"&Manage Grids..."
+	Click:	"Spatial.ManageGrids"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.160
+	InternalName:	"spatial"
+	Help:	"Imports ASCII, binary, DEM, and DTED files to grid data sets"
+	HelpTopic:	"Import_Grids@spatial.hlp"
+	Label:	"&Import Grids..."
+	Click:	"Spatial.Import"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.161
+	InternalName:	"spatial"
+	Help:	"Exports grid data sets to ASCII or binary files"
+	HelpTopic:	"Export_Grids@spatial.hlp"
+	Label:	"Export &Grids..."
+	Click:	"Spatial.Export"
+	Shortcut:	"Keys.None"
+)
+
+(Space.162
+	InternalName:	"spatial"
+)
+
+(Choice.163
+	Help:	"Exits ArcView"
+	HelpTopic:	"Exit"
+	Label:	"E&xit"
+	Click:	"Project.Exit"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.164
+	InternalName:	"Edit"
+	Child:	165
+	Child:	166
+	Child:	167
+	Child:	168
+	Child:	169
+	Child:	170
+	Child:	171
+	Child:	172
+	Child:	173
+	Child:	174
+	Child:	175
+	Child:	176
+	Child:	177
+	Child:	178
+	Child:	179
+	Child:	180
+	Child:	181
+	Child:	182
+	Child:	183
+	Label:	"&Edit"
+)
+
+(Choice.165
+	Help:	"Cuts the active themes to the clipboard"
+	HelpTopic:	"Cut_Themes"
+	Update:	"View.ActiveDeletableThemesUpdate"
+	Label:	"Cut T&hemes"
+	Click:	"View.CutThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.166
+	Help:	"Copies the active themes to the clipboard"
+	HelpTopic:	"Copy_Themes"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"Cop&y Themes"
+	Click:	"View.CopyThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.167
+	Help:	"Removes the active themes from the view"
+	HelpTopic:	"Delete_Themes"
+	Update:	"View.ActiveDeletableThemesUpdate"
+	Label:	"De&lete Themes"
+	Click:	"View.DeleteThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Space.168
+)
+
+(Choice.169
+	Disabled:	1
+	Help:	"Undo the last edit to graphics on a view"
+	HelpTopic:	"Undo_Graphic_Edit_on_a_view"
+	Update:	"View.UndoEditUpdate"
+	Label:	"&Undo Graphic Edit"
+	Click:	"View.UndoEdit"
+	Shortcut:	"Keys.Ctrl+Z"
+)
+
+(Choice.170
+	Disabled:	1
+	Invisible:	1
+	Help:	"Redo the last edit operation on a theme that was undone"
+	HelpTopic:	"Redo_Edit_on_a_view"
+	Update:	"View.RedoEditUpdate"
+	Label:	"&Redo Feature Edit"
+	Click:	"View.RedoEdit"
+	Shortcut:	"Keys.Ctrl+Y"
+)
+
+(Space.171
+)
+
+(Choice.172
+	Disabled:	1
+	Help:	"Cuts the selected graphics to the clipboard"
+	HelpTopic:	"Cut_Graphics"
+	Update:	"View.CutUpdate"
+	Label:	"Cu&t Graphics"
+	Click:	"View.CutGraphics"
+	Shortcut:	"Keys.Ctrl+X"
+)
+
+(Choice.173
+	Disabled:	1
+	Help:	"Copies the selected graphics to the clipboard"
+	HelpTopic:	"Copy_Graphics"
+	Update:	"View.CopyUpdate"
+	Label:	"&Copy Graphics"
+	Click:	"View.CopyGraphics"
+	Shortcut:	"Keys.Ctrl+C"
+)
+
+(Choice.174
+	Disabled:	1
+	Help:	"Removes the selected graphics from the view"
+	HelpTopic:	"Delete_Graphics"
+	Update:	"View.DeleteUpdate"
+	Label:	"&Delete Graphics"
+	Click:	"View.DeleteGraphics"
+	Shortcut:	"Keys.Del"
+)
+
+(Space.175
+)
+
+(Choice.176
+	Disabled:	1
+	Help:	"Combines the selected polygons"
+	HelpTopic:	"Combine_Graphics"
+	Update:	"View.CombineUpdate"
+	Label:	"Com&bine Graphics"
+	Click:	"View.CombineGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.177
+	Disabled:	1
+	Help:	"Unions the selected graphics to create a new graphic"
+	HelpTopic:	"Union_Graphics"
+	Update:	"View.UnionUpdate"
+	Label:	"U&nion Graphics"
+	Click:	"View.UnionGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.178
+	Disabled:	1
+	Help:	"Subtracts one selected polygon from the other selected polygon"
+	HelpTopic:	"Subtract_Graphics"
+	Update:	"View.SubtractUpdate"
+	Label:	"&Subtract Graphics"
+	Click:	"View.SubtractGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.179
+	Disabled:	1
+	Help:	"Creates a new polygon from the area  of overlap between the selected polygons"
+	HelpTopic:	"Intersect_Graphics"
+	Update:	"View.IntersectUpdate"
+	Label:	"&Intersect Graphics"
+	Click:	"View.IntersectGraphics"
+	Shortcut:	"Keys.None"
+)
+
+(Space.180
+)
+
+(Choice.181
+	Disabled:	1
+	Help:	"Inserts the contents of the clipboard"
+	HelpTopic:	"Paste"
+	Update:	"View.PasteUpdate"
+	Label:	"&Paste"
+	Click:	"View.Paste"
+	Shortcut:	"Keys.Ctrl+V"
+)
+
+(Space.182
+)
+
+(Choice.183
+	Disabled:	1
+	Help:	"Selects all graphics in the view"
+	HelpTopic:	"Select_All_Graphics"
+	Update:	"View.HasGraphicsUpdate"
+	Label:	"Select &All Graphics"
+	Click:	"Graphic.SelectAll"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.184
+	InternalName:	"View"
+	Child:	185
+	Child:	186
+	Child:	187
+	Child:	188
+	Child:	189
+	Child:	190
+	Child:	191
+	Child:	192
+	Child:	193
+	Child:	194
+	Child:	195
+	Child:	196
+	Child:	197
+	Child:	198
+	Child:	199
+	Child:	200
+	Child:	201
+	Child:	202
+	Child:	203
+	Child:	204
+	Label:	"&View"
+)
+
+(Choice.185
+	Help:	"Displays the dialog box to edit properties of the view"
+	HelpTopic:	"View_Properties"
+	Label:	"&Properties..."
+	Click:	"View.Properties"
+	Shortcut:	"Keys.None"
+)
+
+(Space.186
+)
+
+(Choice.187
+	Help:	"Inserts themes into the view"
+	HelpTopic:	"Add_Theme"
+	Label:	"&Add Theme..."
+	Click:	"View.Add"
+	Shortcut:	"Keys.Ctrl+T"
+)
+
+(Choice.188
+	Disabled:	1
+	Help:	"Displays a dialog box to create a geocoded theme"
+	HelpTopic:	"Geocode_Addresses"
+	Update:	"View.GeocodeUpdate"
+	Label:	"&Geocode Addresses..."
+	Click:	"View.Geocode"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.189
+	Disabled:	1
+	Help:	"Displays a dialog box to create an XY or dynamic segmentation event-based theme "
+	HelpTopic:	"Add_Event_Theme"
+	Update:	"View.AddEventUpdate"
+	Label:	"Add &Event Theme..."
+	Click:	"View.AddEvent"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.190
+	Help:	"Creates a new theme"
+	HelpTopic:	"New_Theme"
+	Label:	"&New Theme..."
+	Click:	"View.NewTheme"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.191
+	Help:	"Makes all themes visible"
+	HelpTopic:	"Themes_On_Themes_Off"
+	Update:	"View.HasThemesUpdate"
+	Label:	"&Themes On"
+	Click:	"View.ThemesOn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.192
+	Help:	"Makes all themes invisible"
+	HelpTopic:	"Themes_On_Themes_Off"
+	Update:	"View.HasThemesUpdate"
+	Label:	"T&hemes Off"
+	Click:	"View.ThemesOff"
+	Shortcut:	"Keys.Esc"
+)
+
+(Space.193
+)
+
+(Choice.194
+	Help:	"Create a Layout from the View"
+	HelpTopic:	"Layout_menu_choice"
+	Update:	"View.HasThemesUpdate"
+	Label:	"La&yout..."
+	Click:	"View.Layout"
+	Shortcut:	"Keys.None"
+)
+
+(Space.195
+)
+
+(Choice.196
+	Help:	"Zooms to the extent of all themes"
+	HelpTopic:	"Zoom_to_Full_Extent"
+	Update:	"View.HasDataUpdate"
+	Label:	"Full E&xtent"
+	Click:	"View.ZoomFullExtent"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.197
+	Help:	"Zooms in on the center of the display"
+	HelpTopic:	"Zoom_In"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom &In"
+	Click:	"View.ZoomIn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.198
+	Help:	"Zooms out from the center of the display"
+	HelpTopic:	"Zoom_Out"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom &Out"
+	Click:	"View.ZoomOut"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.199
+	Help:	"Zooms to the extent of active themes"
+	HelpTopic:	"Zoom_to_Active_Theme"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Zoom To Themes"
+	Click:	"View.ZoomToThemes"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.200
+	Help:	"Zooms to the extent of the selected features"
+	HelpTopic:	"Zoom_to_Selected"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Zoom To &Selected"
+	Click:	"View.ZoomToSelected"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.201
+	Disabled:	1
+	Help:	"Goes back to the previous extent you were viewing"
+	HelpTopic:	"Zoom_Previous"
+	Update:	"View.UndoZoomUpdate"
+	Label:	"Zoom Pre&vious"
+	Click:	"View.UndoZoom"
+	Shortcut:	"Keys.None"
+)
+
+(Space.202
+)
+
+(Choice.203
+	Help:	"Finds features in the active themes using the text you enter"
+	HelpTopic:	"Find"
+	Update:	"View.TabularThemesUpdate"
+	Label:	"&Find..."
+	Click:	"View.Find"
+	Shortcut:	"Keys.Ctrl+F"
+)
+
+(Choice.204
+	Disabled:	1
+	Help:	"Locates an address in the active, matchable theme"
+	HelpTopic:	"Locate_Address"
+	Update:	"View.LocateUpdate"
+	Label:	"&Locate Address..."
+	Click:	"View.Locate"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.205
+	InternalName:	"Theme"
+	Child:	206
+	Child:	207
+	Child:	208
+	Child:	209
+	Child:	210
+	Child:	211
+	Child:	212
+	Child:	213
+	Child:	214
+	Child:	215
+	Child:	216
+	Child:	217
+	Child:	218
+	Child:	219
+	Child:	220
+	Child:	221
+	Child:	222
+	Child:	223
+	Child:	224
+	Child:	225
+	Child:	226
+	Child:	227
+	Child:	228
+	Child:	229
+	Child:	230
+	Label:	"&Theme"
+)
+
+(Choice.206
+	Help:	"Displays the dialog box to edit properties of the active theme"
+	HelpTopic:	"Theme_Properties"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Properties..."
+	Click:	"View.ThemeProperties"
+	Shortcut:	"Keys.None"
+)
+
+(Space.207
+)
+
+(Choice.208
+	Help:	"Starts or stops editing of shapefile"
+	HelpTopic:	"Start_Stop_Editing_in_a_view"
+	Update:	"View.ToggleEditingUpdate"
+	Label:	"Start &Editing"
+	Click:	"View.ToggleEditing"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.209
+	Disabled:	1
+	Help:	"Save edits to the source shapefile"
+	HelpTopic:	"Save_edits_theme"
+	Update:	"View.SaveEditsUpdate"
+	Label:	"Save Ed&its"
+	Click:	"View.SaveEdits"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.210
+	Disabled:	1
+	Help:	"Saves edits to a new shapefile"
+	HelpTopic:	"Save_edits_as_theme"
+	Update:	"View.SaveEditsUpdate"
+	Label:	"Save E&dits As..."
+	Click:	"View.SaveEditsAs"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.211
+	Help:	"Converts a theme to a shapefile"
+	HelpTopic:	"Convert_to_Shapefile"
+	Update:	"View.ExportUpdate"
+	Label:	"Convert to &Shapefile..."
+	Click:	"View.Export"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.212
+	InternalName:	"spatial"
+	Help:	"Converts themes to grid themes"
+	HelpTopic:	"Convert_to_Grid@spatial.hlp"
+	Update:	"Spatial.ConvertToGridUpdate"
+	Label:	"Convert to &Grid..."
+	Click:	"Spatial.ConvertToGrid"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.213
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Saves the data set associated with a grid theme as a permanent data set"
+	HelpTopic:	"Save_Data_Set@spatial.hlp"
+	Update:	"Spatial.SaveDataSetUpdate"
+	Label:	"Sa&ve Data Set..."
+	Click:	"Spatial.SaveDataSet"
+	Shortcut:	"Keys.Ctrl+D"
+)
+
+(Space.214
+)
+
+(Choice.215
+	Help:	"Displays the legends of the active themes"
+	HelpTopic:	"Edit_Legend"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"Edit &Legend..."
+	Click:	"View.EditLegendClick"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.216
+	Help:	"Shows or hides the active themes' legends"
+	HelpTopic:	"Hide_show_Legend"
+	Update:	"View.ActiveThemesUpdate"
+	Label:	"&Hide/Show Legend"
+	Click:	"View.ToggleLegend"
+	Shortcut:	"Keys.None"
+)
+
+(Space.217
+)
+
+(Choice.218
+	Disabled:	1
+	Help:	"Displays the Re-match dialog for re-matching addresses"
+	HelpTopic:	"Re_match_Addresses"
+	Update:	"View.EditMatchUpdate"
+	Label:	"&Re-match Addresses..."
+	Click:	"View.EditMatch"
+	Shortcut:	"Keys.None"
+)
+
+(Space.219
+)
+
+(Choice.220
+	Help:	"Labels features in active, visible themes"
+	HelpTopic:	"Auto_label"
+	Update:	"View.LabelThemesUpdate"
+	Label:	"&Auto-label..."
+	Click:	"View.LabelThemes"
+	Shortcut:	"Keys.Ctrl+L"
+)
+
+(Choice.221
+	Disabled:	1
+	Help:	"Removes any labels from active themes"
+	HelpTopic:	"Remove_Labels"
+	Update:	"View.RemoveThemeLabelsUpdate"
+	Label:	"Rem&ove Labels"
+	Click:	"View.RemoveThemeLabels"
+	Shortcut:	"Keys.Ctrl+R"
+)
+
+(Choice.222
+	Disabled:	1
+	Help:	"Removes the overlapping labels from active themes, if they are still green."
+	HelpTopic:	"Remove_Overlapping_Labels"
+	Update:	"View.RemoveOverlapThemeLabelsUpdate"
+	Label:	"Remove Overlappi&ng Labels"
+	Click:	"View.RemoveOverlapThemeLabels"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.223
+	Disabled:	1
+	Help:	"Converts selected overlapping labels to symbol of selected good label"
+	HelpTopic:	"Convert_Overlapping_Labels"
+	Update:	"View.ConvertOverlapLabelsUpdate"
+	Label:	"&Convert Overlapping Labels"
+	Click:	"View.ConvertOverlapLabels"
+	Shortcut:	"Keys.Ctrl+O"
+)
+
+(Space.224
+)
+
+(Choice.225
+	Help:	"Opens the tables of the active themes"
+	HelpTopic:	"Open_Theme_Table"
+	Update:	"View.TabularThemesUpdate"
+	Label:	"&Table..."
+	Click:	"View.ShowTable"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.226
+	Help:	"Displays the Query Builder to select features with a logical expression"
+	HelpTopic:	"Query_Builder"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"&Query..."
+	Click:	"View.Query"
+	Shortcut:	"Keys.Ctrl+Q"
+)
+
+(Choice.227
+	Help:	"Selects features in the active themes using another theme's features"
+	HelpTopic:	"Select_By_Theme"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Select &By Theme..."
+	Click:	"View.SelectByTheme"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.228
+	Help:	"Unselects the selected features of all active themes"
+	HelpTopic:	"Clear_Selected_Features"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"Clear Selected &Features"
+	Click:	"View.ClearSelect"
+	Shortcut:	"Keys.None"
+)
+
+(Space.229
+	InternalName:	"spatial"
+)
+
+(Choice.230
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Brings up the map query builder or map calculator associated with a grid theme"
+	HelpTopic:	"Edit_Theme_Expression@spatial.hlp"
+	Update:	"Spatial.EditExpressionUpdate"
+	Label:	"Edit The&me Expression..."
+	Click:	"Spatial.EditExpression"
+	Shortcut:	"Keys.Ctrl+E"
+)
+
+(PMenu.231
+	InternalName:	"Spatial"
+	Child:	232
+	Child:	233
+	Child:	234
+	Child:	235
+	Child:	236
+	Child:	237
+	Child:	238
+	Child:	239
+	Child:	240
+	Child:	241
+	Child:	242
+	Child:	243
+	Child:	244
+	Child:	245
+	Child:	246
+	Child:	247
+	Child:	248
+	Child:	249
+	Child:	250
+	Child:	251
+	Child:	252
+	Child:	253
+	Child:	254
+	Label:	"&Analysis"
+)
+
+(Choice.232
+	InternalName:	"spatial"
+	Help:	"Displays the dialog box to edit the analysis properties"
+	HelpTopic:	"Analysis_Properties@spatial.hlp"
+	Update:	"View.HasThemesUpdate"
+	Label:	"&Properties..."
+	Click:	"Spatial.AnalysisProperties"
+	Shortcut:	"Keys.None"
+)
+
+(Space.233
+	InternalName:	"spatial"
+)
+
+(Choice.234
+	InternalName:	"spatial"
+	Help:	"Finds continuous distances from features in a theme"
+	HelpTopic:	"Find_Distance@spatial.hlp"
+	Update:	"Spatial.HasActiveIntegerGridOrFeatureThemeUpdate"
+	Label:	"Find &Distance"
+	Click:	"Spatial.Distance"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.235
+	InternalName:	"spatial"
+	Help:	"Creates zones of proximity for features in a theme"
+	HelpTopic:	"Assign_Proximity@spatial.hlp"
+	Update:	"Spatial.HasActiveIntegerGridOrFeatureThemeUpdate"
+	Label:	"Assign Pro&ximity"
+	Click:	"Spatial.Proximity"
+	Shortcut:	"Keys.None"
+)
+
+(Space.236
+	InternalName:	"spatial"
+)
+
+(Choice.237
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Creates a density surface from a point theme"
+	HelpTopic:	"Calculate_Density@spatial.hlp"
+	Update:	"Spatial.DensityUpdate"
+	Label:	"Calculate D&ensity..."
+	Click:	"Spatial.Density"
+	Shortcut:	"Keys.None"
+)
+
+(Space.238
+	InternalName:	"spatial"
+)
+
+(Choice.239
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Creates a continuous surface from a point theme"
+	HelpTopic:	"Interpolate_Surface@spatial.hlp"
+	Update:	"Spatial.SurfaceUpdate"
+	Label:	"Interpolate S&urface..."
+	Click:	"Spatial.Surface"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.240
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Derives slope from a grid theme"
+	HelpTopic:	"Derive_Slope@spatial.hlp"
+	Update:	"Spatial.HasActiveGridThemeUpdate"
+	Label:	"Derive &Slope"
+	Click:	"Spatial.Slope"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.241
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Derives aspect from a grid theme"
+	HelpTopic:	"Derive_Aspect@spatial.hlp"
+	Update:	"Spatial.HasActiveGridThemeUpdate"
+	Label:	"Derive &Aspect"
+	Click:	"Spatial.Aspect"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.242
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Computes hillshade values for a grid theme"
+	HelpTopic:	"Compute_Hillshade@spatial.hlp"
+	Update:	"Spatial.HasActiveGridThemeUpdate"
+	Label:	"Compute Hi&llshade..."
+	Click:	"Spatial.Hillshade"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.243
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Creates contours from a point or grid theme"
+	HelpTopic:	"Create_Contours@spatial.hlp"
+	Update:	"Spatial.HasActiveGridOrNumericPointThemeUpdate"
+	Label:	"Create C&ontours..."
+	Click:	"Spatial.Contour"
+	Shortcut:	"Keys.None"
+)
+
+(Space.244
+	InternalName:	"spatial"
+)
+
+(Choice.245
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Calculates a statistic for multiple grid themes"
+	HelpTopic:	"Cell_Statistics@spatial.hlp"
+	Update:	"Spatial.CellStatisticsUpdate"
+	Label:	"&Cell Statistics..."
+	Click:	"Spatial.CellStatistics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.246
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Summarizes values in a grid theme within the zones of another theme"
+	HelpTopic:	"Summarize_Zones@spatial.hlp"
+	Update:	"Spatial.ZoneOperationUpdate"
+	Label:	"Summarize &Zones..."
+	Click:	"Spatial.SummarizeZones"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.247
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Creates a histogram distribution of a grid theme for each zone in another theme"
+	HelpTopic:	"Histogram_By_Zone@spatial.hlp"
+	Update:	"Spatial.ZoneOperationUpdate"
+	Label:	"&Histogram By Zone..."
+	Click:	"Spatial.ZoneHistogram"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.248
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Tabulates the area of one theme within the zones of another theme"
+	HelpTopic:	"Tabulate_Areas@spatial.hlp"
+	Update:	"Spatial.TabulateAreasUpdate"
+	Label:	"&Tabulate Areas..."
+	Click:	"Spatial.TabulateAreas"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.249
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Performs spatial selection on multiple grid themes"
+	HelpTopic:	"Map_Query@spatial.hlp"
+	Update:	"Spatial.HasGridThemeUpdate"
+	Label:	"Map &Query..."
+	Click:	"Spatial.Query"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.250
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Displays the dialog box to create a grid theme with an algebraic statement"
+	HelpTopic:	"Map_Calculator@spatial.hlp"
+	Update:	"Spatial.HasGridThemeUpdate"
+	Label:	"&Map Calculator..."
+	Click:	"Spatial.Calculator"
+	Shortcut:	"Keys.None"
+)
+
+(Space.251
+	InternalName:	"spatial"
+)
+
+(Choice.252
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Calculates a statistic on a grid or point theme over a specified neighborhood"
+	HelpTopic:	"Neighborhood_Statistics@spatial.hlp"
+	Update:	"Spatial.HasActiveGridOrNumericPointThemeUpdate"
+	Label:	"&Neighborhood Statistics..."
+	Click:	"Spatial.NbrStatistics"
+	Shortcut:	"Keys.None"
+)
+
+(Space.253
+	InternalName:	"spatial"
+)
+
+(Choice.254
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Reclassifies the values in a grid theme"
+	HelpTopic:	"Reclassify@spatial.hlp"
+	Update:	"Spatial.HasActiveGridThemeUpdate"
+	Label:	"&Reclassify..."
+	Click:	"Spatial.Reclassify"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.255
+	InternalName:	"Window"
+	Child:	256
+	Child:	257
+	Child:	258
+	Child:	259
+	Child:	260
+	Child:	261
+	Child:	263
+	Child:	264
+	Label:	"&Window"
+)
+
+(Choice.256
+	Help:	"Arranges windows as non-overlapping tiles"
+	HelpTopic:	"Tile"
+	Label:	"&Tile"
+	Click:	"Project.Tile"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.257
+	Help:	"Arranges windows"
+	HelpTopic:	"Cascade"
+	Label:	"&Cascade"
+	Click:	"Project.Cascade"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.258
+	Help:	"Arranges iconified windows"
+	HelpTopic:	"Arrange_Icons"
+	Label:	"&Arrange Icons"
+	Click:	"Project.ArrangeIcons"
+	Shortcut:	"Keys.None"
+)
+
+(Space.259
+)
+
+(Choice.260
+	Help:	"Shows the symbol window"
+	HelpTopic:	"Show_Symbol_Window"
+	Label:	"Show Symbol Window..."
+	Click:	"Project.ShowHideSymWin"
+	Shortcut:	"Keys.Ctrl+P"
+)
+
+(Space.261
+	ObjectTag:	262
+	Update:	"WindowMenuUpdate"
+)
+
+(AVStr.262
+	S:	"CPLAN.APR View1"
+)
+
+(Choice.263
+	Help:	"Activates CPLAN.APR"
+	Label:	"&1 CPLAN.APR"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.264
+	Help:	"Activates View1"
+	Label:	"&2 View1"
+	Click:	"WindowActivate"
+	Shortcut:	"Keys.None"
+)
+
+(PMenu.265
+	InternalName:	"Help"
+	Child:	266
+	Child:	267
+	Child:	268
+	Child:	269
+	Label:	"&Help"
+)
+
+(Choice.266
+	Help:	"Displays the dialog for browsing and searching ArcView's help system"
+	HelpTopic:	"Help_on_Help_Topics"
+	Label:	"Help &Topics..."
+	Click:	"Project.HelpTopics"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.267
+	Help:	"Provides instructions for how to obtain help from ArcView"
+	HelpTopic:	"Help_on_How_to_Get_Help"
+	Label:	"&How to Get Help..."
+	Click:	"Project.HelpHelp"
+	Shortcut:	"Keys.None"
+)
+
+(Space.268
+)
+
+(Choice.269
+	Help:	"Provides information about ArcView"
+	HelpTopic:	"About"
+	Label:	"&About ArcView..."
+	Click:	"Project.About"
+	Shortcut:	"Keys.None"
+)
+
+(ButnBar.270
+	Child:	271
+	Child:	273
+	Child:	275
+	Child:	276
+	Child:	278
+	Child:	280
+	Child:	282
+	Child:	283
+	Child:	285
+	Child:	286
+	Child:	288
+	Child:	289
+	Child:	291
+	Child:	293
+	Child:	294
+	Child:	296
+	Child:	298
+	Child:	299
+	Child:	301
+	Child:	303
+	Child:	305
+	Child:	307
+	Child:	309
+	Child:	310
+	Child:	312
+	Child:	314
+	Child:	315
+	Child:	317
+	Child:	318
+	Child:	320
+	Child:	321
+)
+
+(Butn.271
+	InternalName:	"DDESelect"
+	Help:	"Post Selections//Post Selected Sites to C-Plan"
+	Icon:	272
+	Click:	"CPlan.DDESelect"
+)
+
+(AVIcon.272
+	Name:	"ShiftLeft"
+	Res:	"Icons.ShiftLeft"
+
+)
+
+(Butn.273
+	InternalName:	"StartCPlan"
+	Help:	"Start C-Plan//Start C-Plan Application and link to ArcView"
+	Icon:	274
+	Click:	"CPlan.StartCPlan"
+)
+
+(AVIcon.274
+	Name:	"avcp5.bmp"
+	Data:	4e442049 6d616765 00010019 00190000 
+	Data:	01908888 88888888 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00008888 00000000 88888888 88888000 
+	Data:	00008800 00000000 08888888 88888000 
+	Data:	00008000 00000000 00888888 88888000 
+	Data:	00000000 00000000 00088888 88888000 
+	Data:	00000000 00888800 00008888 88888000 
+	Data:	00000000 08888888 80008888 88888000 
+	Data:	00000000 88888888 88888888 88888000 
+	Data:	00000000 80888880 88000808 80888000 
+	Data:	00000000 80888880 80880808 80888000 
+	Data:	00000000 80888880 88000808 80888000 
+	Data:	00000000 80000880 88880808 80888000 
+	Data:	00000000 80888080 88008800 08888000 
+	Data:	00000000 80888080 88888888 88888000 
+	Data:	00000000 80000880 88888888 88888000 
+	Data:	00000000 88888888 88888888 88888000 
+	Data:	00000000 08888888 80008888 88888000 
+	Data:	00000000 00888800 00008888 88888000 
+	Data:	00000000 00000000 00088888 88888000 
+	Data:	00008000 00000000 00888888 88888000 
+	Data:	00008800 00000000 08888888 88888000 
+	Data:	00008888 00000000 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00008888 88888888 88888888 88888000 
+	Data:	00000000 00400000 00000000 80000080 
+	Data:	00000080 80008000 00008000 80008080 
+	Data:	00008080 8000c0c0 c0000000 ff0000ff 
+	Data:	000000ff ff00ff00 0000ff00 ff00ffff 
+	Data:	0000ffff ff000002 00040007 00200001 
+	Data:	00020000 00000000 0000
+)
+
+(Space.275
+	InternalName:	"ButtonSpace"
+)
+
+(Butn.276
+	Icon:	277
+	Click:	"CPlan.ViewPartialFeatures"
+)
+
+(AVIcon.277
+	Name:	"HideLegend"
+	Res:	"Icons.HideLegend"
+
+)
+
+(Butn.278
+	Icon:	279
+	Click:	"CPlan.AddWERMSLabels"
+)
+
+(AVIcon.279
+	Name:	"LabelInfo"
+	Res:	"Icons.LabelInfo"
+
+)
+
+(Butn.280
+	InternalName:	"TabulateAreas"
+	Help:	"Tabulate Areas//Tabulate Areas for Multiple Layers"
+	Icon:	281
+	Click:	"CPlan.TabulateAreas"
+)
+
+(AVIcon.281
+	Name:	"FrameTable"
+	Res:	"Icons.FrameTable"
+
+)
+
+(Space.282
+)
+
+(Butn.283
+	Help:	"Save Project//Saves the current project"
+	HelpTopic:	"Save_Project"
+	Icon:	284
+	Click:	"Project.Save"
+)
+
+(AVIcon.284
+	Name:	"Save"
+	Res:	"Icons.Save"
+
+)
+
+(Space.285
+)
+
+(Butn.286
+	Help:	"Add Theme//Inserts themes into the view"
+	HelpTopic:	"Add_Theme"
+	Icon:	287
+	Click:	"View.Add"
+)
+
+(AVIcon.287
+	Name:	"AddTheme"
+	Res:	"Icons.AddTheme"
+
+)
+
+(Space.288
+)
+
+(Butn.289
+	Help:	"Theme Properties//Displays the dialog box to edit properties of the active theme"
+	HelpTopic:	"Theme_Properties"
+	Update:	"View.ActiveThemesUpdate"
+	Icon:	290
+	Click:	"View.ThemeProperties"
+)
+
+(AVIcon.290
+	Name:	"Props"
+	Res:	"Icons.Props"
+
+)
+
+(Butn.291
+	Help:	"Open Theme Table//Opens the tables of the active themes"
+	HelpTopic:	"Open_Theme_Table"
+	Update:	"View.TabularThemesUpdate"
+	Icon:	292
+	Click:	"View.ShowTable"
+)
+
+(AVIcon.292
+	Name:	"Table"
+	Res:	"Icons.Table"
+
+)
+
+(Space.293
+)
+
+(Butn.294
+	Help:	"Find//Finds features in the active themes using the text you enter"
+	HelpTopic:	"Find"
+	Update:	"View.TabularThemesUpdate"
+	Icon:	295
+	Click:	"View.Find"
+)
+
+(AVIcon.295
+	Name:	"Find"
+	Res:	"Icons.Find"
+
+)
+
+(Butn.296
+	Help:	"Query Builder//Displays the Query Builder to select features with a logical expression"
+	HelpTopic:	"Query_Builder"
+	Update:	"View.AttributeThemesUpdate"
+	Icon:	297
+	Click:	"View.Query"
+)
+
+(AVIcon.297
+	Name:	"QueryBuilder"
+	Res:	"Icons.QueryBuilder"
+
+)
+
+(Space.298
+)
+
+(Butn.299
+	Help:	"Zoom to Full Extent//Zooms to the extent of all themes"
+	HelpTopic:	"Zoom_to_Full_Extent"
+	Update:	"View.HasDataUpdate"
+	Icon:	300
+	Click:	"View.ZoomFullExtent"
+)
+
+(AVIcon.300
+	Name:	"ZoomView"
+	Res:	"Icons.ZoomView"
+
+)
+
+(Butn.301
+	Help:	"Zoom to Selected//Zooms to the extent of the selected features"
+	HelpTopic:	"Zoom_to_Selected"
+	Update:	"View.SelectableThemesUpdate"
+	Icon:	302
+	Click:	"View.ZoomToSelected"
+)
+
+(AVIcon.302
+	Name:	"ZoomToSelected"
+	Res:	"Icons.ZoomToSelected"
+
+)
+
+(Butn.303
+	Help:	"Zoom In//Zooms in on the center of the display"
+	HelpTopic:	"Zoom_In"
+	Update:	"View.HasDataUpdate"
+	Icon:	304
+	Click:	"View.ZoomIn"
+)
+
+(AVIcon.304
+	Name:	"ZoomIn"
+	Res:	"Icons.ZoomIn"
+
+)
+
+(Butn.305
+	Help:	"Zoom Out//Zooms out from the center of the display"
+	HelpTopic:	"Zoom_Out"
+	Update:	"View.HasDataUpdate"
+	Icon:	306
+	Click:	"View.ZoomOut"
+)
+
+(AVIcon.306
+	Name:	"ZoomOut"
+	Res:	"Icons.ZoomOut"
+
+)
+
+(Butn.307
+	Disabled:	1
+	Help:	"Zoom to Previous Extent//Goes back to the previous extent you were viewing"
+	HelpTopic:	"Zoom_Previous"
+	Update:	"View.UndoZoomUpdate"
+	Icon:	308
+	Click:	"View.UndoZoom"
+)
+
+(AVIcon.308
+	Name:	"ZoomPrevious"
+	Res:	"Icons.ZoomPrevious"
+
+)
+
+(Space.309
+)
+
+(Butn.310
+	Icon:	311
+	Click:	"ZoomView.AOI"
+)
+
+(AVIcon.311
+	Name:	"aoi6.bmp"
+	Data:	4e442049 6d616765 00010019 00190000 
+	Data:	076cc0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c000c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c000c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c000c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c000 
+	Data:	0000c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c000 0000c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c000 0000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c000c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c000 0000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c000c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c00000 00c0c0c0 c0c0c000 
+	Data:	0000c0c0 c0c0c0c0 000000c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0000000 c0c0c000 0000c0c0 
+	Data:	c0000000 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 00000000 00000000 00c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c000c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c000 0000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c000c0c0 
+	Data:	c0c0c0c0 c0c0c000 0000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0000000 c0c0c0c0 
+	Data:	c0c0c0c0 c0000000 c0c0c0c0 c0c0c0c0 
+	Data:	c0000000 00000000 0000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c000c0c0 c0c0c0c0 
+	Data:	c0c0c000 0000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0000000 c0c0c0c0 c0c00000 
+	Data:	00c0c0c0 000000c0 c0c0c0c0 c0c0c0c0 
+	Data:	000000c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c00000 00000000 00000000 00000000 
+	Data:	00c0c0c0 c0c0c000 0000c0c0 c0c0c0c0 
+	Data:	c0c0c000 0000c0c0 c0c0c0c0 000000c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c000c0c0 c0c0c0c0 c0c0c0c0 c0c00000 
+	Data:	00c0c0c0 c0c0c0c0 c0c00000 00c0c0c0 
+	Data:	c0c0c000 0000c0c0 c0c0c0c0 c0c0c000 
+	Data:	0000c0c0 c0c0c0c0 000000c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c000c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0000000 
+	Data:	c0c0c000 0000c0c0 c0c0c0c0 c0c0c000 
+	Data:	0000c0c0 c0c0c0c0 c0c0c000 0000c0c0 
+	Data:	c0c0c0c0 000000c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0000000 c0c0c000 
+	Data:	0000c0c0 c0c0c0c0 c0c0c000 0000c0c0 
+	Data:	c0c0c0c0 c0c0c000 0000c0c0 c0c0c0c0 
+	Data:	000000c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 000000c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c00000 00c0c0c0 
+	Data:	000000c0 c0c0c0c0 c0c0c0c0 000000c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c000c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 000000c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0000000 c0c0c0c0 
+	Data:	c0c0c0c0 c0000000 00000000 0000c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c000c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c000c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c000c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c000c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0c0c0c0 
+	Data:	c0c0c0c0 c0c0c0c0 c0c0c0c0 c0000000 
+	Data:	00000001 00180007 00200001 00020000 
+	Data:	00000000 0000
+)
+
+(Butn.312
+	Help:	"Zoom to Active Theme(s)//Zooms to the extent of active themes"
+	HelpTopic:	"Zoom_to_Active_Theme"
+	Update:	"View.ActiveThemesUpdate"
+	Icon:	313
+	Click:	"View.ZoomToThemes"
+)
+
+(AVIcon.313
+	Name:	"ZoomTheme"
+	Res:	"Icons.ZoomTheme"
+
+)
+
+(Space.314
+)
+
+(Butn.315
+	Help:	"Clear Selected Features//Unselects the selected features of all active themes"
+	HelpTopic:	"Clear_Selected_Features"
+	Update:	"View.AttributeThemesUpdate"
+	Icon:	316
+	Click:	"View.ClearSelect"
+)
+
+(AVIcon.316
+	Name:	"SelectNone"
+	Res:	"Icons.SelectNone"
+
+)
+
+(Space.317
+)
+
+(Butn.318
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Histogram//Displays the histogram distribution of the values in a grid theme"
+	HelpTopic:	"Histogram@spatial.hlp"
+	Update:	"Spatial.HistogramUpdate"
+	Icon:	319
+	Click:	"Spatial.Histogram"
+)
+
+(AVIcon.319
+	Name:	"Histogram"
+	Res:	"Icons.Histogram"
+
+)
+
+(Space.320
+	InternalName:	"spatial"
+)
+
+(Butn.321
+	Help:	"Help//Gets help about the next button, tool, or menu choice you click"
+	HelpTopic:	"Help_button"
+	Icon:	322
+	Click:	"Help.Tool"
+)
+
+(AVIcon.322
+	Name:	"HelpTool"
+	Res:	"Icons.HelpTool"
+
+)
+
+(PopupSet.323
+	Child:	324
+)
+
+(Popup.324
+	Child:	325
+	Child:	326
+	Child:	327
+	Child:	328
+	Child:	329
+	Child:	330
+	Child:	331
+	Child:	332
+	Child:	333
+	Child:	334
+	Child:	335
+	Child:	336
+	Child:	337
+	Child:	338
+	Child:	339
+	Child:	340
+	Child:	341
+	Label:	"Menu"
+)
+
+(Choice.325
+	Disabled:	1
+	Invisible:	1
+	Help:	"Deletes the last entered point on the line or polygon being drawn"
+	Update:	"View.DelLastPointUpdate"
+	Label:	"Delete Last Point"
+	Click:	"View.DeleteLastPoint"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.326
+	Disabled:	1
+	Help:	"Undo the last edit to graphics on a view"
+	HelpTopic:	"Undo_Graphic_Edit_on_a_view"
+	Update:	"View.UndoEditUpdate"
+	Label:	"Undo Graphic Edit"
+	Click:	"View.UndoEdit"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.327
+	Disabled:	1
+	Invisible:	1
+	Help:	"Redo the last edit operation on a theme that was undone"
+	Update:	"View.RedoEditUpdate"
+	Label:	"Redo Feature Edit"
+	Click:	"View.RedoEdit"
+	Shortcut:	"Keys.None"
+)
+
+(Space.328
+)
+
+(Choice.329
+	Disabled:	1
+	Invisible:	1
+	Help:	"Turns general snapping on"
+	Update:	"View.ToggleGeneralSnapUpdate"
+	Label:	"Enable General Snapping"
+	Click:	"View.ToggleGeneralSnap"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.330
+	Disabled:	1
+	Invisible:	1
+	Help:	"Turns interactive snapping on"
+	Update:	"View.ToggleInteractiveSnapUpdate"
+	Label:	"Enable Interactive Snapping"
+	Click:	"View.ToggleInteractiveSnap"
+	Shortcut:	"Keys.None"
+)
+
+(Space.331
+)
+
+(Choice.332
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest vertex within the user tolerance"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Vertex"
+	Click:	"View.SnapToVertex"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.333
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest line segment"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Boundary"
+	Click:	"View.SnapToBoundary"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.334
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest node common to two or more features"
+	Update:	"View.InteractiveSnapUpdate"
+	Label:	"Snap to Intersection"
+	Click:	"View.SnapToIntersection"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.335
+	Disabled:	1
+	Invisible:	1
+	Help:	"Snaps the next entered point to the nearest endpoint of an existing line"
+	Update:	"View.SnapToEndPointUpdate"
+	Label:	"Snap to Endpoint"
+	Click:	"View.SnapToEndPoint"
+	Shortcut:	"Keys.None"
+)
+
+(Space.336
+)
+
+(Choice.337
+	Help:	"Unselects the selected features in all active themes"
+	Update:	"View.AttributeThemesUpdate"
+	Label:	"Clear Selection"
+	Click:	"View.ClearSelect"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.338
+	Help:	"Zooms in at point where you click to bring up popup menu"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom In"
+	Click:	"View.PopupZoomIn"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.339
+	Help:	"Zooms out from point where you click to bring up popup menu"
+	Update:	"View.HasDataUpdate"
+	Label:	"Zoom Out"
+	Click:	"View.PopupZoomOut"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.340
+	Help:	"Zooms to the extent of the selected features"
+	Update:	"View.SelectableThemesUpdate"
+	Label:	"Zoom to Selected"
+	Click:	"View.ZoomToSelected"
+	Shortcut:	"Keys.None"
+)
+
+(Choice.341
+	Help:	"Centers display on point where you click to bring up popup"
+	Update:	"View.HasDataUpdate"
+	Label:	"Pan"
+	Click:	"View.PopupPan"
+	Shortcut:	"Keys.None"
+)
+
+(ToolBar.342
+	Child:	343
+	Child:	345
+	Child:	347
+	Child:	349
+	Child:	351
+	Child:	353
+	Child:	355
+	Child:	357
+)
+
+(Tool.343
+	InternalName:	"DDESelectPoint"
+	Help:	"Select and Post Features//Select Features in the active theme and Post to C-Plan"
+	Update:	"View.SelectableThemesUpdate"
+	Icon:	344
+	Cursor:	"Cursors.Default"
+	Apply:	"CPlan.DDESelectPoint"
+)
+
+(AVIcon.344
+	Name:	"Media"
+	Res:	"Icons.Media"
+
+)
+
+(Tool.345
+	Help:	"Identify//Provides information about a feature"
+	HelpTopic:	"Identify_tool"
+	Update:	"View.IdentifyUpdate"
+	Icon:	346
+	Cursor:	"Cursors.ID"
+	Apply:	"View.Identify"
+)
+
+(AVIcon.346
+	Name:	"ID"
+	Res:	"Icons.ID"
+
+)
+
+(Tool.347
+	Help:	"Select Feature//Selects features in the active themes by pointing or dragging"
+	HelpTopic:	"Select_Feature_tool"
+	Update:	"View.SelectableThemesUpdate"
+	Icon:	348
+	Cursor:	"Cursors.Default"
+	Apply:	"View.SelectPoint"
+)
+
+(AVIcon.348
+	Name:	"FeatureSelect"
+	Res:	"Icons.FeatureSelect"
+
+)
+
+(Tool.349
+	Help:	"Zoom In//Zooms in at a point you click or zooms in on a rectangle you drag"
+	HelpTopic:	"Zoom_In_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	350
+	Cursor:	"Cursors.ZoomIn"
+	Apply:	"View.ZoomInTool"
+)
+
+(AVIcon.350
+	Name:	"ZoomInTool"
+	Res:	"Icons.ZoomInTool"
+
+)
+
+(Tool.351
+	Help:	"Zoom Out//Zooms out from a point you click or zooms out to include a rectangle you drag"
+	HelpTopic:	"Zoom_Out_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	352
+	Cursor:	"Cursors.ZoomOut"
+	Apply:	"View.ZoomOutTool"
+)
+
+(AVIcon.352
+	Name:	"ZoomOutTool"
+	Res:	"Icons.ZoomOutTool"
+
+)
+
+(Tool.353
+	Help:	"Pan//Drags the display in the direction you move the cursor"
+	HelpTopic:	"Pan_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	354
+	Cursor:	"Cursors.Pan"
+	Apply:	"View.Pan"
+)
+
+(AVIcon.354
+	Name:	"Pan"
+	Res:	"Icons.Pan"
+
+)
+
+(Tool.355
+	Help:	"Measure//Measures distance"
+	HelpTopic:	"Measure_tool"
+	Update:	"View.HasDataUpdate"
+	Icon:	356
+	Cursor:	"Cursors.Measure"
+	Apply:	"View.Measure"
+)
+
+(AVIcon.356
+	Name:	"Measure"
+	Res:	"Icons.Measure"
+
+)
+
+(Tool.357
+	InternalName:	"spatial"
+	Disabled:	1
+	Help:	"Contour//Creates a contour based on a point you define in a view"
+	HelpTopic:	"Contour_Tool@spatial.hlp"
+	Update:	"Spatial.ContourToolUpdate"
+	Icon:	358
+	Cursor:	"Cursors.Bullseye"
+	Apply:	"Spatial.ContourTool"
+)
+
+(AVIcon.358
+	Name:	"Contour"
+	Res:	"Icons.Contour"
+
+)
+
+(AVIcon.359
+	Name:	"Icon"
+	Res:	"View.Icon"
+
+)
+
+(FN.898
+	Path:	"$HOME"
+)
+
+(TClr.899
+)
+
+(AVStr.900
+	S:	"View"
+)
+
+(AVStr.901
+	S:	"Table"
+)
+
+(AVStr.902
+	S:	"Chart"
+)
+
+(AVStr.903
+	S:	"Layout"
+)
+
+(AVStr.904
+	S:	"Script"
+)
+
+(AVStr.905
+	S:	"Project"
+)
+
+(AVStr.906
+	S:	"Appl"
+)
+

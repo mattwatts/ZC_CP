@@ -1,0 +1,14 @@
+Compiler (Project | Options)
+
+Aligned record fields	Aligns elements in structures to 32-bit boundaries. Corresponds to {$A}.
+
+
+extra 4 bytes with first 3 records
+
+supposed to be 4 byte ints should = 4 * 3 = 12 bytes
+is actually 16 bytes
+
+
+what size is int in MSDev ?
+
+32-bit signed integer

@@ -1,0 +1,119 @@
+FUNCTIONS THAT HAVE BEEN OPTIMISED
+
+- Irreplaceability
+- Potential Contribution
+- loading of data at startup time (with fastload BIN files)
+- Features To Target
+- SQL Show/Sort Values
+
+
+NEW MENU FUNCTIONS
+
+File
+	Browse Selections
+		- allows user to browse a set of Memos from EMS files before selecting one to load
+
+Show
+	Hide Partial
+	Hide Flagged
+		- extra functionality for Partial and Flagged sites 
+		(now equivalent to all other classes)
+
+Search	(was called Choose SQL)
+	- the SQL functions have been all been enhanced and the Menu Items have been rearranged
+
+Report
+	Partial Deferral
+		- new report function details Partially Deferred site choices
+	Missing Features
+		- new report function details Features missing from Available and Reserved sites
+
+Highlight
+	Load Site NAME
+	Load Site GEOCODE
+		- these functions select sites from a list of identifiers in an ASCII (text) file
+		(other file formats can be added as necessary)
+
+Options
+	Use Tool View
+		- switches from Control Form view to Tool Form view
+		- the Tool Form has a user-customised set of buttons to access functions
+	Tool View
+		- sets options for the Tool Form view
+
+Tools
+	Reload Names
+	Reload Targets
+	ReApply Tenure
+		- specialised functions for updating Databases
+
+	Matrix Report
+	Variable Combsize Report
+		- specialised reporting functions for System Testing/Validation/Research
+	Force Select Combsize
+		- causes SelectCombsize to be run at the next run of Irreplaceability
+		(ie. overrides and rewrites combination size in the CMB file)
+		- can be toggled on and off
+
+	Redundancy Check (simple)
+	Redundancy Check (combination)
+		- calls James Sheltons redundancy check functions and highlights Deferred sites
+		  that are redundant (which allows deselection)
+
+
+MODIFIED MENU FUNCTIONS
+
+File
+	Save Selections As
+		- added read only
+	Edit Stage Memo
+		- automated call when saving EMS (user selections) file
+
+Show
+	Features To Target
+		- added Show Contributing Sites	functionality
+		- optimized speed of operation (esp. resize)
+	Selection Log
+		- added jump 10% buttons for navigating large selection logs
+
+Search
+	Select As
+	DeSelect From
+	Lookup
+	Map
+	Add To Map
+		- the SQL functions have been all been enhanced and the Menu Items have been rearranged
+Report
+	Site Summary
+	Irreplaceability
+	Targets
+		- these reports have been reformatted
+
+Highlight
+	Highlight All
+	Clear All
+		- these menu items have been rearranged
+
+Options
+	Restrict Targets
+		- allows user to load and save lists of features to select feature subset
+		(Similar to Highlight | Load Site NAME, Load Site GEOCODE)
+	Use Tool View
+		- switch to Tool View form
+	GIS
+		- changed from WinERMS
+	Load Options
+	Save Options
+		- renamed from Load Local Options, Save Local Options
+
+Tools
+	Import Data
+		- about 5000 lines of new code in IMPORT16.EXE for various import functions
+
+
+OTHER JOBS
+
+- System testing and bug fixing
+- Software design and evaluation
+- Giving Demonstrations of software and methods
+- GIS processing as required (maps and reports) for Northern Zone and Others
